@@ -16,8 +16,8 @@ let KEY_FOR_NETWORK_PATH = "KEY_FOR_NETWORK_PATH"
 let KEY_FOR_BOOTSTRAP_PATH = ".Sofa/SofaBootNodes.dat"
 let KEY_FOR_ETHEREUM_DIRECTORY = ".Sofa/ethereumWallet"
 
-let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/sofanetwork/interplanetary-navigation/master/sofa_debug.ticket"
-//let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/sofanetwork/interplanetary-navigation/master/sofa.ticket"
+let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/proton-lab/quantum/master/seed_debug.quantum"
+//let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/proton-lab/quantum/master/seed.quantum"
 
 class Service: NSObject {
         
