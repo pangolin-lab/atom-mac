@@ -1,0 +1,27 @@
+
+/* Class = "NSTextFieldCell"; placeholderString = "Password Again"; ObjectID = "2OZ-1U-z6n"; */
+"2OZ-1U-z6n.placeholderString" = "请再次输入密码";
+
+/* Class = "NSTextFieldCell"; placeholderString = "BlockChain Account Password"; ObjectID = "LcN-MH-MpG"; */
+"LcN-MH-MpG.placeholderString" = "请输入创建区块链账号的密码";
+
+/* Class = "NSWindow"; title = "Create Account"; ObjectID = "QvC-M9-y7g"; */
+"QvC-M9-y7g.title" = "创建账号";
+
+/* Class = "NSTextFieldCell"; title = "Address:"; ObjectID = "SEU-aU-Y0e"; */
+"SEU-aU-Y0e.title" = "账号:";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "VwZ-LO-Bb7"; */
+"VwZ-LO-Bb7.title" = "取消";
+
+/* Class = "NSTextFieldCell"; title = "CipherText:"; ObjectID = "fQ1-z8-si0"; */
+"fQ1-z8-si0.title" = "密文:";
+
+/* Class = "NSButtonCell"; title = "Create"; ObjectID = "kh2-FK-FfD"; */
+"kh2-FK-FfD.title" = "创建";
+
+/* Class = "NSTextFieldCell"; title = "Password(8~20 charaters):"; ObjectID = "q4c-XV-my3"; */
+"q4c-XV-my3.title" = "密码(8~20 字符):";
+
+/* Class = "NSTextFieldCell"; title = "Password Again:"; ObjectID = "zXa-az-krz"; */
+"zXa-az-krz.title" = "再次输入:";

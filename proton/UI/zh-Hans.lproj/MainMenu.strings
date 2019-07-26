@@ -1,0 +1,50 @@
+
+/* Class = "NSMenuItem"; title = "Buy License"; ObjectID = "AeY-Kc-KHq"; */
+"AeY-Kc-KHq.title" = "续费(14天到期)";
+
+/* Class = "NSMenuItem"; title = "Global"; ObjectID = "CDL-O9-gLJ"; */
+"CDL-O9-gLJ.title" = "全局模式";
+
+/* Class = "NSMenuItem"; title = "Turn On"; ObjectID = "OF0-0M-VrQ"; */
+"OF0-0M-VrQ.title" = "打开";
+
+/* Class = "NSMenuItem"; title = "Expire: 14 days"; ObjectID = "TBg-7R-lCU"; */
+"TBg-7R-lCU.title" = "License(14天过期)";
+
+/* Class = "NSMenuItem"; title = "Update"; ObjectID = "Zi5-w1-m89"; */
+"Zi5-w1-m89.title" = "更新系统";
+
+/* Class = "NSMenuItem"; title = "Quit"; ObjectID = "aIl-gQ-IUl"; */
+"aIl-gQ-IUl.title" = "退出";
+
+/* Class = "NSMenuItem"; title = "Smart"; ObjectID = "dun-4t-46q"; */
+"dun-4t-46q.title" = "智能模式";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "eFg-by-ANE"; */
+"eFg-by-ANE.title" = "使用帮助";
+
+/* Class = "NSMenuItem"; title = "About"; ObjectID = "qy9-uU-fo5"; */
+"qy9-uU-fo5.title" = "关于我们";
+
+/* Class = "NSMenuItem"; title = "Account"; ObjectID = "rid-ZL-Ew8"; */
+"rid-ZL-Ew8.title" = "账号信息";
+
+/* Class = "NSMenuItem"; title = "Import Account"; ObjectID = "ypE-E1-kn7"; */
+"ypE-E1-kn7.title" = "导入新账号";
+
+/* Class = "NSMenuItem"; title = "Create Account"; ObjectID = "dAE-j8-ihS"; */
+"dAE-j8-ihS.title" = "创建账号文件";
+
+/* Class = "NSMenuItem"; title = "Export Account"; ObjectID = "JOc-CH-ggr"; */
+"JOc-CH-ggr.title" = "导出当前账号";
+
+
+/* Class = "NSMenuItem"; title = "Account Path"; ObjectID = "ft5-Sg-cEa"; */
+"ft5-Sg-cEa.title" = "删除当前账号";
+
+/* Class = "NSMenuItem"; title = "Account"; ObjectID = "bbi-2D-s3A"; */
+"bbi-2D-s3A.title" = "账号";
+/* Class = "NSMenuItem"; title = "BootStrap"; ObjectID = "KqN-sS-HVp"; */
+"KqN-sS-HVp.title" = "种子节点设置";
+
+"vbi-aX-P3T.title" = "以太坊钱包";

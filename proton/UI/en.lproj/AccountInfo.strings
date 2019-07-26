@@ -1,0 +1,12 @@
+
+/* Class = "NSButtonCell"; title = "Close"; ObjectID = "AVW-aG-UOj"; */
+"AVW-aG-UOj.title" = "Close";
+
+/* Class = "NSWindow"; title = "Account Info"; ObjectID = "QvC-M9-y7g"; */
+"QvC-M9-y7g.title" = "Account Info";
+
+/* Class = "NSTextFieldCell"; title = "Cipher:"; ObjectID = "XGM-BB-xiA"; */
+"XGM-BB-xiA.title" = "Cipher:";
+
+/* Class = "NSTextFieldCell"; title = "Address:"; ObjectID = "mgc-mp-ABq"; */
+"mgc-mp-ABq.title" = "Address:";

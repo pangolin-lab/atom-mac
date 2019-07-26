@@ -1,0 +1,48 @@
+
+/* Class = "NSMenuItem"; title = "Global"; ObjectID = "CDL-O9-gLJ"; */
+"CDL-O9-gLJ.title" = "Global";
+
+/* Class = "NSMenuItem"; title = "Export Account"; ObjectID = "JOc-CH-ggr"; */
+"JOc-CH-ggr.title" = "Export Account";
+
+/* Class = "NSMenuItem"; title = "BootStrap"; ObjectID = "KqN-sS-HVp"; */
+"KqN-sS-HVp.title" = "BootStrap";
+
+/* Class = "NSMenuItem"; title = "Turn On"; ObjectID = "OF0-0M-VrQ"; */
+"OF0-0M-VrQ.title" = "Turn On";
+
+/* Class = "NSMenu"; title = "Account"; ObjectID = "QTk-59-0Gs"; */
+"QTk-59-0Gs.title" = "Account";
+
+/* Class = "NSMenuItem"; title = "License (Expires in 14 days)"; ObjectID = "TBg-7R-lCU"; */
+"TBg-7R-lCU.title" = "License (Expires in 14 days)";
+
+/* Class = "NSMenuItem"; title = "Update"; ObjectID = "Zi5-w1-m89"; */
+"Zi5-w1-m89.title" = "Update";
+
+/* Class = "NSMenuItem"; title = "Quit"; ObjectID = "aIl-gQ-IUl"; */
+"aIl-gQ-IUl.title" = "Quit";
+
+/* Class = "NSMenuItem"; title = "Account"; ObjectID = "bbi-2D-s3A"; */
+"bbi-2D-s3A.title" = "Account";
+
+/* Class = "NSMenuItem"; title = "Create Account"; ObjectID = "dAE-j8-ihS"; */
+"dAE-j8-ihS.title" = "Create Account";
+
+/* Class = "NSMenuItem"; title = "Smart"; ObjectID = "dun-4t-46q"; */
+"dun-4t-46q.title" = "Smart";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "eFg-by-ANE"; */
+"eFg-by-ANE.title" = "Help";
+
+/* Class = "NSMenuItem"; title = "Remove Account"; ObjectID = "ft5-Sg-cEa"; */
+"ft5-Sg-cEa.title" = "Remove Account";
+
+/* Class = "NSMenuItem"; title = "About"; ObjectID = "qy9-uU-fo5"; */
+"qy9-uU-fo5.title" = "About";
+
+/* Class = "NSMenuItem"; title = "Account Info"; ObjectID = "rid-ZL-Ew8"; */
+"rid-ZL-Ew8.title" = "Account Info";
+
+/* Class = "NSMenuItem"; title = "Import Account"; ObjectID = "ypE-E1-kn7"; */
+"ypE-E1-kn7.title" = "Import Account";

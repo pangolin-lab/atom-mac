@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AccountWindowCtrl" customModule="YouPipe" customModuleProvider="target">
+            <connections>
+                <outlet property="AddressField" destination="OUP-yH-5S9" id="ZA0-wN-v6I"/>
+                <outlet property="CipherField" destination="hrl-AU-FXF" id="hcv-8d-iu7"/>
+                <outlet property="window" destination="QvC-M9-y7g" id="7au-sZ-zYA"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window identifier="AccountWindow" title="Account Info" autorecalculatesKeyViewLoop="NO" animationBehavior="default" id="QvC-M9-y7g">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
+            <rect key="contentRect" x="838" y="334" width="500" height="189"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
+            <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="500" height="189"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OUP-yH-5S9">
+                        <rect key="frame" x="104" y="148" width="376" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="1Og-zg-uup"/>
+                        </constraints>
+                        <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" borderStyle="border" alignment="center" id="0wn-go-VSq">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VCu-5X-QLz">
+                        <rect key="frame" x="18" y="107" width="48" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Cipher:" id="XGM-BB-xiA">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hrl-AU-FXF">
+                        <rect key="frame" x="104" y="70" width="376" height="55"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="55" id="DTq-zz-SPA"/>
+                            <constraint firstAttribute="width" constant="376" id="S9z-Cc-OMy"/>
+                        </constraints>
+                        <textFieldCell key="cell" selectable="YES" borderStyle="border" alignment="left" id="BCS-5b-i1h">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0P4-Cv-J8d">
+                        <rect key="frame" x="213" y="13" width="75" height="32"/>
+                        <buttonCell key="cell" type="push" title="Close" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AVW-aG-UOj">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="Close:" target="-2" id="U7M-fI-0dC"/>
+                        </connections>
+                    </button>
+                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="L3s-Bj-5r2">
+                        <rect key="frame" x="18" y="150" width="58" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Address:" id="mgc-mp-ABq">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="VCu-5X-QLz" firstAttribute="baseline" secondItem="hrl-AU-FXF" secondAttribute="firstBaseline" id="0Gt-Fu-cOX"/>
+                    <constraint firstItem="OUP-yH-5S9" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" symbolic="YES" id="1e8-2Y-t4M"/>
+                    <constraint firstItem="OUP-yH-5S9" firstAttribute="leading" secondItem="hrl-AU-FXF" secondAttribute="leading" id="7yQ-gA-KOK"/>
+                    <constraint firstItem="OUP-yH-5S9" firstAttribute="leading" secondItem="L3s-Bj-5r2" secondAttribute="trailing" constant="30" id="AHz-jP-xW0"/>
+                    <constraint firstItem="hrl-AU-FXF" firstAttribute="top" secondItem="OUP-yH-5S9" secondAttribute="bottom" constant="23" id="LH1-LY-bPK"/>
+                    <constraint firstItem="OUP-yH-5S9" firstAttribute="leading" secondItem="L3s-Bj-5r2" secondAttribute="trailing" constant="30" id="LI7-30-LUz"/>
+                    <constraint firstItem="OUP-yH-5S9" firstAttribute="top" secondItem="EiT-Mj-1SZ" secondAttribute="top" constant="20" id="SLY-FV-8Wq"/>
+                    <constraint firstItem="0P4-Cv-J8d" firstAttribute="centerX" secondItem="EiT-Mj-1SZ" secondAttribute="centerX" id="TTf-z5-8pU"/>
+                    <constraint firstAttribute="trailing" secondItem="OUP-yH-5S9" secondAttribute="trailing" constant="20" symbolic="YES" id="WDz-uJ-Vpj"/>
+                    <constraint firstItem="0P4-Cv-J8d" firstAttribute="top" secondItem="hrl-AU-FXF" secondAttribute="bottom" constant="29" id="YeN-b7-WCr"/>
+                    <constraint firstAttribute="trailing" secondItem="hrl-AU-FXF" secondAttribute="trailing" constant="20" id="aM6-y7-Dq9"/>
+                    <constraint firstAttribute="bottom" secondItem="0P4-Cv-J8d" secondAttribute="bottom" constant="20" symbolic="YES" id="anO-fD-vJ1"/>
+                    <constraint firstItem="OUP-yH-5S9" firstAttribute="top" secondItem="L3s-Bj-5r2" secondAttribute="top" constant="-2" id="daf-Iv-eHZ"/>
+                    <constraint firstItem="hrl-AU-FXF" firstAttribute="leading" secondItem="VCu-5X-QLz" secondAttribute="trailing" constant="40" id="nlR-hU-RcA"/>
+                    <constraint firstAttribute="trailing" secondItem="OUP-yH-5S9" secondAttribute="trailing" constant="20" id="oN4-Re-9G2"/>
+                    <constraint firstItem="VCu-5X-QLz" firstAttribute="leading" secondItem="L3s-Bj-5r2" secondAttribute="leading" id="pda-4y-dox"/>
+                    <constraint firstItem="hrl-AU-FXF" firstAttribute="top" secondItem="OUP-yH-5S9" secondAttribute="bottom" constant="23" id="qst-IZ-5QX"/>
+                    <constraint firstItem="OUP-yH-5S9" firstAttribute="trailing" secondItem="hrl-AU-FXF" secondAttribute="trailing" id="tyO-06-FPA"/>
+                </constraints>
+            </view>
+            <accessibility identifier="AccountWindow"/>
+            <connections>
+                <outlet property="delegate" destination="-2" id="4Bk-t6-TaO"/>
+            </connections>
+            <point key="canvasLocation" x="140" y="91.5"/>
+        </window>
+    </objects>
+</document>
