@@ -45,7 +45,7 @@ class Account :NSObject{
         }
         
         func LoadEthAddrBySofaAddr(sofa:String) ->String{
-                guard let ret = LibLoadEthAddrBySofaAddr(sofa.toGoString()) else{
+                guard let ret = LibLoadEthAddrByProtonAddr(sofa.toGoString()) else{
                         return ""
                 }
                 return String(cString:ret).lowercased()

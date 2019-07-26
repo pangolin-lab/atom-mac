@@ -67,7 +67,7 @@
 		0EF2A4C50710DD2BE5240A57 /* Pods_sysproxyconfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sysproxyconfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		596B6D7B2BB455357933C9E5 /* Pods-sysproxyconfig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sysproxyconfig.debug.xcconfig"; path = "Target Support Files/Pods-sysproxyconfig/Pods-sysproxyconfig.debug.xcconfig"; sourceTree = "<group>"; };
 		7C2C406A222F86EE00D406F5 /* SysProxyConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SysProxyConfig.h; sourceTree = "<group>"; };
-		7C3365F32201351C005CA693 /* sofa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sofa.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C3365F32201351C005CA693 /* proton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = proton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C3365F62201351C005CA693 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C3365F82201351D005CA693 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C3365FB2201351D005CA693 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 		8A5C29C62226845300693742 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8A6F6F23221FDF5B00606638 /* sysproxyconfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sysproxyconfig; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A6F6F2C221FE30400606638 /* SysProxyHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SysProxyHelper.swift; sourceTree = "<group>"; };
-		8A6F6F342223A6B600606638 /* sofa-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "sofa-Bridging-Header.h"; sourceTree = "<group>"; };
+		8A6F6F342223A6B600606638 /* proton-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "proton-Bridging-Header.h"; sourceTree = "<group>"; };
 		8A6F6F3A2223D38E00606638 /* fix_dir_owner.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = fix_dir_owner.sh; sourceTree = "<group>"; };
 		8A6F6F3B2223D38F00606638 /* install_proxy_helper.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = install_proxy_helper.sh; sourceTree = "<group>"; };
 		8AF30406225EDB9B00DF6439 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -165,7 +165,7 @@
 		7C3365F42201351C005CA693 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7C3365F32201351C005CA693 /* sofa.app */,
+				7C3365F32201351C005CA693 /* proton.app */,
 				8A6F6F23221FDF5B00606638 /* sysproxyconfig */,
 			);
 			name = Products;
@@ -178,7 +178,7 @@
 				7CD2F0B52259BCBB0068CF7A /* UI */,
 				8A6F6F2C221FE30400606638 /* SysProxyHelper.swift */,
 				7C3365F62201351C005CA693 /* AppDelegate.swift */,
-				8A6F6F342223A6B600606638 /* sofa-Bridging-Header.h */,
+				8A6F6F342223A6B600606638 /* proton-Bridging-Header.h */,
 				8A2DD7B3221D026200B1B906 /* utils.swift */,
 				8AF30406225EDB9B00DF6439 /* Service.swift */,
 				8AF30433225F636800DF6439 /* ServiceError.swift */,
@@ -254,9 +254,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7C3365F22201351C005CA693 /* sofa */ = {
+		7C3365F22201351C005CA693 /* proton */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7C3366012201351D005CA693 /* Build configuration list for PBXNativeTarget "sofa" */;
+			buildConfigurationList = 7C3366012201351D005CA693 /* Build configuration list for PBXNativeTarget "proton" */;
 			buildPhases = (
 				142371B2632C4109B1D9D3BF /* [CP] Check Pods Manifest.lock */,
 				7C3365EF2201351C005CA693 /* Sources */,
@@ -269,9 +269,9 @@
 			dependencies = (
 				8A6F6F362223B18D00606638 /* PBXTargetDependency */,
 			);
-			name = sofa;
+			name = proton;
 			productName = GameAcceleration;
-			productReference = 7C3365F32201351C005CA693 /* sofa.app */;
+			productReference = 7C3365F32201351C005CA693 /* proton.app */;
 			productType = "com.apple.product-type.application";
 		};
 		8A6F6F22221FDF5B00606638 /* sysproxyconfig */ = {
@@ -331,7 +331,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7C3365F22201351C005CA693 /* sofa */,
+				7C3365F22201351C005CA693 /* proton */,
 				8A6F6F22221FDF5B00606638 /* sysproxyconfig */,
 			);
 		};
@@ -629,7 +629,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/sofa/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/proton/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"${SRCROOT}",
@@ -639,7 +639,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sofanetwork.macosx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}";
-				SWIFT_OBJC_BRIDGING_HEADER = "sofa/sofa-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "proton/proton-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -651,7 +651,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "$(SRCROOT)/sofa/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/proton/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"${SRCROOT}",
@@ -661,7 +661,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.sofanetwork.macosx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_INCLUDE_PATHS = "${SRCROOT}";
-				SWIFT_OBJC_BRIDGING_HEADER = "sofa/sofa-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "proton/proton-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
@@ -707,7 +707,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7C3366012201351D005CA693 /* Build configuration list for PBXNativeTarget "sofa" */ = {
+		7C3366012201351D005CA693 /* Build configuration list for PBXNativeTarget "proton" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7C3366022201351D005CA693 /* Debug */,

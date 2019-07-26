@@ -115,7 +115,7 @@ class EthereumWalletCtrl :NSWindowController {
                 }
                 
                 let sofaAddr = SofaAddress.stringValue
-                if 0 == LibIsSofaAddress(sofaAddr.toGoString()){
+                if 0 == LibIsProtonAddress(sofaAddr.toGoString()){
                         dialogOK(question: "Warning", text: "Invalid sofa address")
                         return
                 }
@@ -137,7 +137,7 @@ class EthereumWalletCtrl :NSWindowController {
                         return
                 }
                 
-                let ret = LibBindSofaAddr(sofaAddr.toGoString(), cipherTxt.toGoString(), password.toGoString())
+                let ret = LibBindProtonAddr(sofaAddr.toGoString(), cipherTxt.toGoString(), password.toGoString())
                 let errStr = String(cString: ret.r1)
                 if errStr != ""{
                         dialogOK(question: "Error", text: errStr)
@@ -157,7 +157,7 @@ class EthereumWalletCtrl :NSWindowController {
                 }
                 
                 let sofaAddr = SofaAddress.stringValue
-                if 0 == LibIsSofaAddress(sofaAddr.toGoString()){
+                if 0 == LibIsProtonAddress(sofaAddr.toGoString()){
                         dialogOK(question: "Warning", text: "Invalid sofa address")
                         return
                 }
@@ -179,7 +179,7 @@ class EthereumWalletCtrl :NSWindowController {
                         return
                 }
                 
-                let ret = LibUnbindSofaAddr(sofaAddr.toGoString(), cipherTxt.toGoString(), password.toGoString())
+                let ret = LibUnbindProtonAddr(sofaAddr.toGoString(), cipherTxt.toGoString(), password.toGoString())
                 let errStr = String(cString: ret.r1)
                 if errStr != ""{
                         dialogOK(question: "Error", text: errStr)
@@ -206,7 +206,7 @@ class EthereumWalletCtrl :NSWindowController {
                         return
                 }
                 
-                if 0 == LibIsSofaAddress(sofaAddr.toGoString()){
+                if 0 == LibIsProtonAddress(sofaAddr.toGoString()){
                         dialogOK(question: "Warn", text: "Sofa Address is Invalid")
                         return
                 }
