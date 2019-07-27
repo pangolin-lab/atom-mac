@@ -13,9 +13,7 @@
 		7C3366052201368B005CA693 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3366042201368B005CA693 /* MenuController.swift */; };
 		7C86AF4922C528B000823643 /* sofa_debug.js in Resources */ = {isa = PBXBuildFile; fileRef = 7C86AF4722C528B000823643 /* sofa_debug.js */; };
 		7C86AF4A22C528B000823643 /* sofa.js in Resources */ = {isa = PBXBuildFile; fileRef = 7C86AF4822C528B000823643 /* sofa.js */; };
-		7CD2F0A12259981E0068CF7A /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD2F0A02259981E0068CF7A /* AccountInfo.swift */; };
 		7CD2F0AD2259B1CE0068CF7A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7CD2F0AF2259B1CE0068CF7A /* Localizable.strings */; };
-		7CD2F0B92259BD480068CF7A /* CreateAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD2F0B82259BD480068CF7A /* CreateAccount.swift */; };
 		7CD51C8422DEB5E100FCF522 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD51C8222DEB5E100FCF522 /* PasswordViewController.swift */; };
 		7CD51C8522DEB5E100FCF522 /* PasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CD51C8322DEB5E100FCF522 /* PasswordViewController.xib */; };
 		7CE4936722DCC32200AF0BC8 /* SofaAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE4936622DCC32200AF0BC8 /* SofaAccount.swift */; };
@@ -33,8 +31,6 @@
 		8AF30407225EDB9B00DF6439 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF30406225EDB9B00DF6439 /* Service.swift */; };
 		8AF3040F225EFC7200DF6439 /* AccountBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3040E225EFC7200DF6439 /* AccountBean.swift */; };
 		8AF30413225F058300DF6439 /* PacServerBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF30412225F058300DF6439 /* PacServerBean.swift */; };
-		8AF30425225F551E00DF6439 /* AccountInfo.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF30427225F551E00DF6439 /* AccountInfo.xib */; };
-		8AF3042C225F561700DF6439 /* CreateAccount.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AF3042E225F561700DF6439 /* CreateAccount.xib */; };
 		8AF30434225F636800DF6439 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF30433225F636800DF6439 /* ServiceError.swift */; };
 		B3A611A5CA3ACB48840EC95A /* Pods_sysproxyconfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF2A4C50710DD2BE5240A57 /* Pods_sysproxyconfig.framework */; };
 		ECD1238C6E91EAEAB6FA1A56 /* Pods_sofa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99CF983A9589B06E31A8BDA3 /* Pods_sofa.framework */; };
@@ -76,11 +72,9 @@
 		7C3366042201368B005CA693 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		7C86AF4722C528B000823643 /* sofa_debug.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sofa_debug.js; sourceTree = "<group>"; };
 		7C86AF4822C528B000823643 /* sofa.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = sofa.js; sourceTree = "<group>"; };
-		7CD2F0A02259981E0068CF7A /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
 		7CD2F0AE2259B1CE0068CF7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7CD2F0B02259B1D60068CF7A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		7CD2F0B22259B9A00068CF7A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MainMenu.strings"; sourceTree = "<group>"; };
-		7CD2F0B82259BD480068CF7A /* CreateAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount.swift; sourceTree = "<group>"; };
 		7CD51C7C22DE238F00FCF522 /* CircularProgressMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CircularProgressMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CD51C8222DEB5E100FCF522 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		7CD51C8322DEB5E100FCF522 /* PasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordViewController.xib; sourceTree = "<group>"; };
@@ -102,11 +96,6 @@
 		8AF30406225EDB9B00DF6439 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		8AF3040E225EFC7200DF6439 /* AccountBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBean.swift; sourceTree = "<group>"; };
 		8AF30412225F058300DF6439 /* PacServerBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacServerBean.swift; sourceTree = "<group>"; };
-		8AF30426225F551E00DF6439 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AccountInfo.xib; sourceTree = "<group>"; };
-		8AF30429225F552A00DF6439 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AccountInfo.strings; sourceTree = "<group>"; };
-		8AF3042B225F553000DF6439 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AccountInfo.strings"; sourceTree = "<group>"; };
-		8AF3042D225F561700DF6439 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CreateAccount.xib; sourceTree = "<group>"; };
-		8AF30432225F562600DF6439 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/CreateAccount.strings"; sourceTree = "<group>"; };
 		8AF30433225F636800DF6439 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		99CF983A9589B06E31A8BDA3 /* Pods_sofa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sofa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		99DC019A7489B06E90E81613 /* Pods-YouPipe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YouPipe.release.xcconfig"; path = "Target Support Files/Pods-YouPipe/Pods-YouPipe.release.xcconfig"; sourceTree = "<group>"; };
@@ -194,10 +183,6 @@
 			children = (
 				7C3365FA2201351D005CA693 /* MainMenu.xib */,
 				7C3366042201368B005CA693 /* MenuController.swift */,
-				8AF30427225F551E00DF6439 /* AccountInfo.xib */,
-				7CD2F0A02259981E0068CF7A /* AccountInfo.swift */,
-				8AF3042E225F561700DF6439 /* CreateAccount.xib */,
-				7CD2F0B82259BD480068CF7A /* CreateAccount.swift */,
 				7CE4936822DCC38200AF0BC8 /* SofaAccount.xib */,
 				7CE4936622DCC32200AF0BC8 /* SofaAccount.swift */,
 				7CD51C8322DEB5E100FCF522 /* PasswordViewController.xib */,
@@ -352,9 +337,7 @@
 				8A6F6F3E2223D38F00606638 /* install_proxy_helper.sh in Resources */,
 				7CE4937322DDB14500AF0BC8 /* EthereumWallet.xib in Resources */,
 				7CD2F0AD2259B1CE0068CF7A /* Localizable.strings in Resources */,
-				8AF30425225F551E00DF6439 /* AccountInfo.xib in Resources */,
 				7C3365FC2201351D005CA693 /* MainMenu.xib in Resources */,
-				8AF3042C225F561700DF6439 /* CreateAccount.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,12 +420,10 @@
 				8AF30407225EDB9B00DF6439 /* Service.swift in Sources */,
 				8AF30413225F058300DF6439 /* PacServerBean.swift in Sources */,
 				7CE4936722DCC32200AF0BC8 /* SofaAccount.swift in Sources */,
-				7CD2F0B92259BD480068CF7A /* CreateAccount.swift in Sources */,
 				7CE4936F22DCC6F700AF0BC8 /* ethereumAccountBean.swift in Sources */,
 				7CE4937122DDB13200AF0BC8 /* EthereumWallet.swift in Sources */,
 				8A2DD7B4221D026200B1B906 /* utils.swift in Sources */,
 				8AF30434225F636800DF6439 /* ServiceError.swift in Sources */,
-				7CD2F0A12259981E0068CF7A /* AccountInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,25 +462,6 @@
 				7CD2F0B02259B1D60068CF7A /* zh-Hans */,
 			);
 			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		8AF30427225F551E00DF6439 /* AccountInfo.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8AF30426225F551E00DF6439 /* Base */,
-				8AF30429225F552A00DF6439 /* en */,
-				8AF3042B225F553000DF6439 /* zh-Hans */,
-			);
-			name = AccountInfo.xib;
-			sourceTree = "<group>";
-		};
-		8AF3042E225F561700DF6439 /* CreateAccount.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				8AF3042D225F561700DF6439 /* Base */,
-				8AF30432225F562600DF6439 /* zh-Hans */,
-			);
-			name = CreateAccount.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
