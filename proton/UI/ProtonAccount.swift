@@ -1,15 +1,15 @@
 //
-//  SofaAccount.swift
-//  sofa
+//  ProtonAccount.swift
+//  Proton
 //
 //  Created by wsli on 2019/7/15.
 //  Copyright © 2019 com.nbs. All rights reserved.
 //
 
 import Foundation
-class SofaAccountCtrl :NSWindowController{
+class ProtonAccountCtrl :NSWindowController{
         
-        @IBOutlet weak var SofaAddress: NSTextField!
+        @IBOutlet weak var ProtonAddress: NSTextField!
         @IBOutlet weak var EthereumAddress: NSTextField!
         @IBOutlet weak var waitingTips: NSProgressIndicator!
         
@@ -20,7 +20,7 @@ class SofaAccountCtrl :NSWindowController{
         override func windowDidLoad() {
                 super.windowDidLoad()
                 
-                SofaAddress.stringValue = service.account.addr
+                ProtonAddress.stringValue = service.account.addr
                 EthereumAddress.stringValue = service.account.ethAddr
         }
         
@@ -29,34 +29,34 @@ class SofaAccountCtrl :NSWindowController{
         }
         
         @IBAction func CopyAddress(_ sender: Any) {
-                let sofaAddr = self.SofaAddress.stringValue
-                if sofaAddr == ""{
+                let protonAddr = self.ProtonAddress.stringValue
+                if protonAddr == ""{
                         return
                 }
                 
                 let pasteboard = NSPasteboard.general
                 pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
-                pasteboard.setString(sofaAddr, forType: NSPasteboard.PasteboardType.string)
+                pasteboard.setString(protonAddr, forType: NSPasteboard.PasteboardType.string)
         }
         
         @IBAction func ReloadFromEthereum(_ sender: Any) {
-                let sofaAddr = self.SofaAddress.stringValue
-                if sofaAddr == ""{
-                        dialogOK(question: "Tips", text: "No Sofa Address right now.")
+                let protonAddr = self.ProtonAddress.stringValue
+                if protonAddr == ""{
+                        dialogOK(question: "Tips", text: "No proton Address right now.")
                         return
                 }
                 LoadBindings()
         }
         
         public func LoadBindings(){
-                let sofaAddr = self.SofaAddress.stringValue
-                if sofaAddr == ""{
+                let protonAddr = self.ProtonAddress.stringValue
+                if protonAddr == ""{
                         return
                 }
                 
                 waitingTips.isHidden = false
                 queue.async {
-                        let ethAddr = self.service.account.LoadEthAddrBySofaAddr(sofa: sofaAddr)
+                        let ethAddr = self.service.account.LoadEthAddrByProtonAddr(protonAddr: protonAddr)
                         DispatchQueue.main.async {
                                 self.waitingTips.isHidden = true
                                 self.EthereumAddress.stringValue = ethAddr
@@ -64,7 +64,7 @@ class SofaAccountCtrl :NSWindowController{
                 }
         }
         
-        @IBAction func CreateSofaAddress(_ sender: Any) {
+        @IBAction func CreateProtonAddress(_ sender: Any) {
                 if !service.account.IsEmpty(){
                         dialogOK(question: "Duplicate Account", text: "Already got account!")
                         return
@@ -178,7 +178,7 @@ class SofaAccountCtrl :NSWindowController{
         }
         
         func UpdateUI(){
-                self.SofaAddress.stringValue = service.account.addr
+                self.ProtonAddress.stringValue = service.account.addr
                 self.EthereumAddress.stringValue = service.account.ethAddr
         }
 }

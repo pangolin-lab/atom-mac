@@ -6,17 +6,17 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="SofaAccountCtrl" customModule="sofa" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="ProtonAccountCtrl" customModule="proton" customModuleProvider="target">
             <connections>
                 <outlet property="EthereumAddress" destination="mkD-gn-0Si" id="a0M-RS-Cba"/>
-                <outlet property="SofaAddress" destination="oFr-N4-c6t" id="i9b-bd-m2o"/>
+                <outlet property="ProtonAddress" destination="oFr-N4-c6t" id="i9b-bd-m2o"/>
                 <outlet property="waitingTips" destination="QyG-PJ-kF5" id="doU-DC-kBj"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="uY4-v0-cov"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <window title="Sofa Account" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
+        <window title="Proton Account" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="240" width="569" height="489"/>
@@ -26,9 +26,9 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jMr-aN-NZY">
-                        <rect key="frame" x="22" y="452" width="66" height="17"/>
+                        <rect key="frame" x="22" y="452" width="79" height="17"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Sofa 地址:" id="mtX-fy-PMD">
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Proton 地址:" id="mtX-fy-PMD">
                             <font key="font" usesAppearanceFont="YES"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -77,15 +77,14 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" borderStyle="border" allowsEditingTextAttributes="YES" id="6k0-qq-TZb">
                             <font key="font" usesAppearanceFont="YES"/>
-                            <mutableString key="title">提示：
-        1，如果没有Sofa地址，请首先创建Sofa网络专用地址，该地址与以太坊地址一样，可以离线生成，用来统计用户的消耗的带宽，并以此为依据奖励矿机。
-        2，也可以将之前生成的Sofa地址导入当前系统。
-        3，具备Sofa地址之后，需要通过以太坊钱包来绑定当前Sofa地址，用户以太坊地址必须为每个Sofa账号准备1024个Sofa网络的专有token，仅仅持有即可，无需锁定或者消费。绑定操作之后需要等待区块打包才能更新，可以点击刷新按钮查看最新信息。
-        4，用户如果要更换Sofa地址，可以导出或者删除当前Sofa地址，然后再导入或者创建，删除前建议先导出保存。
-        5，如果用户不再使用该Sofa地址，可以解除绑定以太坊钱包地址与该地址的绑定关系，除消耗一定的以太坊Gas之外，用户的Sofa网络专有token不会减少。
-        6，所有绑定和解绑定，以及购买Sofa网络专有token的操作，请在 “菜单”-&gt;"以太坊钱包"中操作。
-        7，解除绑定之后，该Sofa地址无法使用Sofa网络提供的带宽服务。
-        8，更多帮助请访问:https://sofa.one</mutableString>
+                            <string key="title">提示：
+	1，如果您拥有以太坊钱包，请用您的以太坊账号绑定当前Proton地址。
+	2，也可以通过朋友的以太坊账号帮您绑定当前Proton地址
+	3,一个以太坊账号可以绑定多个Proton地址，
+	4，以太坊账号下ETH的余额必须大于N*1 ETH,N是当前以太坊绑定的账号数
+	5,如果不再使用Proton地址，可以解除对该地址的绑定
+	6，本程序的[以太坊张账号]菜单下可以进行绑定操作
+	7，官方网站https://protonio.net下也可以进行绑定操作</string>
                             <color key="textColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -98,7 +97,7 @@
                             <font key="font" usesAppearanceFont="YES"/>
                         </buttonCell>
                         <connections>
-                            <action selector="CreateSofaAddress:" target="-2" id="Buy-cN-VNQ"/>
+                            <action selector="CreateProtonAddress:" target="-2" id="Buy-cN-VNQ"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hcx-3m-RO0">
