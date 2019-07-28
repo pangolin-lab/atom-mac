@@ -6,13 +6,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="EthereumWalletCtrl" customModule="sofa" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="EthereumWalletCtrl" customModule="proton" customModuleProvider="target">
             <connections>
                 <outlet property="EthAddresses" destination="BHG-Ik-LWA" id="CHc-VX-bOp"/>
                 <outlet property="EthBalance" destination="MMc-SI-w6u" id="TUF-In-zVB"/>
-                <outlet property="SofaAddress" destination="2Km-9R-wWY" id="qyT-mx-TyN"/>
-                <outlet property="SofaAddressNo" destination="xlt-zr-AJ2" id="VkD-9E-4j4"/>
-                <outlet property="SofaBalance" destination="Qe4-fw-y7h" id="ALh-f0-bpa"/>
+                <outlet property="ProtonAddress" destination="2Km-9R-wWY" id="qyT-mx-TyN"/>
+                <outlet property="ProtonAddressNo" destination="xlt-zr-AJ2" id="VkD-9E-4j4"/>
                 <outlet property="WaitingTips" destination="xKG-cv-e7r" id="afj-bC-Btb"/>
                 <outlet property="queriedEthAddress" destination="0Pd-YC-ApR" id="YIi-dr-QDg"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="9A8-Fx-Ct0"/>
@@ -23,23 +22,25 @@
         <window title="以太坊钱包" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="590" height="600"/>
+            <rect key="contentRect" x="196" y="240" width="575" height="600"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="590" height="600"/>
+                <rect key="frame" x="0.0" y="0.0" width="575" height="600"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jxZ-ET-LAP">
-                        <rect key="frame" x="20" y="62" width="550" height="260"/>
+                        <rect key="frame" x="20" y="62" width="538" height="260"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" borderStyle="border" allowsEditingTextAttributes="YES" id="ccq-ho-uTg">
                             <font key="font" usesAppearanceFont="YES"/>
-                            <string key="title">提示:
-        1，使用Sofa网络前，首先需要生成Sofa地址，具体操作请在“主菜单”-&gt;“Sofa 账号”菜单下查看。
-        2，在具备Sofa地址之后，用户需要为每个Sofa地址持有至少1024个Sofa网络专有token才能够访问Sofa网络。因此需要用户的以太坊账号下持有n*1024个token，用户可以在本页生成以太坊钱包，并请朋友或者从交易所购买适量token转移到新创建的以太坊钱包地址。也可以将具有一定token的钱包导入当前钱包，导入文件是标准的以太坊keystore文件。
-        3,为了您财产安全，强烈建议您生成新的以太坊钱包，并将Sofa网络专用token转移到新创建的钱包中，同时转移适当的eth作为绑定使用的Gas，每次绑定操作大搞消耗0.0001个eth。也可以通过本页面解除Sofa地址与您钱包地址的绑定关系，解除绑定也会消耗gas。
-         4，持有token并绑定具体的Sofa地址之后，请不要随意转移token，这样会影响您对当前网络的访问，绑定并不减少您的token财富，只是证明您有权利授权具体的Sofa地址享有当前的网络服务。
-          5，更多帮助请访问:https://sofa.one</string>
+                            <string key="title">提示：
+	1，如果您拥有以太坊钱包，请用您的以太坊账号绑定当前Proton地址。
+	2，也可以通过朋友的以太坊账号帮您绑定当前Proton地址
+	3,一个以太坊账号可以绑定多个Proton地址，
+	4，以太坊账号下ETH的余额必须大于N*1 ETH,N是当前以太坊绑定的账号数
+	5,如果不再使用Proton地址，可以解除对该地址的绑定
+	6，本程序的[以太坊张账号]菜单下可以进行绑定操作
+	7，官方网站https://protonio.net下也可以进行绑定操作</string>
                             <color key="textColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
@@ -57,33 +58,6 @@
                         <rect key="frame" x="90" y="520" width="178" height="22"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" borderStyle="border" alignment="center" id="fjB-o3-bKI">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gv3-qG-95H">
-                        <rect key="frame" x="18" y="481" width="117" height="17"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="已绑定Sofa地址数:" id="GxM-nT-9AW">
-                            <font key="font" usesAppearanceFont="YES"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xlt-zr-AJ2">
-                        <rect key="frame" x="154" y="479" width="114" height="22"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" borderStyle="border" alignment="center" id="pps-jv-XBD">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qe4-fw-y7h">
-                        <rect key="frame" x="338" y="521" width="214" height="22"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" borderStyle="border" alignment="center" id="ENb-kz-mAS">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -117,7 +91,7 @@
                         </textFieldCell>
                     </textField>
                     <box verticalHuggingPriority="750" fixedFrame="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="cps-5i-mlV">
-                        <rect key="frame" x="0.0" y="703" width="650" height="5"/>
+                        <rect key="frame" x="0.0" y="703" width="635" height="5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     </box>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d66-P6-wDT">
@@ -134,12 +108,12 @@
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0JD-fh-RbN">
                         <rect key="frame" x="26" y="13" width="134" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="购买sofa token" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QWP-sZ-L1Y">
+                        <buttonCell key="cell" type="push" title="购买Proton token" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="QWP-sZ-L1Y">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" usesAppearanceFont="YES"/>
                         </buttonCell>
                         <connections>
-                            <action selector="BuySofaToken:" target="-2" id="llx-Fq-rVY"/>
+                            <action selector="BuyProtonToken:" target="-2" id="llx-Fq-rVY"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PZY-wi-fLE">
@@ -150,13 +124,13 @@
                             <font key="font" usesAppearanceFont="YES"/>
                         </buttonCell>
                         <connections>
-                            <action selector="UnbindSofaAddress:" target="-2" id="sMN-a0-qTD"/>
+                            <action selector="UnbindProtonAddress:" target="-2" id="sMN-a0-qTD"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K6g-hn-qrO">
-                        <rect key="frame" x="393" y="13" width="183" height="32"/>
+                        <rect key="frame" x="386" y="13" width="197" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="申请免费测试sofa token" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AaU-OP-aGt">
+                        <buttonCell key="cell" type="push" title="申请免费测试Proton token" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AaU-OP-aGt">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" usesAppearanceFont="YES"/>
                         </buttonCell>
@@ -173,9 +147,9 @@
                         </buttonCell>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aWP-Sd-NXH">
-                        <rect key="frame" x="21" y="399" width="66" height="17"/>
+                        <rect key="frame" x="21" y="399" width="79" height="17"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Sofa 地址:" id="TRO-WA-Ata">
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Proton 地址:" id="TRO-WA-Ata">
                             <font key="font" usesAppearanceFont="YES"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -202,7 +176,7 @@
                             <font key="font" usesAppearanceFont="YES"/>
                         </buttonCell>
                         <connections>
-                            <action selector="BindSofaAddress:" target="-2" id="acz-pT-zzq"/>
+                            <action selector="BindProtonAddress:" target="-2" id="acz-pT-zzq"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5R1-L9-RhG">
@@ -213,7 +187,7 @@
                             <font key="font" usesAppearanceFont="YES"/>
                         </buttonCell>
                         <connections>
-                            <action selector="QuerySofaAddress:" target="-2" id="fHe-kh-yOH"/>
+                            <action selector="QueryProtonAddress:" target="-2" id="fHe-kh-yOH"/>
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5VN-n6-Gcx">
@@ -254,20 +228,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     </progressIndicator>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Yq-Aw-zrv">
-                        <rect key="frame" x="283" y="460" width="274" height="49"/>
+                        <rect key="frame" x="18" y="476" width="539" height="33"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" title="注意:该界面属于区块链专业人士操作专区, 非专业人士请在专业人士辅导下使用本服务。" id="IhJ-y6-h5P">
                             <font key="font" size="11" name=".PingFangSC-Regular"/>
                             <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IaM-de-Bgf">
-                        <rect key="frame" x="270" y="523" width="62" height="17"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Sofa余额:" id="OsN-in-TeT">
-                            <font key="font" usesAppearanceFont="YES"/>
-                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
@@ -295,12 +260,30 @@
                             <action selector="BackupWallet:" target="-2" id="7Pm-g6-Dxg"/>
                         </connections>
                     </button>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gv3-qG-95H">
+                        <rect key="frame" x="305" y="522" width="94" height="17"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="已绑定地址数:" id="GxM-nT-9AW">
+                            <font key="font" usesAppearanceFont="YES"/>
+                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xlt-zr-AJ2">
+                        <rect key="frame" x="399" y="520" width="156" height="22"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" borderStyle="border" alignment="center" id="pps-jv-XBD">
+                            <font key="font" metaFont="system"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                 </subviews>
             </view>
             <connections>
                 <outlet property="delegate" destination="-2" id="Ywk-Rk-Llk"/>
             </connections>
-            <point key="canvasLocation" x="136" y="147"/>
+            <point key="canvasLocation" x="128.5" y="147"/>
         </window>
     </objects>
 </document>

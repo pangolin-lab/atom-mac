@@ -11,10 +11,10 @@ target 'sysproxyconfig' do
 
 end
 
-target 'sofa' do
+target 'proton' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for sofa
+  # Pods for proton
   pod "GCDWebServer", "~> 3.0"
 end

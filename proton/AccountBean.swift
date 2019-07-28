@@ -1,6 +1,6 @@
 //
 //  AccountBean.swift
-//  sofa
+//  Proton
 //
 //  Created by Li Wansheng on 2019/4/11.
 //  Copyright © 2019年 com.nbs. All rights reserved.
@@ -39,13 +39,13 @@ class Account :NSObject{
                 
                 if self.addr != ""{
                         queue.async {
-                                self.ethAddr = self.LoadEthAddrBySofaAddr(sofa: self.addr)
+                                self.ethAddr = self.LoadEthAddrByProtonAddr(protonAddr: self.addr)
                         }
                 }
         }
         
-        func LoadEthAddrBySofaAddr(sofa:String) ->String{
-                guard let ret = LibLoadEthAddrByProtonAddr(sofa.toGoString()) else{
+        func LoadEthAddrByProtonAddr(protonAddr:String) ->String{
+                guard let ret = LibLoadEthAddrByProtonAddr(protonAddr.toGoString()) else{
                         return ""
                 }
                 return String(cString:ret).lowercased()

@@ -1,6 +1,6 @@
 //
 //  EthereumWallet.swift
-//  sofa
+//  Proton
 //
 //  Created by wsli on 2019/7/16.
 //  Copyright © 2019 com.nbs. All rights reserved.
@@ -13,9 +13,8 @@ class EthereumWalletCtrl :NSWindowController {
          
         @IBOutlet weak var EthAddresses: NSComboBox!
         @IBOutlet weak var EthBalance: NSTextField!
-        @IBOutlet weak var SofaBalance: NSTextField!
-        @IBOutlet weak var SofaAddressNo: NSTextField!
-        @IBOutlet weak var SofaAddress: NSTextField!
+        @IBOutlet weak var ProtonAddressNo: NSTextField!
+        @IBOutlet weak var ProtonAddress: NSTextField!
         @IBOutlet weak var WaitingTips: NSProgressIndicator!
         @IBOutlet weak var queriedEthAddress: NSTextField!
         
@@ -99,11 +98,11 @@ class EthereumWalletCtrl :NSWindowController {
                 ResetBlockChainInfo()
         }
         
-        @IBAction func BuySofaToken(_ sender: Any) {
-                dialogOK(question: "Tips", text: "Sofa token can't be trade right now!")
+        @IBAction func BuyProtonToken(_ sender: Any) {
+                dialogOK(question: "Tips", text: "Proton token can't be trade right now!")
         }
         
-        @IBAction func BindSofaAddress(_ sender: Any) {
+        @IBAction func BindProtonAddress(_ sender: Any) {
                 WaitingTips.isHidden = false
                 defer {
                         WaitingTips.isHidden = true
@@ -114,13 +113,13 @@ class EthereumWalletCtrl :NSWindowController {
                         return
                 }
                 
-                let sofaAddr = SofaAddress.stringValue
-                if 0 == LibIsProtonAddress(sofaAddr.toGoString()){
-                        dialogOK(question: "Warning", text: "Invalid sofa address")
+                let protonAddr = ProtonAddress.stringValue
+                if 0 == LibIsProtonAddress(protonAddr.toGoString()){
+                        dialogOK(question: "Warning", text: "Invalid proton address")
                         return
                 }
                 
-                let ethAddr2 = self.service.account.LoadEthAddrBySofaAddr(sofa: sofaAddr)
+                let ethAddr2 = self.service.account.LoadEthAddrByProtonAddr(protonAddr: protonAddr)
                 if ethAddr2 != "" && ethAddr2 != "0x0000000000000000000000000000000000000000" {
                         dialogOK(question: "Warning", text: "Duplicate bindings!")
                         return
@@ -137,7 +136,7 @@ class EthereumWalletCtrl :NSWindowController {
                         return
                 }
                 
-                let ret = LibBindProtonAddr(sofaAddr.toGoString(), cipherTxt.toGoString(), password.toGoString())
+                let ret = LibBindProtonAddr(protonAddr.toGoString(), cipherTxt.toGoString(), password.toGoString())
                 let errStr = String(cString: ret.r1)
                 if errStr != ""{
                         dialogOK(question: "Error", text: errStr)
@@ -150,21 +149,21 @@ class EthereumWalletCtrl :NSWindowController {
                         NSWorkspace.shared.open(url)
                 }
         }
-        @IBAction func UnbindSofaAddress(_ sender: Any) {
+        @IBAction func UnbindProtonAddress(_ sender: Any) {
                 WaitingTips.isHidden = false
                 defer {
                         WaitingTips.isHidden = true
                 }
                 
-                let sofaAddr = SofaAddress.stringValue
-                if 0 == LibIsProtonAddress(sofaAddr.toGoString()){
-                        dialogOK(question: "Warning", text: "Invalid sofa address")
+                let protonAddr = ProtonAddress.stringValue
+                if 0 == LibIsProtonAddress(protonAddr.toGoString()){
+                        dialogOK(question: "Warning", text: "Invalid proton address")
                         return
                 }
                 
-                let ethAddr = self.service.account.LoadEthAddrBySofaAddr(sofa: sofaAddr)
+                let ethAddr = self.service.account.LoadEthAddrByProtonAddr(protonAddr: protonAddr)
                 if ethAddr == ""{
-                        dialogOK(question: "Warning", text: "No bindings with this sofa address!")
+                        dialogOK(question: "Warning", text: "No bindings with this proton address!")
                         return
                 }
                 
@@ -179,7 +178,7 @@ class EthereumWalletCtrl :NSWindowController {
                         return
                 }
                 
-                let ret = LibUnbindProtonAddr(sofaAddr.toGoString(), cipherTxt.toGoString(), password.toGoString())
+                let ret = LibUnbindProtonAddr(protonAddr.toGoString(), cipherTxt.toGoString(), password.toGoString())
                 let errStr = String(cString: ret.r1)
                 if errStr != ""{
                         dialogOK(question: "Error", text: errStr)
@@ -194,26 +193,26 @@ class EthereumWalletCtrl :NSWindowController {
         }
         
         @IBAction func ApplyTestToken(_ sender: Any) {
-                if let url = URL(string: "https://sofa.one") {
+                if let url = URL(string: "https://protonio.net") {
                         NSWorkspace.shared.open(url)
                 }
         }
         
-        @IBAction func QuerySofaAddress(_ sender: Any) {
-                let sofaAddr = SofaAddress.stringValue
-                if sofaAddr == ""{
-                        dialogOK(question: "Warn", text: "Sofa Address is Empty")
+        @IBAction func QueryProtonAddress(_ sender: Any) {
+                let protonAddr = ProtonAddress.stringValue
+                if protonAddr == ""{
+                        dialogOK(question: "Warn", text: "Proton Address is Empty")
                         return
                 }
                 
-                if 0 == LibIsProtonAddress(sofaAddr.toGoString()){
-                        dialogOK(question: "Warn", text: "Sofa Address is Invalid")
+                if 0 == LibIsProtonAddress(protonAddr.toGoString()){
+                        dialogOK(question: "Warn", text: "Proton Address is Invalid")
                         return
                 }
                 
                 WaitingTips.isHidden = false
                 queue.async {
-                        let ethAddr = self.service.account.LoadEthAddrBySofaAddr(sofa: sofaAddr)
+                        let ethAddr = self.service.account.LoadEthAddrByProtonAddr(protonAddr: protonAddr)
                         DispatchQueue.main.async {
                                 self.queriedEthAddress.stringValue = ethAddr
                                 self.WaitingTips.isHidden = true
@@ -223,8 +222,7 @@ class EthereumWalletCtrl :NSWindowController {
         
         func ResetBlockChainInfo(){
                 EthBalance.stringValue = "0.00 ETH"
-                SofaBalance.stringValue = "0.00 SOFA"
-                SofaAddressNo.stringValue = "0"
+                ProtonAddressNo.stringValue = "0"
         }
         
         @IBAction func Rrefresh(_ sender: Any) {
@@ -241,11 +239,10 @@ class EthereumWalletCtrl :NSWindowController {
                 
                 WaitingTips.isHidden = false
                 queue.async {
-                        let (ethBalance, sofaBalance, sofaNo) = self.service.ethereum.LoadBalance(address: ethAddr)
+                        let (ethBalance, _, protonNo) = self.service.ethereum.LoadBalance(address: ethAddr)
                         DispatchQueue.main.async {
                                 self.EthBalance.stringValue = String.init(format: "%.9f ETH", ethBalance)
-                                self.SofaBalance.stringValue = String.init(format: "%.9f SOFA", sofaBalance)
-                                self.SofaAddressNo.stringValue = String.init(format: "%d", sofaNo)
+                                self.ProtonAddressNo.stringValue = String.init(format: "%d", protonNo)
                                 self.WaitingTips.isHidden = true
                         }
                 }

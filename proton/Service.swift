@@ -1,6 +1,6 @@
 //
 //  Service.swift
-//  sofa
+//  Proton
 //
 //  Created by Li Wansheng on 2019/4/11.
 //  Copyright © 2019年 com.nbs. All rights reserved.
@@ -10,11 +10,11 @@ import Foundation
 import DecentralizedShadowSocks
 
 let KEY_FOR_SWITCH_STATE = "KEY_FOR_SWITCH_STATE"
-let KEY_FOR_SOFA_MODEL = "KEY_FOR_SOFA_MODEL"
+let KEY_FOR_PROTON_MODEL = "KEY_FOR_PROTON_MODEL"
 let KEY_FOR_ACCOUNT_PATH = "KEY_FOR_ACCOUNT_PATH"
 let KEY_FOR_NETWORK_PATH = "KEY_FOR_NETWORK_PATH"
-let KEY_FOR_BOOTSTRAP_PATH = ".Sofa/SofaBootNodes.dat"
-let KEY_FOR_ETHEREUM_DIRECTORY = ".Sofa/ethereumWallet"
+let KEY_FOR_BOOTSTRAP_PATH = ".proton/protonBootNodes.dat"
+let KEY_FOR_ETHEREUM_DIRECTORY = ".proton/ethereumWallet"
 
 let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/proton-lab/quantum/master/seed_debug.quantum"
 //let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/proton-lab/quantum/master/seed.quantum"
@@ -59,7 +59,7 @@ class Service: NSObject {
         private override init(){
                 super.init()
                 self.IsTurnOn = defaults.bool(forKey: KEY_FOR_SWITCH_STATE)
-                self.IsGlobal = defaults.bool(forKey: KEY_FOR_SOFA_MODEL)
+                self.IsGlobal = defaults.bool(forKey: KEY_FOR_PROTON_MODEL)
         }
         
         class var sharedInstance: Service {
@@ -190,7 +190,7 @@ class Service: NSObject {
         
         public func Exit(){
                 defaults.set(IsTurnOn, forKey: KEY_FOR_SWITCH_STATE)
-                defaults.set(IsGlobal, forKey: KEY_FOR_SOFA_MODEL)
+                defaults.set(IsGlobal, forKey: KEY_FOR_PROTON_MODEL)
                 _ = SysProxyHelper.RemoveSetting()
         }
         

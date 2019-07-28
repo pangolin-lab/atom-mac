@@ -1,6 +1,6 @@
 //
 //  PacServerBean.swift
-//  sofa
+//  Proton
 //
 //  Created by Li Wansheng on 2019/4/11.
 //  Copyright © 2019年 com.nbs. All rights reserved.
@@ -20,7 +20,7 @@ class  PacServer :NSObject{
         
         func initWebServer() throws {
                 let bundleURL = Bundle.main.resourceURL!
-                let url = bundleURL.appendingPathComponent("sofa.js")//sofa_debug.js//sofa.js
+                let url = bundleURL.appendingPathComponent("proton.js")
                 self.originalData = try Data(contentsOf: url)
                         
                 webServer = GCDWebServer()

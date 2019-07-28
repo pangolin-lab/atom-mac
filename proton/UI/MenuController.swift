@@ -1,6 +1,6 @@
 //
 //  MenuController.swift
-//  sofa
+//  Proton
 //
 //  Created by wsli on 2019/1/30.
 //  Copyright © 2019 com.nbs. All rights reserved.
@@ -26,7 +26,7 @@ class MenuController: NSObject, StateChangedDelegate {
         @IBOutlet weak var smartModel: NSMenuItem!
         @IBOutlet weak var globalModel: NSMenuItem!
         
-        var sofaAccountCtrl : SofaAccountCtrl!
+        var protonAccountCtrl : ProtonAccountCtrl!
         var ethereWalletCtrl:EthereumWalletCtrl!
         
         let server = Service.sharedInstance
@@ -80,16 +80,16 @@ class MenuController: NSObject, StateChangedDelegate {
                 }
         }
         
-        @IBAction func sofaAccountCtrl(_ sender: NSMenuItem) {
-                if sofaAccountCtrl != nil {
-                        sofaAccountCtrl.close()
+        @IBAction func protonAccountCtrl(_ sender: NSMenuItem) {
+                if protonAccountCtrl != nil {
+                        protonAccountCtrl.close()
                 }
-                sofaAccountCtrl = SofaAccountCtrl(windowNibName: "SofaAccount")
-                sofaAccountCtrl.showWindow(self)
-                sofaAccountCtrl.delegate = self
-                sofaAccountCtrl.LoadBindings()
+                protonAccountCtrl = ProtonAccountCtrl(windowNibName: "ProtonAccount")
+                protonAccountCtrl.showWindow(self)
+                protonAccountCtrl.delegate = self
+                protonAccountCtrl.LoadBindings()
                 NSApp.activate(ignoringOtherApps: true)
-                sofaAccountCtrl.window?.makeKeyAndOrderFront(nil)
+                protonAccountCtrl.window?.makeKeyAndOrderFront(nil)
         }
         
         @IBAction func ethereumWalletCtrl(_ sender: Any) {
