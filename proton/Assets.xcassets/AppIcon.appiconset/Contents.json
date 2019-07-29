@@ -6,8 +6,9 @@
       "scale" : "1x"
     },
     {
-      "idiom" : "mac",
       "size" : "16x16",
+      "idiom" : "mac",
+      "filename" : "icon-4.png",
       "scale" : "2x"
     },
     {
@@ -16,8 +17,9 @@
       "scale" : "1x"
     },
     {
-      "idiom" : "mac",
       "size" : "32x32",
+      "idiom" : "mac",
+      "filename" : "icon-3.png",
       "scale" : "2x"
     },
     {
@@ -28,7 +30,7 @@
     {
       "size" : "128x128",
       "idiom" : "mac",
-      "filename" : "icon_img-2.png",
+      "filename" : "icon-2.png",
       "scale" : "2x"
     },
     {
@@ -39,7 +41,7 @@
     {
       "size" : "256x256",
       "idiom" : "mac",
-      "filename" : "icon_img-1.png",
+      "filename" : "icon-1.png",
       "scale" : "2x"
     },
     {
@@ -50,7 +52,7 @@
     {
       "size" : "512x512",
       "idiom" : "mac",
-      "filename" : "icon_img.png",
+      "filename" : "icon.png",
       "scale" : "2x"
     }
   ],
