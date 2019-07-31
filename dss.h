@@ -100,8 +100,7 @@ extern char* LibLoadEthAddrByProtonAddr(GoString p0);
 /* Return type for LibEthBindings */
 struct LibEthBindings_return {
 	GoFloat64 r0;
-	GoFloat64 r1;
-	GoInt r2;
+	GoInt r1;
 };
 
 extern struct LibEthBindings_return LibEthBindings(GoString p0);

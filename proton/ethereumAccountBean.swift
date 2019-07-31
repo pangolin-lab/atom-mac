@@ -84,9 +84,9 @@ class EthereumAccount :NSObject{
                 loadAccount()
         }
         
-        func LoadBalance(address: String) -> (Double, Double, Int){
+        func LoadBalance(address: String) -> (Double, Int){
                 let ret = LibEthBindings(address.toGoString())
-                return (Double(ret.r0), Double(ret.r1), Int(ret.r2))
+                return (Double(ret.r0), Int(ret.r1))
         }
         
         func ImportAccount(path: String, password: String) throws{

@@ -239,7 +239,7 @@ class EthereumWalletCtrl :NSWindowController {
                 
                 WaitingTips.isHidden = false
                 queue.async {
-                        let (ethBalance, _, protonNo) = self.service.ethereum.LoadBalance(address: ethAddr)
+                        let (ethBalance, protonNo) = self.service.ethereum.LoadBalance(address: ethAddr)
                         DispatchQueue.main.async {
                                 self.EthBalance.stringValue = String.init(format: "%.9f ETH", ethBalance)
                                 self.ProtonAddressNo.stringValue = String.init(format: "%d", protonNo)
