@@ -58,7 +58,7 @@ class Service: NSObject {
         
         private override init(){
                 super.init()
-                self.IsTurnOn = defaults.bool(forKey: KEY_FOR_SWITCH_STATE)
+//                self.IsTurnOn = defaults.bool(forKey: KEY_FOR_SWITCH_STATE)
                 self.IsGlobal = defaults.bool(forKey: KEY_FOR_PROTON_MODEL)
         }
         
