@@ -2,7 +2,7 @@
 //  main.m
 //  sysproxyconfig
 //
-//  Created by ribencongon 2019/2/27.
+//  Created by Bencong Rion 2019/2/27.
 //  Copyright © 2019年 com.proton. All rights reserved.
 //
 

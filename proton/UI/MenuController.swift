@@ -2,7 +2,7 @@
 //  MenuController.swift
 //  Proton
 //
-//  Created by ribencong on 2019/1/30.
+//  Created by Bencong Ri on 2019/1/30.
 //  Copyright © 2019 com.proton. All rights reserved.
 //
 

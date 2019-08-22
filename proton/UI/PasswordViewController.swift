@@ -2,7 +2,7 @@
 //  PasswordViewController.swift
 //  Proton
 //
-//  Created by ribencong on 2019/7/17.
+//  Created by Bencong Ri on 2019/7/17.
 //  Copyright © 2019 com.proton. All rights reserved.
 //
 

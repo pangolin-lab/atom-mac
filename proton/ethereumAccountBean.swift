@@ -2,7 +2,7 @@
 //  ethereumAccountBean.swift
 //  Proton
 //
-//  Created by ribencong on 2019/7/15.
+//  Created by Bencong Ri on 2019/7/15.
 //  Copyright © 2019 com.proton. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  SysProxyConfig.h
 //  sysproxyconfig
 //
-//  Created by ribencong on 2019/3/6.
+//  Created by Bencong Ri on 2019/3/6.
 //  Copyright © 2019 com.proton. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  PacServerBean.swift
 //  Proton
 //
-//  Created by ribencongon 2019/4/11.
+//  Created by Bencong Rion 2019/4/11.
 //  Copyright © 2019年 com.proton. All rights reserved.
 //
 
