@@ -2,8 +2,8 @@
 //  ethereumAccountBean.swift
 //  Proton
 //
-//  Created by wsli on 2019/7/15.
-//  Copyright © 2019 com.nbs. All rights reserved.
+//  Created by ribencong on 2019/7/15.
+//  Copyright © 2019 com.proton. All rights reserved.
 //
 
 import Foundation

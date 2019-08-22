@@ -34,7 +34,7 @@
 	<key>NSAppleEventsUsageDescription</key>
 	<string>This is for network proxy</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2019 com.nbs. All rights reserved.</string>
+	<string>Copyright © 2019 com.proton. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

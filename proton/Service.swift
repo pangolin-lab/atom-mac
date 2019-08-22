@@ -2,8 +2,8 @@
 //  Service.swift
 //  Proton
 //
-//  Created by Li Wansheng on 2019/4/11.
-//  Copyright © 2019年 com.nbs. All rights reserved.
+//  Created by ribencongon 2019/4/11.
+//  Copyright © 2019年 com.proton. All rights reserved.
 //
 
 import Foundation

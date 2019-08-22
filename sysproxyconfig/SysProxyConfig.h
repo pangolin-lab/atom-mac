@@ -2,8 +2,8 @@
 //  SysProxyConfig.h
 //  sysproxyconfig
 //
-//  Created by wsli on 2019/3/6.
-//  Copyright © 2019 com.nbs. All rights reserved.
+//  Created by ribencong on 2019/3/6.
+//  Copyright © 2019 com.proton. All rights reserved.
 //
 
 #ifndef SysProxyConfig_h
