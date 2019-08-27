@@ -157,3 +157,15 @@ func show2PasswordDialog() -> (String, String, Bool) {
         }
         return ("", "", false)
 }
+
+func LoadFileUrl(file:String) throws ->URL{
+        
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        let url = paths[0].appendingPathComponent(file)
+        
+        if !FileManager.default.fileExists(atPath: url.path){
+                try FileManager.default.createDirectory(at:url, withIntermediateDirectories: true, attributes: nil)
+        }
+        
+        return url
+}

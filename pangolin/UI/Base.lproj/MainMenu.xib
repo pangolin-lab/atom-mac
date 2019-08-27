@@ -16,12 +16,12 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="MrV-Ey-DwV" customClass="MenuController" customModule="Pangolin" customModuleProvider="target">
             <connections>
-                <outlet property="accountMenu" destination="6XY-as-n9m" id="yEJ-I2-Xiu"/>
-                <outlet property="ehtereumAccountMenu" destination="vbi-aX-P3T" id="0RE-M8-0Xf"/>
                 <outlet property="globalModel" destination="CDL-O9-gLJ" id="O0o-NX-RwJ"/>
+                <outlet property="minerPoolMenu" destination="vbi-aX-P3T" id="f84-3c-0Vc"/>
                 <outlet property="smartModel" destination="dun-4t-46q" id="InF-5x-HBA"/>
                 <outlet property="statusMenu" destination="jSI-9o-dzW" id="PEK-73-eDY"/>
                 <outlet property="switchBtn" destination="OF0-0M-VrQ" id="nES-MM-RvC"/>
+                <outlet property="walletMenu" destination="6XY-as-n9m" id="yEJ-I2-Xiu"/>
             </connections>
         </customObject>
         <menu id="jSI-9o-dzW">
@@ -46,17 +46,14 @@
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="a8M-0p-ROJ"/>
-                <menuItem title="Account" id="6XY-as-n9m">
+                <menuItem title="Packet Wallet" id="6XY-as-n9m">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
-                        <action selector="protonAccountCtrl:" target="MrV-Ey-DwV" id="uTZ-E6-kHa"/>
+                        <action selector="ShowWalletView:" target="MrV-Ey-DwV" id="Dsn-A4-DRH"/>
                     </connections>
                 </menuItem>
                 <menuItem title="Miner Pool" id="vbi-aX-P3T">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="ethereumWalletCtrl:" target="MrV-Ey-DwV" id="Yai-op-fYl"/>
-                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="8ae-iU-biQ"/>
                 <menuItem title="Update" id="Zi5-w1-m89">

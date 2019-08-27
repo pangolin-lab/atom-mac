@@ -13,18 +13,16 @@ import Cocoa
 }
 
 class MenuController: NSObject, StateChangedDelegate {
-       
-        func updateMenu(data: Any?, tagId: Int) {
-                DispatchQueue.main.async{ self.updateUI()}
-        }
-        
-
-        @IBOutlet weak var ehtereumAccountMenu: NSMenuItem!
-        @IBOutlet weak var accountMenu: NSMenuItem!
+      
         @IBOutlet weak var statusMenu: NSMenu!
+        
         @IBOutlet weak var switchBtn: NSMenuItem!
         @IBOutlet weak var smartModel: NSMenuItem!
         @IBOutlet weak var globalModel: NSMenuItem!
+        @IBOutlet weak var walletMenu: NSMenuItem!
+        @IBOutlet weak var minerPoolMenu: NSMenuItem!
+        
+        var walletCtrl: WalletController!
         
         let server = Service.sharedInstance
         let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -36,6 +34,10 @@ class MenuController: NSObject, StateChangedDelegate {
                 statusItem.menu = statusMenu
                 server.SetDelegate(d: self)
                 updateUI()
+        }
+        
+        func updateMenu(data: Any?, tagId: Int) {
+                DispatchQueue.main.async{ self.updateUI()}
         }
         
         func updateUI() -> Void {                
@@ -77,17 +79,16 @@ class MenuController: NSObject, StateChangedDelegate {
                 }
         }
         
-//        @IBAction func protonAccountCtrl(_ sender: NSMenuItem) {
-//                if protonAccountCtrl != nil {
-//                        protonAccountCtrl.close()
-//                }
-//                protonAccountCtrl = ProtonAccountCtrl(windowNibName: "ProtonAccount")
-//                protonAccountCtrl.showWindow(self)
-//                protonAccountCtrl.delegate = self
-//                protonAccountCtrl.LoadBindings()
-//                NSApp.activate(ignoringOtherApps: true)
-//                protonAccountCtrl.window?.makeKeyAndOrderFront(nil)
-//        }
+        @IBAction func ShowWalletView(_ sender: NSMenuItem) {
+                if walletCtrl != nil {
+                        walletCtrl.close()
+                }
+                walletCtrl = WalletController(windowNibName: "WalletController")
+                walletCtrl.showWindow(self)
+                walletCtrl.delegate = self
+                NSApp.activate(ignoringOtherApps: true)
+                walletCtrl.window?.makeKeyAndOrderFront(nil)
+        }
         
 
         @IBAction func changeModel(_ sender: NSMenuItem) {

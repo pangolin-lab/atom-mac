@@ -12,6 +12,8 @@ enum ServiceError:Error {
         case SysPorxyMountErr
         case SysProxyRemoveErr
         case SysProxySetupErr
+        case ParseJsonErr
+        case ParseWalletErr
 }
 
 extension ServiceError: LocalizedError {
@@ -23,6 +25,10 @@ extension ServiceError: LocalizedError {
                         return NSLocalizedString("Remove the system proxy setting error".localized, comment: "Remove Proxy Error")
                 case .SysProxySetupErr:
                         return NSLocalizedString("Setup system proxy error".localized, comment: "Setup Error")
+                case .ParseJsonErr:
+                        return NSLocalizedString("Pasrese json data failed".localized, comment: "Parse Error")
+                case .ParseWalletErr:
+                        return NSLocalizedString("Pasrese wallet from json data failed".localized, comment: "Parse Error")
                 }
         }
 }
