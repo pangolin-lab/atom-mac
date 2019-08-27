@@ -2,8 +2,8 @@
 //  utils.swift
 //  Proton
 //
-//  Created by Bencong Rion 2019/2/20.
-//  Copyright © 2019年 com.proton. All rights reserved.
+//  Created by Bencong Ri on 2019/2/20.
+//  Copyright © 2019年 pangolink.org All rights reserved.
 //
 
 import Foundation
@@ -158,10 +158,10 @@ func show2PasswordDialog() -> (String, String, Bool) {
         return ("", "", false)
 }
 
-func LoadFileUrl(file:String) throws ->URL{
+func touchDirectory(directory:String) throws ->URL{
         
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        let url = paths[0].appendingPathComponent(file)
+        let url = paths[0].appendingPathComponent(directory)
         
         if !FileManager.default.fileExists(atPath: url.path){
                 try FileManager.default.createDirectory(at:url, withIntermediateDirectories: true, attributes: nil)

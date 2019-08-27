@@ -24,7 +24,7 @@
 		8A6F6F3D2223D38F00606638 /* fix_dir_owner.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8A6F6F3A2223D38E00606638 /* fix_dir_owner.sh */; };
 		8A6F6F3E2223D38F00606638 /* install_proxy_helper.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8A6F6F3B2223D38F00606638 /* install_proxy_helper.sh */; };
 		8AF30407225EDB9B00DF6439 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF30406225EDB9B00DF6439 /* Service.swift */; };
-		8AF3040F225EFC7200DF6439 /* WalletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3040E225EFC7200DF6439 /* WalletManager.swift */; };
+		8AF3040F225EFC7200DF6439 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3040E225EFC7200DF6439 /* Wallet.swift */; };
 		8AF30413225F058300DF6439 /* PacServerBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF30412225F058300DF6439 /* PacServerBean.swift */; };
 		8AF30434225F636800DF6439 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF30433225F636800DF6439 /* ServiceError.swift */; };
 		B3A611A5CA3ACB48840EC95A /* Pods_sysproxyconfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF2A4C50710DD2BE5240A57 /* Pods_sysproxyconfig.framework */; };
@@ -88,7 +88,7 @@
 		8A6F6F3A2223D38E00606638 /* fix_dir_owner.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = fix_dir_owner.sh; sourceTree = "<group>"; };
 		8A6F6F3B2223D38F00606638 /* install_proxy_helper.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = install_proxy_helper.sh; sourceTree = "<group>"; };
 		8AF30406225EDB9B00DF6439 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
-		8AF3040E225EFC7200DF6439 /* WalletManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletManager.swift; sourceTree = "<group>"; };
+		8AF3040E225EFC7200DF6439 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		8AF30412225F058300DF6439 /* PacServerBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacServerBean.swift; sourceTree = "<group>"; };
 		8AF30433225F636800DF6439 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
 		99DC019A7489B06E90E81613 /* Pods-YouPipe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YouPipe.release.xcconfig"; path = "Target Support Files/Pods-YouPipe/Pods-YouPipe.release.xcconfig"; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 				8A2DD7B3221D026200B1B906 /* utils.swift */,
 				8AF30406225EDB9B00DF6439 /* Service.swift */,
 				8AF30433225F636800DF6439 /* ServiceError.swift */,
-				8AF3040E225EFC7200DF6439 /* WalletManager.swift */,
+				8AF3040E225EFC7200DF6439 /* Wallet.swift */,
 				8AF30412225F058300DF6439 /* PacServerBean.swift */,
 			);
 			path = pangolin;
@@ -409,7 +409,7 @@
 				7C3366052201368B005CA693 /* MenuController.swift in Sources */,
 				7C3365F72201351C005CA693 /* AppDelegate.swift in Sources */,
 				7CD51C8422DEB5E100FCF522 /* PasswordViewController.swift in Sources */,
-				8AF3040F225EFC7200DF6439 /* WalletManager.swift in Sources */,
+				8AF3040F225EFC7200DF6439 /* Wallet.swift in Sources */,
 				8AF30407225EDB9B00DF6439 /* Service.swift in Sources */,
 				8AF30413225F058300DF6439 /* PacServerBean.swift in Sources */,
 				8A2DD7B4221D026200B1B906 /* utils.swift in Sources */,

@@ -2,8 +2,8 @@
 //  WebServer-Bridging-Header.h
 //  Proton
 //
-//  Created by Bencong Rion 2019/2/25.
-//  Copyright © 2019年 com.proton. All rights reserved.
+//  Created by Bencong Ri on 2019/2/25.
+//  Copyright © 2019年 pangolink.org All rights reserved.
 //
 
 #ifndef Proton_Bridging_Header_h
