@@ -1,0 +1,675 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7C3365F72201351C005CA693 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3365F62201351C005CA693 /* AppDelegate.swift */; };
+		7C3365F92201351D005CA693 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C3365F82201351D005CA693 /* Assets.xcassets */; };
+		7C3365FC2201351D005CA693 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C3365FA2201351D005CA693 /* MainMenu.xib */; };
+		7C3366052201368B005CA693 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3366042201368B005CA693 /* MenuController.swift */; };
+		7C86AF4922C528B000823643 /* proton_debug.js in Resources */ = {isa = PBXBuildFile; fileRef = 7C86AF4722C528B000823643 /* proton_debug.js */; };
+		7C86AF4A22C528B000823643 /* proton.js in Resources */ = {isa = PBXBuildFile; fileRef = 7C86AF4822C528B000823643 /* proton.js */; };
+		7CD2F0AD2259B1CE0068CF7A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7CD2F0AF2259B1CE0068CF7A /* Localizable.strings */; };
+		7CD51C8422DEB5E100FCF522 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD51C8222DEB5E100FCF522 /* PasswordViewController.swift */; };
+		7CD51C8522DEB5E100FCF522 /* PasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CD51C8322DEB5E100FCF522 /* PasswordViewController.xib */; };
+		8A08320B2224F9E60045905B /* dss.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A08320A2224F9E60045905B /* dss.a */; };
+		8A2DD7B4221D026200B1B906 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2DD7B3221D026200B1B906 /* utils.swift */; };
+		8A5C29CB22268A8C00693742 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5C29C62226845300693742 /* main.m */; };
+		8A6F6F2D221FE30400606638 /* SysProxyHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A6F6F2C221FE30400606638 /* SysProxyHelper.swift */; };
+		8A6F6F312223939900606638 /* sysproxyconfig in Resources */ = {isa = PBXBuildFile; fileRef = 8A6F6F23221FDF5B00606638 /* sysproxyconfig */; };
+		8A6F6F3D2223D38F00606638 /* fix_dir_owner.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8A6F6F3A2223D38E00606638 /* fix_dir_owner.sh */; };
+		8A6F6F3E2223D38F00606638 /* install_proxy_helper.sh in Resources */ = {isa = PBXBuildFile; fileRef = 8A6F6F3B2223D38F00606638 /* install_proxy_helper.sh */; };
+		8AF30407225EDB9B00DF6439 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF30406225EDB9B00DF6439 /* Service.swift */; };
+		8AF3040F225EFC7200DF6439 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF3040E225EFC7200DF6439 /* Wallet.swift */; };
+		8AF30413225F058300DF6439 /* PacServerBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF30412225F058300DF6439 /* PacServerBean.swift */; };
+		8AF30434225F636800DF6439 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF30433225F636800DF6439 /* ServiceError.swift */; };
+		B3A611A5CA3ACB48840EC95A /* Pods_sysproxyconfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF2A4C50710DD2BE5240A57 /* Pods_sysproxyconfig.framework */; };
+		E5D0C38D730C717A6ED508F8 /* Pods_proton.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C48E7F20261114133283796 /* Pods_proton.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8A6F6F352223B18D00606638 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7C3365EB2201351C005CA693 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8A6F6F22221FDF5B00606638;
+			remoteInfo = sysproxyconfig;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8A6F6F21221FDF5B00606638 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		01110F0CFE41CF0A607B669C /* Pods-sofa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sofa.debug.xcconfig"; path = "Target Support Files/Pods-sofa/Pods-sofa.debug.xcconfig"; sourceTree = "<group>"; };
+		0EF2A4C50710DD2BE5240A57 /* Pods_sysproxyconfig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sysproxyconfig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		30A8A23BA4175CAA27516F20 /* Pods-proton.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-proton.debug.xcconfig"; path = "Target Support Files/Pods-proton/Pods-proton.debug.xcconfig"; sourceTree = "<group>"; };
+		596B6D7B2BB455357933C9E5 /* Pods-sysproxyconfig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sysproxyconfig.debug.xcconfig"; path = "Target Support Files/Pods-sysproxyconfig/Pods-sysproxyconfig.debug.xcconfig"; sourceTree = "<group>"; };
+		62B093A048EC228C9E329A5A /* Pods-proton.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-proton.release.xcconfig"; path = "Target Support Files/Pods-proton/Pods-proton.release.xcconfig"; sourceTree = "<group>"; };
+		7C2C406A222F86EE00D406F5 /* SysProxyConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SysProxyConfig.h; sourceTree = "<group>"; };
+		7C3365F32201351C005CA693 /* Pangolin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pangolin.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C3365F62201351C005CA693 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7C3365F82201351D005CA693 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7C3365FB2201351D005CA693 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		7C3365FD2201351D005CA693 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C3365FE2201351D005CA693 /* YouPipe.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YouPipe.entitlements; sourceTree = "<group>"; };
+		7C3366042201368B005CA693 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		7C48E7F20261114133283796 /* Pods_proton.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_proton.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C86AF4722C528B000823643 /* proton_debug.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = proton_debug.js; sourceTree = "<group>"; };
+		7C86AF4822C528B000823643 /* proton.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = proton.js; sourceTree = "<group>"; };
+		7CD2F0AE2259B1CE0068CF7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7CD2F0B02259B1D60068CF7A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		7CD51C7C22DE238F00FCF522 /* CircularProgressMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CircularProgressMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7CD51C8222DEB5E100FCF522 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
+		7CD51C8322DEB5E100FCF522 /* PasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordViewController.xib; sourceTree = "<group>"; };
+		8A0832062224EF190045905B /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
+		8A0832092224F9E50045905B /* dss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dss.h; sourceTree = "<group>"; };
+		8A08320A2224F9E60045905B /* dss.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = dss.a; sourceTree = "<group>"; };
+		8A2DD7B3221D026200B1B906 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
+		8A5C29C62226845300693742 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		8A6F6F23221FDF5B00606638 /* sysproxyconfig */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = sysproxyconfig; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A6F6F2C221FE30400606638 /* SysProxyHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SysProxyHelper.swift; sourceTree = "<group>"; };
+		8A6F6F342223A6B600606638 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
+		8A6F6F3A2223D38E00606638 /* fix_dir_owner.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = fix_dir_owner.sh; sourceTree = "<group>"; };
+		8A6F6F3B2223D38F00606638 /* install_proxy_helper.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = install_proxy_helper.sh; sourceTree = "<group>"; };
+		8AF30406225EDB9B00DF6439 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		8AF3040E225EFC7200DF6439 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
+		8AF30412225F058300DF6439 /* PacServerBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacServerBean.swift; sourceTree = "<group>"; };
+		8AF30433225F636800DF6439 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
+		99DC019A7489B06E90E81613 /* Pods-YouPipe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YouPipe.release.xcconfig"; path = "Target Support Files/Pods-YouPipe/Pods-YouPipe.release.xcconfig"; sourceTree = "<group>"; };
+		EAB39B5E740DBD65949F06CA /* Pods-sysproxyconfig.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sysproxyconfig.release.xcconfig"; path = "Target Support Files/Pods-sysproxyconfig/Pods-sysproxyconfig.release.xcconfig"; sourceTree = "<group>"; };
+		F373E4DA35174B2FAF0AC46E /* Pods-sofa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sofa.release.xcconfig"; path = "Target Support Files/Pods-sofa/Pods-sofa.release.xcconfig"; sourceTree = "<group>"; };
+		F9B4A09CDF1C02160DFD7FCC /* Pods-YouPipe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YouPipe.debug.xcconfig"; path = "Target Support Files/Pods-YouPipe/Pods-YouPipe.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7C3365F02201351C005CA693 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A08320B2224F9E60045905B /* dss.a in Frameworks */,
+				E5D0C38D730C717A6ED508F8 /* Pods_proton.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A6F6F20221FDF5B00606638 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B3A611A5CA3ACB48840EC95A /* Pods_sysproxyconfig.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4C9819B225C1EFA515E4EF2C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F9B4A09CDF1C02160DFD7FCC /* Pods-YouPipe.debug.xcconfig */,
+				99DC019A7489B06E90E81613 /* Pods-YouPipe.release.xcconfig */,
+				596B6D7B2BB455357933C9E5 /* Pods-sysproxyconfig.debug.xcconfig */,
+				EAB39B5E740DBD65949F06CA /* Pods-sysproxyconfig.release.xcconfig */,
+				01110F0CFE41CF0A607B669C /* Pods-sofa.debug.xcconfig */,
+				F373E4DA35174B2FAF0AC46E /* Pods-sofa.release.xcconfig */,
+				30A8A23BA4175CAA27516F20 /* Pods-proton.debug.xcconfig */,
+				62B093A048EC228C9E329A5A /* Pods-proton.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		7C3365EA2201351C005CA693 = {
+			isa = PBXGroup;
+			children = (
+				8A0832062224EF190045905B /* module.modulemap */,
+				8A6F6F402223D39700606638 /* scripts */,
+				7C3365F52201351C005CA693 /* pangolin */,
+				8A6F6F24221FDF5B00606638 /* sysproxyconfig */,
+				7C3365F42201351C005CA693 /* Products */,
+				8A2DD7B0221CEE3400B1B906 /* Frameworks */,
+				4C9819B225C1EFA515E4EF2C /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		7C3365F42201351C005CA693 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7C3365F32201351C005CA693 /* Pangolin.app */,
+				8A6F6F23221FDF5B00606638 /* sysproxyconfig */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7C3365F52201351C005CA693 /* pangolin */ = {
+			isa = PBXGroup;
+			children = (
+				7CD2F0BC2259D2C80068CF7A /* Support Files */,
+				7CD2F0B52259BCBB0068CF7A /* UI */,
+				8A6F6F2C221FE30400606638 /* SysProxyHelper.swift */,
+				7C3365F62201351C005CA693 /* AppDelegate.swift */,
+				8A6F6F342223A6B600606638 /* Bridging-Header.h */,
+				8A2DD7B3221D026200B1B906 /* utils.swift */,
+				8AF30406225EDB9B00DF6439 /* Service.swift */,
+				8AF30433225F636800DF6439 /* ServiceError.swift */,
+				8AF3040E225EFC7200DF6439 /* Wallet.swift */,
+				8AF30412225F058300DF6439 /* PacServerBean.swift */,
+			);
+			path = pangolin;
+			sourceTree = "<group>";
+		};
+		7CD2F0B52259BCBB0068CF7A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7C3365FA2201351D005CA693 /* MainMenu.xib */,
+				7C3366042201368B005CA693 /* MenuController.swift */,
+				7CD51C8322DEB5E100FCF522 /* PasswordViewController.xib */,
+				7CD51C8222DEB5E100FCF522 /* PasswordViewController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		7CD2F0BC2259D2C80068CF7A /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7CD2F0AF2259B1CE0068CF7A /* Localizable.strings */,
+				7C3365FE2201351D005CA693 /* YouPipe.entitlements */,
+				7C3365FD2201351D005CA693 /* Info.plist */,
+				7C3365F82201351D005CA693 /* Assets.xcassets */,
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		8A2DD7B0221CEE3400B1B906 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7CD51C7C22DE238F00FCF522 /* CircularProgressMac.framework */,
+				8A08320A2224F9E60045905B /* dss.a */,
+				8A0832092224F9E50045905B /* dss.h */,
+				0EF2A4C50710DD2BE5240A57 /* Pods_sysproxyconfig.framework */,
+				7C48E7F20261114133283796 /* Pods_proton.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8A6F6F24221FDF5B00606638 /* sysproxyconfig */ = {
+			isa = PBXGroup;
+			children = (
+				8A5C29C62226845300693742 /* main.m */,
+				7C2C406A222F86EE00D406F5 /* SysProxyConfig.h */,
+			);
+			path = sysproxyconfig;
+			sourceTree = "<group>";
+		};
+		8A6F6F402223D39700606638 /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+				7C86AF4722C528B000823643 /* proton_debug.js */,
+				7C86AF4822C528B000823643 /* proton.js */,
+				8A6F6F3A2223D38E00606638 /* fix_dir_owner.sh */,
+				8A6F6F3B2223D38F00606638 /* install_proxy_helper.sh */,
+			);
+			path = scripts;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7C3365F22201351C005CA693 /* Pangolin */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7C3366012201351D005CA693 /* Build configuration list for PBXNativeTarget "Pangolin" */;
+			buildPhases = (
+				142371B2632C4109B1D9D3BF /* [CP] Check Pods Manifest.lock */,
+				7C3365EF2201351C005CA693 /* Sources */,
+				7C3365F02201351C005CA693 /* Frameworks */,
+				7C3365F12201351C005CA693 /* Resources */,
+				F6560FB703F3742EC8C1FA55 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8A6F6F362223B18D00606638 /* PBXTargetDependency */,
+			);
+			name = Pangolin;
+			productName = GameAcceleration;
+			productReference = 7C3365F32201351C005CA693 /* Pangolin.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8A6F6F22221FDF5B00606638 /* sysproxyconfig */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A6F6F29221FDF5B00606638 /* Build configuration list for PBXNativeTarget "sysproxyconfig" */;
+			buildPhases = (
+				C7E9C8B0935B77FB75D519D5 /* [CP] Check Pods Manifest.lock */,
+				8A6F6F1F221FDF5B00606638 /* Sources */,
+				8A6F6F20221FDF5B00606638 /* Frameworks */,
+				8A6F6F21221FDF5B00606638 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = sysproxyconfig;
+			productName = sysproxyconfig;
+			productReference = 8A6F6F23221FDF5B00606638 /* sysproxyconfig */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7C3365EB2201351C005CA693 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = com.nbs;
+				TargetAttributes = {
+					7C3365F22201351C005CA693 = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1020;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
+					};
+					8A6F6F22221FDF5B00606638 = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
+					};
+				};
+			};
+			buildConfigurationList = 7C3365EE2201351C005CA693 /* Build configuration list for PBXProject "Pangolin" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+				"zh-Hans",
+			);
+			mainGroup = 7C3365EA2201351C005CA693;
+			productRefGroup = 7C3365F42201351C005CA693 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7C3365F22201351C005CA693 /* Pangolin */,
+				8A6F6F22221FDF5B00606638 /* sysproxyconfig */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7C3365F12201351C005CA693 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A6F6F312223939900606638 /* sysproxyconfig in Resources */,
+				7CD51C8522DEB5E100FCF522 /* PasswordViewController.xib in Resources */,
+				7C3365F92201351D005CA693 /* Assets.xcassets in Resources */,
+				8A6F6F3D2223D38F00606638 /* fix_dir_owner.sh in Resources */,
+				7C86AF4922C528B000823643 /* proton_debug.js in Resources */,
+				7C86AF4A22C528B000823643 /* proton.js in Resources */,
+				8A6F6F3E2223D38F00606638 /* install_proxy_helper.sh in Resources */,
+				7CD2F0AD2259B1CE0068CF7A /* Localizable.strings in Resources */,
+				7C3365FC2201351D005CA693 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		142371B2632C4109B1D9D3BF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-proton-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7E9C8B0935B77FB75D519D5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-sysproxyconfig-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6560FB703F3742EC8C1FA55 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-proton/Pods-proton-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-proton/Pods-proton-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-proton/Pods-proton-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7C3365EF2201351C005CA693 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A6F6F2D221FE30400606638 /* SysProxyHelper.swift in Sources */,
+				7C3366052201368B005CA693 /* MenuController.swift in Sources */,
+				7C3365F72201351C005CA693 /* AppDelegate.swift in Sources */,
+				7CD51C8422DEB5E100FCF522 /* PasswordViewController.swift in Sources */,
+				8AF3040F225EFC7200DF6439 /* Wallet.swift in Sources */,
+				8AF30407225EDB9B00DF6439 /* Service.swift in Sources */,
+				8AF30413225F058300DF6439 /* PacServerBean.swift in Sources */,
+				8A2DD7B4221D026200B1B906 /* utils.swift in Sources */,
+				8AF30434225F636800DF6439 /* ServiceError.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A6F6F1F221FDF5B00606638 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8A5C29CB22268A8C00693742 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8A6F6F362223B18D00606638 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8A6F6F22221FDF5B00606638 /* sysproxyconfig */;
+			targetProxy = 8A6F6F352223B18D00606638 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7C3365FA2201351D005CA693 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7C3365FB2201351D005CA693 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		7CD2F0AF2259B1CE0068CF7A /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7CD2F0AE2259B1CE0068CF7A /* en */,
+				7CD2F0B02259B1D60068CF7A /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7C3365FF2201351D005CA693 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7C3366002201351D005CA693 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		7C3366022201351D005CA693 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30A8A23BA4175CAA27516F20 /* Pods-proton.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/pangolin/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"${SRCROOT}",
+					"$(PROJECT_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.protonnetwork.macosx;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}";
+				SWIFT_OBJC_BRIDGING_HEADER = "pangolin/Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		7C3366032201351D005CA693 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 62B093A048EC228C9E329A5A /* Pods-proton.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/pangolin/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				LIBRARY_SEARCH_PATHS = (
+					"${SRCROOT}",
+					"$(PROJECT_DIR)",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_BUNDLE_IDENTIFIER = com.protonnetwork.macosx;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INCLUDE_PATHS = "${SRCROOT}";
+				SWIFT_OBJC_BRIDGING_HEADER = "pangolin/Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+		8A6F6F27221FDF5B00606638 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 596B6D7B2BB455357933C9E5 /* Pods-sysproxyconfig.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		8A6F6F28221FDF5B00606638 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAB39B5E740DBD65949F06CA /* Pods-sysproxyconfig.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited)";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7C3365EE2201351C005CA693 /* Build configuration list for PBXProject "Pangolin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C3365FF2201351D005CA693 /* Debug */,
+				7C3366002201351D005CA693 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7C3366012201351D005CA693 /* Build configuration list for PBXNativeTarget "Pangolin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7C3366022201351D005CA693 /* Debug */,
+				7C3366032201351D005CA693 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8A6F6F29221FDF5B00606638 /* Build configuration list for PBXNativeTarget "sysproxyconfig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A6F6F27221FDF5B00606638 /* Debug */,
+				8A6F6F28221FDF5B00606638 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7C3365EB2201351C005CA693 /* Project object */;
+}
