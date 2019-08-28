@@ -48,7 +48,7 @@ int main(int argc, const char * argv[]){
         
         NSSet* proxyExceptions = [[NSSet alloc] initWithObjects:@"127.0.0.1", @"localhost", @"192.168.0.0/16", @"10.0.0.0/8", @"FE80::/64", @"::1", @"FD00::/8", nil];
         
-        SCPreferencesRef prefRef = SCPreferencesCreateWithAuthorization(nil, CFSTR("proton"), nil, authRef);
+        SCPreferencesRef prefRef = SCPreferencesCreateWithAuthorization(nil, CFSTR("Pangolin"), nil, authRef);
         
         NSDictionary *sets = (__bridge NSDictionary *)SCPreferencesGetValue(prefRef, kSCPrefNetworkServices);
         

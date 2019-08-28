@@ -11,10 +11,10 @@ target 'sysproxyconfig' do
 
 end
 
-target 'proton' do
+target 'Pangolin' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
 
-  # Pods for proton
+  # Pods for Pangolin
   pod "GCDWebServer", "~> 3.0"
 end

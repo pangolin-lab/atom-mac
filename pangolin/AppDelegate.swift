@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Proton
+//  Pangolin
 //
 //  Created by Bencong Ri on 2019/1/30.
 //  Copyright © 2019 pangolink.org All rights reserved.

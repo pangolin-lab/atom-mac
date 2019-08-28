@@ -1,6 +1,6 @@
 //
 //  PasswordViewController.swift
-//  Proton
+//  Pangolin
 //
 //  Created by Bencong Ri on 2019/7/17.
 //  Copyright © 2019 pangolink.org All rights reserved.

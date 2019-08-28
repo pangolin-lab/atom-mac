@@ -1,6 +1,6 @@
 //
 //  PacServerBean.swift
-//  Proton
+//  Pangolin
 //
 //  Created by Bencong Ri on 2019/4/11.
 //  Copyright © 2019年 pangolink.org All rights reserved.
@@ -20,7 +20,7 @@ class  PacServer :NSObject{
         
         func initWebServer() throws {
                 let bundleURL = Bundle.main.resourceURL!
-                let url = bundleURL.appendingPathComponent("proton.js")
+                let url = bundleURL.appendingPathComponent("Pangolin.js")
                 self.originalData = try Data(contentsOf: url)
                         
                 webServer = GCDWebServer()

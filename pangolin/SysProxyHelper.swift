@@ -3,7 +3,7 @@ import GCDWebServer
 
 open class SysProxyHelper {
         
-        static let kProxyConfigPath = "/Library/Application Support/proton/sysproxyconfig"
+        static let kProxyConfigPath = "/Library/Application Support/Pangolin/sysproxyconfig"
   
         public static func checkVersion() -> Bool {
                 let task = Process()

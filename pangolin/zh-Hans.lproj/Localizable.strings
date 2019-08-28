@@ -2,8 +2,8 @@
 "Turn Off" = "关闭";
 "License (Empty)" = "License (无)";
 "License (%d Days)" = "License (%d 天)";
-"Account" = "Proton账号";
-"Account(Empty)" = "Proton账号(无)";
+"Account" = "Pangolin账号";
+"Account(Empty)" = "Pangolin账号(无)";
 "Ethereum Account" = "以太坊账号";
 "Ethereum Account(Empty)" = "以太坊账号(无)";
 "Error" = "错误";
@@ -65,4 +65,4 @@
 "Service will be shut down if you remove the account"="账号删除后服务将停止运行";
 "BootID can't be empty"="种子节点区块链地址不能为空";
 "BootIP can't be empty"="种子节点IP地址不能为空";
-"ypacc.json"="proton账号.json";
+"ypacc.json"="Pangolin账号.json";

@@ -1,6 +1,6 @@
 //
 //  AccountBean.swift
-//  Proton
+//  Pangolin
 //
 //  Created by Bencong Ri on 2019/4/11.
 //  Copyright © 2019年 pangolink.org All rights reserved.
