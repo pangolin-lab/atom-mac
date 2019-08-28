@@ -16,8 +16,8 @@ let KEY_FOR_NETWORK_PATH = "KEY_FOR_NETWORK_PATH"
 let KEY_FOR_BOOTSTRAP_PATH = ".Pangolin/PangolinBootNodes.dat"
 let KEY_FOR_ETHEREUM_DIRECTORY = ".Pangolin/ethereumWallet"
 
-//let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/proton-lab/quantum/master/seed_debug.quantum"
-let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/proton-lab/quantum/master/seed.quantum"
+//let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/pangolin-lab/quantum/master/seed_debug.quantum"
+let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/pangolin-lab/quantum/master/seed.quantum"
 
 class Service: NSObject {
         
