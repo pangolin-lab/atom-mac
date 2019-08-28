@@ -69,13 +69,7 @@ extern "C" {
 #endif
 
 
-/* Return type for LibCreateAccount */
-struct LibCreateAccount_return {
-	char* r0;
-	char* r1;
-};
-
-extern struct LibCreateAccount_return LibCreateAccount(GoString p0);
+extern char* DssNewWallet(GoString p0);
 
 extern char* LibCreateEthAccount(GoString p0, GoString p1);
 

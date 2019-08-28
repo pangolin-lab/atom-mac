@@ -14,6 +14,8 @@ enum ServiceError:Error {
         case SysProxySetupErr
         case ParseJsonErr
         case ParseWalletErr
+        
+        case NewWalletErr
 }
 
 extension ServiceError: LocalizedError {
@@ -28,7 +30,9 @@ extension ServiceError: LocalizedError {
                 case .ParseJsonErr:
                         return NSLocalizedString("Pasrese json data failed".localized, comment: "Parse Error")
                 case .ParseWalletErr:
-                        return NSLocalizedString("Pasrese wallet from json data failed".localized, comment: "Parse Error")
+                        return NSLocalizedString("Pasrese json data failed".localized, comment: "Parse Error")
+                case .NewWalletErr:
+                        return NSLocalizedString("Create new walllet error".localized, comment: "Wallet Error")
                 }
         }
 }

@@ -21,7 +21,7 @@ class MinerPool: NSObject {
 
 class Wallet:NSObject{
         
-        let KEY_FOR_WALLET_DIRECTORY = "pangolin/wallet"
+        let KEY_FOR_WALLET_DIRECTORY = ".pangolin/wallet"
         let KEY_FOR_WALLET_FILE = "wallet.json"
         var defaults = UserDefaults.standard
         var queue = DispatchQueue(label: "smart contract queue")
@@ -50,7 +50,7 @@ class Wallet:NSObject{
        func loadWallet(){
                 do {
                         let url = try touchDirectory(directory: KEY_FOR_WALLET_DIRECTORY)
-                        let filePath = url.appendingPathComponent(KEY_FOR_WALLET_FILE,isDirectory: false)
+                        let filePath = url.appendingPathComponent(KEY_FOR_WALLET_FILE, isDirectory: false)
                         if !FileManager.default.fileExists(atPath: filePath.path){
                                 return
                         }
@@ -61,7 +61,7 @@ class Wallet:NSObject{
                                 throw ServiceError.ParseJsonErr
                         }
                         
-                        guard let main = json["address"] as? String else{
+                        guard let main = json["mainAddress"] as? String else{
                                 throw ServiceError.ParseWalletErr
                         }
                         
@@ -82,7 +82,29 @@ class Wallet:NSObject{
                 return self.MainAddress == ""
         }
         
-        public func CreateNewWallet(){
+        public func CreateNewWallet(passPhrase:String) -> Bool{
+                do{
+                        guard let walletJson = DssNewWallet(passPhrase.toGoString()) else{
+                                throw ServiceError.NewWalletErr
+                        }
+                        guard let data = String(cString: walletJson).data(using: .utf8) else{
+                                throw ServiceError.ParseJsonErr
+                        }
+                        
+                        let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
+                        self.MainAddress = json["mainAddress"] as! String
+                        self.SubAddress = json["subAddress"] as! String
+                        
+                        let url = try touchDirectory(directory: KEY_FOR_WALLET_DIRECTORY)
+                        let filePath = url.appendingPathComponent(KEY_FOR_WALLET_FILE, isDirectory: false)
+                        try data.write(to: filePath, options: .atomicWrite)
+                        
+                }catch let err{
+                        dialogOK(question: "Error", text: err.localizedDescription)
+                        return false
+                }
                 
+                dialogOK(question: "Success", text: "Create new wallet success!")
+                return true
         }
 }
