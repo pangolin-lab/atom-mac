@@ -21,7 +21,8 @@ class WalletController: NSWindowController {
         @IBOutlet weak var DataBalanceField: NSTextField!
         @IBOutlet weak var DataUsedField: NSTextField!
         @IBOutlet weak var DataAvgPriceField: NSTextField!
-        @IBOutlet weak var MinerDescField: NSScrollView!
+        @IBOutlet weak var MinerDescField: NSScrollView! 
+        
         
         override func windowDidLoad() {
                 super.windowDidLoad()
@@ -49,9 +50,15 @@ class WalletController: NSWindowController {
 }
 
 extension WalletController:NSTableViewDelegate{
-        
+        func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+                let mp = Wallet.sharedInstance.SMP[row]
+                return mp.Name
+        }
 }
+
 extension WalletController:NSTableViewDataSource{
-        
+        func numberOfRows(in tableView: NSTableView) -> Int {
+                return Wallet.sharedInstance.SMP.count
+        }
 }
 

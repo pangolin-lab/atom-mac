@@ -9,20 +9,35 @@
 import Foundation
 import DecentralizedShadowSocks
 
+class MinerPool: NSObject {
+        var Name:String
+        var Desc:String
+        override init(){
+                Name = ""
+                Desc = ""
+                super.init()
+        }
+}
+
 class Wallet:NSObject{
         
         let KEY_FOR_WALLET_DIRECTORY = "pangolin/wallet"
         let KEY_FOR_WALLET_FILE = "wallet.json"
         var defaults = UserDefaults.standard
         var queue = DispatchQueue(label: "smart contract queue")
+        
         var MainAddress:String
         var SubAddress:String
+        var SMP:[MinerPool] = []
         
         override init() {
                 MainAddress = ""
                 SubAddress = ""
                 super.init()
                 loadWallet()
+                let t = MinerPool()
+                t.Name = "test"
+                self.SMP.append(t)
         }
         
         class var sharedInstance: Wallet {
@@ -61,5 +76,13 @@ class Wallet:NSObject{
                         print(err)
                         ShowNotification(tips: err.localizedDescription)
                 }
+        }
+        
+        public func IsEmpty() -> Bool{
+                return self.MainAddress == ""
+        }
+        
+        public func CreateNewWallet(){
+                
         }
 }
