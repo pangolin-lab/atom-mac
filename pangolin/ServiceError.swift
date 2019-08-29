@@ -12,27 +12,36 @@ enum ServiceError:Error {
         case SysPorxyMountErr
         case SysProxyRemoveErr
         case SysProxySetupErr
+        case InvalidPathErr
         case ParseJsonErr
-        case ParseWalletErr
         
         case NewWalletErr
+        case EmptyWalletErr
+        case InvalidWalletErr
+        case OpenWalletErr
 }
 
 extension ServiceError: LocalizedError {
         public var errorDescription: String? {
                 switch self {
                 case .SysPorxyMountErr:
-                        return NSLocalizedString("Mount system proxy model error".localized, comment: "Mount Error")
+                        return NSLocalizedString("Mount system proxy model error".localized, comment: "System Error")
                 case .SysProxyRemoveErr:
-                        return NSLocalizedString("Remove the system proxy setting error".localized, comment: "Remove Proxy Error")
+                        return NSLocalizedString("Remove the system proxy setting error".localized, comment: "System Error")
                 case .SysProxySetupErr:
-                        return NSLocalizedString("Setup system proxy error".localized, comment: "Setup Error")
+                        return NSLocalizedString("Setup system proxy error".localized, comment: "System Error")
                 case .ParseJsonErr:
-                        return NSLocalizedString("Pasrese json data failed".localized, comment: "Parse Error")
-                case .ParseWalletErr:
-                        return NSLocalizedString("Pasrese json data failed".localized, comment: "Parse Error")
+                        return NSLocalizedString("Pasrese json data failed".localized, comment: "System Error")
+                case .InvalidPathErr:
+                        return NSLocalizedString("File path invalid".localized, comment: "System Error")
                 case .NewWalletErr:
                         return NSLocalizedString("Create new walllet error".localized, comment: "Wallet Error")
+                case .EmptyWalletErr:
+                        return NSLocalizedString("Empty new walllet error".localized, comment: "Wallet Error")
+                case .InvalidWalletErr:
+                        return NSLocalizedString("Invalid new walllet error".localized, comment: "Wallet Error")
+                case .OpenWalletErr:
+                        return NSLocalizedString("Open new walllet error".localized, comment: "Wallet Error")
                 }
         }
 }

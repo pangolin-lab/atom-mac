@@ -85,7 +85,6 @@ class MenuController: NSObject, StateChangedDelegate {
                 }
                 walletCtrl = WalletController(windowNibName: "WalletController")
                 walletCtrl.showWindow(self)
-                walletCtrl.delegate = self
                 NSApp.activate(ignoringOtherApps: true)
                 walletCtrl.window?.makeKeyAndOrderFront(nil)
         }

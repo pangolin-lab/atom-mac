@@ -61,11 +61,11 @@ class Wallet:NSObject{
                         }
                         
                         guard let main = json["mainAddress"] as? String else{
-                                throw ServiceError.ParseWalletErr
+                                throw ServiceError.ParseJsonErr
                         }
                         
                         guard let sub = json["subAddress"] as? String else{
-                                throw ServiceError.ParseWalletErr
+                                throw ServiceError.ParseJsonErr
                         }
                         
                         self.MainAddress = "0x" + main
@@ -91,14 +91,7 @@ class Wallet:NSObject{
                                 throw ServiceError.ParseJsonErr
                         }
                         
-                        let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
-                        self.MainAddress = json["mainAddress"] as! String
-                        self.SubAddress = json["subAddress"] as! String
-                        
-                        let url = try touchDirectory(directory: KEY_FOR_WALLET_DIRECTORY)
-                        let filePath = url.appendingPathComponent(KEY_FOR_WALLET_FILE, isDirectory: false)
-                        try data.write(to: filePath, options: .atomicWrite)
-                        
+                        try syncWalletData(data: data)
                 }catch let err{
                         dialogOK(question: "Error", text: err.localizedDescription)
                         return false
@@ -108,10 +101,38 @@ class Wallet:NSObject{
                 return true
         }
         
+        func syncWalletData(data:Data) throws {
+                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
+                self.MainAddress = json["mainAddress"] as! String
+                self.SubAddress = json["subAddress"] as! String
+                
+                let url = try touchDirectory(directory: KEY_FOR_WALLET_DIRECTORY)
+                let filePath = url.appendingPathComponent(KEY_FOR_WALLET_FILE, isDirectory: false)
+                try data.write(to: filePath, options: .atomicWrite)
+        }
+        
         public func syncBlockChainBalance(){
                 let addr = self.MainAddress.toGoString()
                 let balance = WalletBalance(addr)
                 self.TokenBalance = String(cString: balance.r0)
                 self.EthBalance = String(cString: balance.r1)
+        }
+        
+        func ExportWallet(dst:URL?) throws{
+                let source = try touchDirectory(directory: KEY_FOR_WALLET_DIRECTORY)
+                let filePath = source.appendingPathComponent(KEY_FOR_WALLET_FILE, isDirectory: false)
+                if !FileManager.default.fileExists(atPath: filePath.path){
+                        throw ServiceError.NewWalletErr
+                }
+                
+                let data = try Data(contentsOf: filePath)
+                try data.write(to: dst!, options: .atomicWrite)
+        }
+        
+        func ImportWallet(json: String, password:String) throws{
+                guard WalletVerify(json.toGoString(), password.toGoString()) != 0 else {
+                        throw ServiceError.InvalidWalletErr
+                }
+                try syncWalletData(data: json.data(using: .utf8)!)
         }
 }
