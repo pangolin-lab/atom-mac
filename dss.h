@@ -69,15 +69,17 @@ extern "C" {
 #endif
 
 
-extern char* DssNewWallet(GoString p0);
+extern char* NewWallet(GoString p0);
 
-extern char* LibCreateEthAccount(GoString p0, GoString p1);
+/* Return type for WalletBalance */
+struct WalletBalance_return {
+	char* r0;
+	char* r1;
+};
+
+extern struct WalletBalance_return WalletBalance(GoString p0);
 
 extern GoUint8 LibIsInit();
-
-extern GoUint8 LibVerifyAccount(GoString p0, GoString p1, GoString p2);
-
-extern GoUint8 LibIsProtonAddress(GoString p0);
 
 extern GoUint8 LibInitProxy(GoString p0, GoString p1, GoString p2, GoString p3, GoString p4);
 
@@ -88,34 +90,6 @@ extern GoUint8 LibCreateProxy(GoString p0, GoString p1);
 extern void LibProxyRun();
 
 extern void LibStopClient();
-
-extern char* LibLoadEthAddrByProtonAddr(GoString p0);
-
-/* Return type for LibEthBindings */
-struct LibEthBindings_return {
-	GoFloat64 r0;
-	GoInt r1;
-};
-
-extern struct LibEthBindings_return LibEthBindings(GoString p0);
-
-extern char* LibImportEthAccount(GoString p0, GoString p1, GoString p2);
-
-/* Return type for LibBindProtonAddr */
-struct LibBindProtonAddr_return {
-	char* r0;
-	char* r1;
-};
-
-extern struct LibBindProtonAddr_return LibBindProtonAddr(GoString p0, GoString p1, GoString p2);
-
-/* Return type for LibUnbindProtonAddr */
-struct LibUnbindProtonAddr_return {
-	char* r0;
-	char* r1;
-};
-
-extern struct LibUnbindProtonAddr_return LibUnbindProtonAddr(GoString p0, GoString p1, GoString p2);
 
 #ifdef __cplusplus
 }

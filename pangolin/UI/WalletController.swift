@@ -15,20 +15,23 @@ class WalletController: NSWindowController {
         @IBOutlet weak var MainAddressField: NSTextField!
         @IBOutlet weak var SubAddressField: NSTextField!
         @IBOutlet weak var EthBalanceField: NSTextField!
-        @IBOutlet weak var LinBalanceField: NSTextField!
+        @IBOutlet weak var TokenBalanceField: NSTextField!
         @IBOutlet weak var WaitingTip: NSProgressIndicator!
         @IBOutlet weak var DataBalanceField: NSTextField!
         @IBOutlet weak var DataUsedField: NSTextField!
         @IBOutlet weak var DataAvgPriceField: NSTextField!
         @IBOutlet weak var MinerDescField: NSScrollView!
         
+        var queue = DispatchQueue(label: "smart contract queue")
+        
         override func windowDidLoad() {
                 super.windowDidLoad()
                 updateWallet()
+                loadBalance()
         }
         
         func updateWallet(){
-                MainAddressField.stringValue = "0x" + Wallet.sharedInstance.MainAddress
+                MainAddressField.stringValue = Wallet.sharedInstance.MainAddress
                 SubAddressField.stringValue = Wallet.sharedInstance.SubAddress
         }
         
@@ -68,17 +71,22 @@ class WalletController: NSWindowController {
         }
         
         @IBAction func SyncEthereumAction(_ sender: Any) {
+                loadBalance()
         }
         
         @IBAction func ReloadMinerPoolActin(_ sender: Any) {
         }
         
-        func loadFromEthContract(){
+        func loadBalance(){
                 WaitingTip.isHidden = false
-                defer {
-                        WaitingTip.isHidden = true
+                queue.async {
+                        Wallet.sharedInstance.syncBlockChainBalance()
+                        DispatchQueue.main.async {
+                                self.WaitingTip.isHidden = true
+                                self.EthBalanceField.stringValue = Wallet.sharedInstance.EthBalance
+                                self.TokenBalanceField.stringValue = Wallet.sharedInstance.TokenBalance
+                        }
                 }
-                
         }
 }
 

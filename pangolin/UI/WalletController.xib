@@ -12,10 +12,10 @@
                 <outlet property="DataBalanceField" destination="vz4-0n-yAe" id="8WM-GA-V6i"/>
                 <outlet property="DataUsedField" destination="5Zk-VN-83i" id="L0T-8y-GJo"/>
                 <outlet property="EthBalanceField" destination="Shy-QV-e5e" id="mYv-4R-hTe"/>
-                <outlet property="LinBalanceField" destination="X0i-2N-0jT" id="OUt-td-B9N"/>
                 <outlet property="MainAddressField" destination="SNG-10-WPo" id="R3A-nz-zIh"/>
                 <outlet property="MinerDescField" destination="wBG-yz-S80" id="Mx1-0w-qZu"/>
                 <outlet property="SubAddressField" destination="roM-Av-0L9" id="ePy-AY-gcU"/>
+                <outlet property="TokenBalanceField" destination="X0i-2N-0jT" id="IZi-GT-Gsy"/>
                 <outlet property="WaitingTip" destination="TQ5-Cc-vTy" id="IGz-Qk-OIN"/>
                 <outlet property="window" destination="F0z-JX-Cv5" id="gIp-Ho-8D9"/>
             </connections>

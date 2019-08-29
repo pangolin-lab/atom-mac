@@ -24,15 +24,14 @@ class Wallet:NSObject{
         let KEY_FOR_WALLET_DIRECTORY = ".pangolin/wallet"
         let KEY_FOR_WALLET_FILE = "wallet.json"
         var defaults = UserDefaults.standard
-        var queue = DispatchQueue(label: "smart contract queue")
         
-        var MainAddress:String
-        var SubAddress:String
+        var MainAddress:String = ""
+        var SubAddress:String = ""
+        var EthBalance:String = "0.00000000"
+        var TokenBalance:String = "0.00000000"
         var SMP:[MinerPool] = []
         
         override init() {
-                MainAddress = ""
-                SubAddress = ""
                 super.init()
                 loadWallet()
                 let t = MinerPool()
@@ -69,8 +68,8 @@ class Wallet:NSObject{
                                 throw ServiceError.ParseWalletErr
                         }
                         
-                        MainAddress = main
-                        SubAddress = sub
+                        self.MainAddress = "0x" + main
+                        self.SubAddress = sub
                         
                 } catch let err{
                         print(err)
@@ -84,9 +83,10 @@ class Wallet:NSObject{
         
         public func CreateNewWallet(passPhrase:String) -> Bool{
                 do{
-                        guard let walletJson = DssNewWallet(passPhrase.toGoString()) else{
+                        guard let walletJson = NewWallet(passPhrase.toGoString()) else{
                                 throw ServiceError.NewWalletErr
                         }
+                        
                         guard let data = String(cString: walletJson).data(using: .utf8) else{
                                 throw ServiceError.ParseJsonErr
                         }
@@ -106,5 +106,12 @@ class Wallet:NSObject{
                 
                 dialogOK(question: "Success", text: "Create new wallet success!")
                 return true
+        }
+        
+        public func syncBlockChainBalance(){
+                let addr = self.MainAddress.toGoString()
+                let balance = WalletBalance(addr)
+                self.TokenBalance = String(cString: balance.r0)
+                self.EthBalance = String(cString: balance.r1)
         }
 }
