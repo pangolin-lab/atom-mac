@@ -52,8 +52,11 @@
                         <action selector="ShowWalletView:" target="MrV-Ey-DwV" id="Dsn-A4-DRH"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Miner Pool" id="vbi-aX-P3T">
+                <menuItem title="Packet Market" id="vbi-aX-P3T">
                     <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="ShowMinerPoolView:" target="MrV-Ey-DwV" id="bIY-rj-8sQ"/>
+                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="8ae-iU-biQ"/>
                 <menuItem title="Update" id="Zi5-w1-m89">

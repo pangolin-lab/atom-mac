@@ -9,16 +9,6 @@
 import Foundation
 import DecentralizedShadowSocks
 
-class MinerPool: NSObject {
-        var Name:String
-        var Desc:String
-        override init(){
-                Name = ""
-                Desc = ""
-                super.init()
-        }
-}
-
 class Wallet:NSObject{
         
         let KEY_FOR_WALLET_DIRECTORY = ".pangolin/wallet"

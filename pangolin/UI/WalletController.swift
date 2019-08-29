@@ -2,8 +2,8 @@
 //  WalletController.swift
 //  Pangolin
 //
-//  Created by wsli on 2019/8/27.
-//  Copyright © 2019年 com.nbs. All rights reserved.
+//  Created by Bencong Ri on 2019/8/27.
+//  Copyright © 2019年 pangolink.org All rights reserved.
 //
 
 import Cocoa

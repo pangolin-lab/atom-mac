@@ -88,7 +88,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vov-dk-glX">
-                        <rect key="frame" x="281" y="307" width="72" height="17"/>
+                        <rect key="frame" x="281" y="311" width="72" height="17"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Data Used:" id="5j7-ds-wNV">
                             <font key="font" usesAppearanceFont="YES"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -335,7 +335,7 @@
                     <constraint firstItem="Gaa-R6-Cjc" firstAttribute="leading" secondItem="djA-RX-itk" secondAttribute="trailing" constant="40" id="SFc-h0-YYR"/>
                     <constraint firstItem="vz4-0n-yAe" firstAttribute="top" secondItem="xpW-OX-Dao" secondAttribute="bottom" constant="10" id="U0I-xS-c0e"/>
                     <constraint firstAttribute="trailing" secondItem="xpW-OX-Dao" secondAttribute="trailing" constant="20" id="ULz-u0-jMk"/>
-                    <constraint firstItem="vov-dk-glX" firstAttribute="top" secondItem="CsG-HD-h3n" secondAttribute="bottom" constant="16" id="V5r-GX-ymf"/>
+                    <constraint firstItem="vov-dk-glX" firstAttribute="top" secondItem="CsG-HD-h3n" secondAttribute="bottom" constant="12" id="V5r-GX-ymf"/>
                     <constraint firstItem="b7f-M0-tkP" firstAttribute="centerX" secondItem="se5-gp-TjO" secondAttribute="centerX" id="WQW-9l-DPY"/>
                     <constraint firstItem="5Zk-VN-83i" firstAttribute="leading" secondItem="vz4-0n-yAe" secondAttribute="leading" id="WfU-gV-btE"/>
                     <constraint firstItem="mAP-8V-bnO" firstAttribute="top" secondItem="djA-RX-itk" secondAttribute="bottom" constant="10" id="X8E-d2-vk1"/>

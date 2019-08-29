@@ -28,6 +28,9 @@
 		8AF30413225F058300DF6439 /* PacServerBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF30412225F058300DF6439 /* PacServerBean.swift */; };
 		8AF30434225F636800DF6439 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF30433225F636800DF6439 /* ServiceError.swift */; };
 		B3A611A5CA3ACB48840EC95A /* Pods_sysproxyconfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF2A4C50710DD2BE5240A57 /* Pods_sysproxyconfig.framework */; };
+		BB759E0B23179C4E00E6FE42 /* PacketMarketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB759E0923179C4E00E6FE42 /* PacketMarketController.swift */; };
+		BB759E0C23179C4E00E6FE42 /* PacketMarketController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB759E0A23179C4E00E6FE42 /* PacketMarketController.xib */; };
+		BB759E0E2317B82C00E6FE42 /* MinerPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB759E0D2317B82C00E6FE42 /* MinerPool.swift */; };
 		BB9BB6BA23152BA600F883B8 /* WalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9BB6B823152BA600F883B8 /* WalletController.swift */; };
 		BB9BB6BB23152BA600F883B8 /* WalletController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB9BB6B923152BA600F883B8 /* WalletController.xib */; };
 		E2556852D93CC6D3F9E7DDEF /* Pods_Pangolin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8897CFD07B8310F9BC69A797 /* Pods_Pangolin.framework */; };
@@ -88,6 +91,9 @@
 		8AF3040E225EFC7200DF6439 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		8AF30412225F058300DF6439 /* PacServerBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacServerBean.swift; sourceTree = "<group>"; };
 		8AF30433225F636800DF6439 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
+		BB759E0923179C4E00E6FE42 /* PacketMarketController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketMarketController.swift; sourceTree = "<group>"; };
+		BB759E0A23179C4E00E6FE42 /* PacketMarketController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PacketMarketController.xib; sourceTree = "<group>"; };
+		BB759E0D2317B82C00E6FE42 /* MinerPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MinerPool.swift; path = pangolin/MinerPool.swift; sourceTree = SOURCE_ROOT; };
 		BB9BB6B823152BA600F883B8 /* WalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletController.swift; sourceTree = "<group>"; };
 		BB9BB6B923152BA600F883B8 /* WalletController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalletController.xib; sourceTree = "<group>"; };
 		D8A2F71586164D223EFC5721 /* Pods-Pangolin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pangolin.debug.xcconfig"; path = "Target Support Files/Pods-Pangolin/Pods-Pangolin.debug.xcconfig"; sourceTree = "<group>"; };
@@ -161,6 +167,7 @@
 				8AF30406225EDB9B00DF6439 /* Service.swift */,
 				8AF30433225F636800DF6439 /* ServiceError.swift */,
 				8AF3040E225EFC7200DF6439 /* Wallet.swift */,
+				BB759E0D2317B82C00E6FE42 /* MinerPool.swift */,
 				8AF30412225F058300DF6439 /* PacServerBean.swift */,
 			);
 			path = pangolin;
@@ -169,12 +176,14 @@
 		7CD2F0B52259BCBB0068CF7A /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				7C3365FA2201351D005CA693 /* MainMenu.xib */,
 				7C3366042201368B005CA693 /* MenuController.swift */,
-				7CD51C8322DEB5E100FCF522 /* PasswordViewController.xib */,
+				7C3365FA2201351D005CA693 /* MainMenu.xib */,
 				7CD51C8222DEB5E100FCF522 /* PasswordViewController.swift */,
+				7CD51C8322DEB5E100FCF522 /* PasswordViewController.xib */,
 				BB9BB6B823152BA600F883B8 /* WalletController.swift */,
 				BB9BB6B923152BA600F883B8 /* WalletController.xib */,
+				BB759E0923179C4E00E6FE42 /* PacketMarketController.swift */,
+				BB759E0A23179C4E00E6FE42 /* PacketMarketController.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -321,6 +330,7 @@
 				7C86AF4922C528B000823643 /* proton_debug.js in Resources */,
 				7C86AF4A22C528B000823643 /* Pangolin.js in Resources */,
 				8A6F6F3E2223D38F00606638 /* install_proxy_helper.sh in Resources */,
+				BB759E0C23179C4E00E6FE42 /* PacketMarketController.xib in Resources */,
 				7CD2F0AD2259B1CE0068CF7A /* Localizable.strings in Resources */,
 				7C3365FC2201351D005CA693 /* MainMenu.xib in Resources */,
 			);
@@ -398,7 +408,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A6F6F2D221FE30400606638 /* SysProxyHelper.swift in Sources */,
+				BB759E0E2317B82C00E6FE42 /* MinerPool.swift in Sources */,
 				7C3366052201368B005CA693 /* MenuController.swift in Sources */,
+				BB759E0B23179C4E00E6FE42 /* PacketMarketController.swift in Sources */,
 				7C3365F72201351C005CA693 /* AppDelegate.swift in Sources */,
 				7CD51C8422DEB5E100FCF522 /* PasswordViewController.swift in Sources */,
 				8AF3040F225EFC7200DF6439 /* Wallet.swift in Sources */,

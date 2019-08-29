@@ -23,7 +23,7 @@ class MenuController: NSObject, StateChangedDelegate {
         @IBOutlet weak var minerPoolMenu: NSMenuItem!
         
         var walletCtrl: WalletController!
-        
+        var minerPoolCtrl: PacketMarketController!
         let server = Service.sharedInstance
         let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         
@@ -89,6 +89,15 @@ class MenuController: NSObject, StateChangedDelegate {
                 walletCtrl.window?.makeKeyAndOrderFront(nil)
         }
         
+        @IBAction func ShowMinerPoolView(_ sender: NSMenuItem) {
+                if minerPoolCtrl != nil {
+                        minerPoolCtrl.close()
+                }
+                minerPoolCtrl = PacketMarketController(windowNibName: "PacketMarketController")
+                minerPoolCtrl.showWindow(self)
+                NSApp.activate(ignoringOtherApps: true)
+                minerPoolCtrl.window?.makeKeyAndOrderFront(nil)
+        }
 
         @IBAction func changeModel(_ sender: NSMenuItem) {
                
