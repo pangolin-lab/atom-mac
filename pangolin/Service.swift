@@ -19,6 +19,10 @@ let KEY_FOR_ETHEREUM_DIRECTORY = ".Pangolin/ethereumWallet"
 //let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/pangolin-lab/quantum/master/seed_debug.quantum"
 let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/pangolin-lab/quantum/master/seed.quantum"
 
+let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c"
+let MICROPAY_SYSTEM_ADDRESS = "0x50757c4b70fe9eb62f4a5e42ae1d9ed0ac7ab946"
+let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/8b8db3cca50a4fcf97173b7619b1c4c3"
+
 class Service: NSObject {
         
         var defaults = UserDefaults.standard
@@ -54,6 +58,7 @@ class Service: NSObject {
         private override init(){
                 super.init()
                 self.IsGlobal = defaults.bool(forKey: KEY_FOR_Pangolin_MODEL)
+                InitBlockChain(TOKEN_ADDRESS.toGoString(), MICROPAY_SYSTEM_ADDRESS.toGoString(), BLOCKCHAIN_API_URL.toGoString())
         }
         
         class var sharedInstance: Service {

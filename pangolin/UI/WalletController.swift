@@ -28,7 +28,7 @@ class WalletController: NSWindowController {
         }
         
         func updateWallet(){
-                MainAddressField.stringValue = Wallet.sharedInstance.MainAddress
+                MainAddressField.stringValue = "0x" + Wallet.sharedInstance.MainAddress
                 SubAddressField.stringValue = Wallet.sharedInstance.SubAddress
                 loadBalance()
         }

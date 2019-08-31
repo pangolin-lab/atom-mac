@@ -69,6 +69,8 @@ extern "C" {
 #endif
 
 
+extern void InitBlockChain(GoString p0, GoString p1, GoString p2);
+
 extern char* NewWallet(GoString p0);
 
 /* Return type for WalletBalance */

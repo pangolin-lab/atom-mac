@@ -58,7 +58,7 @@ class Wallet:NSObject{
                                 throw ServiceError.ParseJsonErr
                         }
                         
-                        self.MainAddress = "0x" + main
+                        self.MainAddress = main
                         self.SubAddress = sub
                         
                 } catch let err{
@@ -102,6 +102,11 @@ class Wallet:NSObject{
         }
         
         public func syncBlockChainBalance(){
+                if self.MainAddress.elementsEqual(""){
+                        self.EthBalance = "0.00"
+                        self.TokenBalance = "0.00"
+                        return
+                }
                 let addr = self.MainAddress.toGoString()
                 let balance = WalletBalance(addr)
                 self.TokenBalance = String(cString: balance.r0)
