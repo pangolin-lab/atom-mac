@@ -149,7 +149,7 @@ class WalletController: NSWindowController {
 extension WalletController:NSTableViewDelegate{
         func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
                 let mp = Wallet.sharedInstance.SMP[row]
-                return mp.Name
+                return mp.MainAddr
         }
 }
 

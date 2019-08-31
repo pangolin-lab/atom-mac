@@ -25,7 +25,6 @@ class Wallet:NSObject{
                 super.init()
                 loadWallet()
                 let t = MinerPool()
-                t.Name = "test"
                 self.SMP.append(t)
         }
         

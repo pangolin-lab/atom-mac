@@ -7,9 +7,12 @@
 //
 
 import Cocoa
+import DecentralizedShadowSocks
 
 class PacketMarketController: NSWindowController {
-
+        
+        var minerPoolAddrs:[String:MinerPool] = [:]
+        
         override func windowDidLoad() {
                 super.windowDidLoad()
         } 
@@ -18,4 +21,28 @@ class PacketMarketController: NSWindowController {
                 self.close()
         }
     
+        func loadMinerPools() -> Void {
+                
+                guard let poolJson = MinerPoolList() else { return  }
+                let jsonData:Data = String(cString:poolJson).data(using: .utf8)!
+                
+                guard let array = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers) as! NSArray else {
+                        return
+                }
+                
+                self.minerPoolAddrs.removeAll()
+                
+                for (_, value) in array.enumerated() {
+                        guard let detailData = value as? Data else{
+                                continue
+                        }
+                        
+                        guard let dict = try? JSONSerialization.jsonObject(with: detailData, options: .mutableContainers) as! NSDictionary else{
+                                continue
+                        }
+                        
+                        let pool = MinerPool.init(dict:dict)
+                        self.minerPoolAddrs[pool.MainAddr] = pool
+                }                 
+        }
 }

@@ -83,6 +83,12 @@ extern struct WalletBalance_return WalletBalance(GoString p0);
 
 extern GoUint8 WalletVerify(GoString p0, GoString p1);
 
+extern char* MinerPoolAddresses();
+
+extern char* MinerDetails(GoString p0);
+
+extern char* MinerPoolList();
+
 extern GoUint8 LibIsInit();
 
 extern GoUint8 LibInitProxy(GoString p0, GoString p1, GoString p2, GoString p3, GoString p4);

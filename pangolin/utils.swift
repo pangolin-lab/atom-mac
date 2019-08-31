@@ -11,6 +11,7 @@ import DecentralizedShadowSocks
 import CommonCrypto
 
 public let BaseEtherScanUrl = "https://ropsten.etherscan.io"//"https://etherscan.io"
+public let KEY_FOR_DATA_DIRECTORY = ".pangolin/data"
 
 extension String {
         var localized: String {
