@@ -91,13 +91,13 @@ class MinerPoolManager: NSObject {
                         return
                 }
                 for (_, value) in array.enumerated() {
-                        guard let detailData = value as? Data else{
+                        guard let dict = value as? NSDictionary else{
                                 continue
                         }
                         
-                        guard let dict = try? JSONSerialization.jsonObject(with: detailData, options: .mutableContainers) as! NSDictionary else{
-                                continue
-                        }
+//                        guard let dict = try? JSONSerialization.jsonObject(with: detailData, options: .mutableContainers) as! NSDictionary else{
+//                                continue
+//                        }
                         
                         let pool = MinerPool.init(dict:dict)
                         MinerPoolManager.PoolDataCache[pool.MainAddr] = pool

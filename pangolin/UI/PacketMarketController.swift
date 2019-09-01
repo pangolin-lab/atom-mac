@@ -19,6 +19,9 @@ class PacketMarketController: NSWindowController {
         
         override func windowDidLoad() {
                 super.windowDidLoad()
+                self.poolTableView.delegate = self
+                self.poolTableView.dataSource = self
+                
                 self.loadMinerPools()
         } 
         
@@ -32,13 +35,25 @@ class PacketMarketController: NSWindowController {
                         MinerPoolManager.loadMinerPool()
                         DispatchQueue.main.async {
                                 self.WaitingTip.isHidden = true
-                                
+                                self.updateUI()
                         }
                 }
         }
         
         func updateUI() {
                 poolTableView.reloadData()
+        }
+        
+        
+        @IBAction func SycFromEthereumAction(_ sender: NSButton) {
+                WaitingTip.isHidden = false
+                Service.sharedInstance.queue.async {
+                        MinerPoolManager.loadFromBlockChain()
+                        DispatchQueue.main.async {
+                                self.WaitingTip.isHidden = true
+                                self.updateUI()
+                        }
+                }
         }
 }
 
@@ -50,7 +65,7 @@ extension PacketMarketController:NSTableViewDelegate {
                 static let NameCell = "ShortNameCellID"
         }
         
-        func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
                 
                 var cellIdentifier: String = ""
                 var cellValue: String = ""
@@ -65,7 +80,7 @@ extension PacketMarketController:NSTableViewDelegate {
                         cellValue = addrKey
                 }else if tableColumn == tableView.tableColumns[1] {
                         cellIdentifier = CellIdentifiers.CoinPledgedCell
-                        cellValue = addrKey
+                        cellValue = String.init(format: "%.2f", poolInfo.GuaranteedNo)
                 }else if tableColumn == tableView.tableColumns[2] {
                         cellIdentifier = CellIdentifiers.NameCell
                         cellValue = poolInfo.ShortName
@@ -76,6 +91,7 @@ extension PacketMarketController:NSTableViewDelegate {
                 guard let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView else{
                         return nil
                 }
+                
                 cell.textField?.stringValue = cellValue
                 return cell
         }
@@ -84,6 +100,7 @@ extension PacketMarketController:NSTableViewDelegate {
 extension PacketMarketController:NSTableViewDataSource {
         
         func numberOfRows(in tableView: NSTableView) -> Int {
-                return MinerPoolManager.PoolAddressArr.count
+                let num = MinerPoolManager.PoolAddressArr.count
+                return num
         }
 }

@@ -250,11 +250,14 @@
                         </textFieldCell>
                     </textField>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="95p-Yc-81J">
-                        <rect key="frame" x="595" y="609" width="82" height="32"/>
-                        <buttonCell key="cell" type="push" title="Reload" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Hxp-iI-7rg">
+                        <rect key="frame" x="500" y="609" width="177" height="32"/>
+                        <buttonCell key="cell" type="push" title="Sync from Block Chain" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Hxp-iI-7rg">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="SycFromEthereumAction:" target="-2" id="r7E-PP-0a3"/>
+                        </connections>
                     </button>
                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ubw-0e-KIA">
                         <rect key="frame" x="20" y="57" width="651" height="155"/>
