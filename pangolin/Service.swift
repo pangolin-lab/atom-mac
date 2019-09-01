@@ -15,13 +15,15 @@ let KEY_FOR_ACCOUNT_PATH = "KEY_FOR_ACCOUNT_PATH"
 let KEY_FOR_NETWORK_PATH = "KEY_FOR_NETWORK_PATH"
 let KEY_FOR_BOOTSTRAP_PATH = ".Pangolin/PangolinBootNodes.dat"
 let KEY_FOR_ETHEREUM_DIRECTORY = ".Pangolin/ethereumWallet"
-
+let KEY_FOR_DATA_DIRECTORY = ".Pangolin/data"
+let CACHED_POOL_DATA_FILE = "cachedPool.data"
 //let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/pangolin-lab/quantum/master/seed_debug.quantum"
 let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/pangolin-lab/quantum/master/seed.quantum"
 
 let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c"
 let MICROPAY_SYSTEM_ADDRESS = "0x50757c4b70fe9eb62f4a5e42ae1d9ed0ac7ab946"
 let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/8b8db3cca50a4fcf97173b7619b1c4c3"
+//public let BaseEtherScanUrl = "https://ropsten.etherscan.io"//"https://etherscan.io"
 
 class Service: NSObject {
         
@@ -31,6 +33,7 @@ class Service: NSObject {
        
         var pacServ:PacServer = PacServer()
         var uiDelegate:StateChangedDelegate? = nil
+        public var queue = DispatchQueue(label: "smart contract queue")
     
     
         public static func getDocumentsDirectory() -> URL {
@@ -117,7 +120,7 @@ class Service: NSObject {
                 if !SysProxyHelper.SetupProxy(isGlocal: IsGlobal){
                         throw ServiceError.SysProxySetupErr
                 }
-               let  runer  = Thread.init(target: self, selector: #selector(clinetRunning), object: nil)
+                let  runer  = Thread.init(target: self, selector: #selector(clinetRunning), object: nil)
                 runer.start()
                 
                 IsTurnOn = true

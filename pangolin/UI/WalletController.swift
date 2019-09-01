@@ -20,8 +20,6 @@ class WalletController: NSWindowController {
         @IBOutlet weak var DataAvgPriceField: NSTextField!
         @IBOutlet weak var MinerDescField: NSScrollView!
         
-        var queue = DispatchQueue(label: "smart contract queue")
-        
         override func windowDidLoad() {
                 super.windowDidLoad()
                 updateWallet()
@@ -135,7 +133,7 @@ class WalletController: NSWindowController {
         
         func loadBalance(){
                 WaitingTip.isHidden = false
-                queue.async {
+                Service.sharedInstance.queue.async {
                         Wallet.sharedInstance.syncBlockChainBalance()
                         DispatchQueue.main.async {
                                 self.WaitingTip.isHidden = true

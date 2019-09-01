@@ -7,11 +7,15 @@
 //
 
 import Cocoa
-import DecentralizedShadowSocks
 
 class PacketMarketController: NSWindowController {
         
-        var minerPoolAddrs:[String:MinerPool] = [:]
+        
+        @IBOutlet weak var WaitingTip: NSProgressIndicator!
+        @IBOutlet weak var poolTableView: NSTableView!
+        
+        
+        var currentPool:MinerPool? = nil
         
         override func windowDidLoad() {
                 super.windowDidLoad()
@@ -20,29 +24,37 @@ class PacketMarketController: NSWindowController {
         @IBAction func Exit(_ sender: Any) {
                 self.close()
         }
-    
-        func loadMinerPools() -> Void {
-                
-                guard let poolJson = MinerPoolList() else { return  }
-                let jsonData:Data = String(cString:poolJson).data(using: .utf8)!
-                
-                guard let array = try? JSONSerialization.jsonObject(with: jsonData, options: .mutableContainers) as! NSArray else {
-                        return
+        
+        func loadMinerPools(){
+                WaitingTip.isHidden = false
+                Service.sharedInstance.queue.async {
+                        MinerPoolManager.loadMinerPool()
+                        
+                        DispatchQueue.main.async {
+                                self.WaitingTip.isHidden = true
+                                
+                        }
                 }
+        }
+        
+        func updateUI() {
+                poolTableView.reloadData()
+        }
+}
+
+extension PacketMarketController:NSTableViewDelegate {
+        
+        func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+                let addrKey = MinerPoolManager.PoolAddressArr[row]
+                var poolInfo = MinerPoolManager.PoolDataCache[addrKey]
                 
-                self.minerPoolAddrs.removeAll()
                 
-                for (_, value) in array.enumerated() {
-                        guard let detailData = value as? Data else{
-                                continue
-                        }
-                        
-                        guard let dict = try? JSONSerialization.jsonObject(with: detailData, options: .mutableContainers) as! NSDictionary else{
-                                continue
-                        }
-                        
-                        let pool = MinerPool.init(dict:dict)
-                        self.minerPoolAddrs[pool.MainAddr] = pool
-                }                 
+                return mp
+        }
+}
+
+extension PacketMarketController:NSTableViewDataSource {
+        func numberOfRows(in tableView: NSTableView) -> Int {
+                return MinerPoolManager.PoolAddressArr.count
         }
 }

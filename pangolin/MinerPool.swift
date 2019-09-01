@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import DecentralizedShadowSocks
+
 class MinerPool: NSObject {
-        
         var MainAddr:String = ""
         var Payer:String = ""
         var SubAddr:String = ""
@@ -31,5 +32,77 @@ class MinerPool: NSObject {
                 self.PoolType = dict["PoolType"] as! Int
                 self.ShortName = dict["ShortName"] as! String
                 self.DetailInfos = dict["DetailInfos"] as! String
+        }
+}
+
+class MinerPoolManager: NSObject {
+        
+        static public var PoolDataCache:[String:MinerPool] = [:]
+        static public var PoolAddressArr:[String] = []
+        
+        override init(){
+                super.init()
+        }
+        
+        static func loadMinerPool(){
+                do{
+                        let url = try touchDirectory(directory: KEY_FOR_DATA_DIRECTORY)
+                        let filePath = url.appendingPathComponent(CACHED_POOL_DATA_FILE, isDirectory: false)
+                        if !FileManager.default.fileExists(atPath: filePath.path){
+                                self.loadFromBlockChain()
+                                return
+                        }
+                        
+                        let jsonData = try Data(contentsOf: filePath)
+                        self.parseData(data: jsonData)
+                        
+                        DispatchQueue.global().async() {
+                                self.loadFromBlockChain()
+                        }
+                        
+                        
+                } catch let err{
+                        print(err)
+                        ShowNotification(tips: err.localizedDescription)
+                }
+        }
+        
+        static func loadFromBlockChain(){
+                do{
+                        let url = try touchDirectory(directory: KEY_FOR_DATA_DIRECTORY)
+                        let filePath = url.appendingPathComponent(CACHED_POOL_DATA_FILE, isDirectory: false)
+                        
+                        guard let poolJson = MinerPoolList() else { return  }
+                        let jsonData:Data = String(cString:poolJson).data(using: .utf8)!
+                        
+                        
+                        MinerPoolManager.PoolDataCache.removeAll()
+                        self.parseData(data: jsonData)
+                        try jsonData.write(to: filePath)
+                } catch let err{
+                        print(err)
+                        ShowNotification(tips: err.localizedDescription)
+                }
+        }
+        
+        static func parseData(data:Data){
+                
+                guard let array = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSArray else {
+                        return
+                }
+                for (_, value) in array.enumerated() {
+                        guard let detailData = value as? Data else{
+                                continue
+                        }
+                        
+                        guard let dict = try? JSONSerialization.jsonObject(with: detailData, options: .mutableContainers) as! NSDictionary else{
+                                continue
+                        }
+                        
+                        let pool = MinerPool.init(dict:dict)
+                        MinerPoolManager.PoolDataCache[pool.MainAddr] = pool
+                }
+                
+                MinerPoolManager.PoolAddressArr = Array(MinerPoolManager.PoolDataCache.keys)
         }
 }
