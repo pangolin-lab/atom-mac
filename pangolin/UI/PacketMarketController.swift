@@ -18,10 +18,7 @@ class PacketMarketController: NSWindowController {
         var currentPool:MinerPool? = nil
         
         override func windowDidLoad() {
-                super.windowDidLoad()
-                self.poolTableView.delegate = self
-                self.poolTableView.dataSource = self
-                
+                super.windowDidLoad()                
                 self.loadMinerPools()
         } 
         

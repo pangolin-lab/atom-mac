@@ -21,7 +21,7 @@ let CACHED_POOL_DATA_FILE = "cachedPool.data"
 let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/pangolin-lab/quantum/master/seed.quantum"
 
 let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c"
-let MICROPAY_SYSTEM_ADDRESS = "0x75163b5E8115FA8Fa4566C9360c8980B8e371eE1"
+let MICROPAY_SYSTEM_ADDRESS = "0xC8e1DbBE3cBF06a145234a4723076EED7b4AF59c"
 let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/8b8db3cca50a4fcf97173b7619b1c4c3"
 //public let BaseEtherScanUrl = "https://ropsten.etherscan.io"//"https://etherscan.io"
 
@@ -61,7 +61,7 @@ class Service: NSObject {
         private override init(){
                 super.init()
                 self.IsGlobal = defaults.bool(forKey: KEY_FOR_Pangolin_MODEL)
-                InitBlockChain(TOKEN_ADDRESS.toGoString(), MICROPAY_SYSTEM_ADDRESS.toGoString(), BLOCKCHAIN_API_URL.toGoString())
+//                InitBlockChain(TOKEN_ADDRESS.toGoString(), MICROPAY_SYSTEM_ADDRESS.toGoString(), BLOCKCHAIN_API_URL.toGoString())
         }
         
         class var sharedInstance: Service {

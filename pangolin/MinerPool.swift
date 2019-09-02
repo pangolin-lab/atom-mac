@@ -69,16 +69,18 @@ class MinerPoolManager: NSObject {
         
         static func loadFromBlockChain(){
                 do{
+                        guard let poolJson = MinerPoolList() else { return  }
+                        let str = String(cString:poolJson)
+                        let jsonData:Data = str.data(using: .utf8)!
+                        if jsonData.count == 0{
+                                return
+                        }
+                        self.parseData(data: jsonData)
+                        
                         let url = try touchDirectory(directory: KEY_FOR_DATA_DIRECTORY)
                         let filePath = url.appendingPathComponent(CACHED_POOL_DATA_FILE, isDirectory: false)
-                        
-                        guard let poolJson = MinerPoolList() else { return  }
-                        let jsonData:Data = String(cString:poolJson).data(using: .utf8)!
-                        
-                        
-                        MinerPoolManager.PoolDataCache.removeAll()
-                        self.parseData(data: jsonData)
                         try jsonData.write(to: filePath)
+                        
                 } catch let err{
                         print(err)
                         ShowNotification(tips: err.localizedDescription)
@@ -90,6 +92,8 @@ class MinerPoolManager: NSObject {
                 guard let array = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSArray else {
                         return
                 }
+                
+                MinerPoolManager.PoolDataCache.removeAll()
                 for (_, value) in array.enumerated() {
                         guard let dict = value as? NSDictionary else{
                                 continue
