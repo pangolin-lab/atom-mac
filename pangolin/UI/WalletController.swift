@@ -20,6 +20,9 @@ class WalletController: NSWindowController {
         @IBOutlet weak var DataAvgPriceField: NSTextField!
         @IBOutlet weak var MinerDescField: NSScrollView!
         
+        
+        var selectedMinerPool:MicroPayChannel? = nil
+        
         override func windowDidLoad() {
                 super.windowDidLoad()
                 updateWallet()
@@ -145,9 +148,40 @@ class WalletController: NSWindowController {
 }
 
 extension WalletController:NSTableViewDelegate{
-        func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
+        func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        
                 let mp = MicroPayChannelManager.SubMinerPools[row]
-                return mp.MainAddr
+                
+                
+                guard let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SubMinerPoolAddr"), owner: nil) as? NSTableCellView else{
+                        return nil
+                }
+                
+                cell.textField?.stringValue = mp.MainAddr
+                return cell
+        }
+        
+        func tableViewSelectionDidChange(_ notification: Notification){
+                let table = notification.object as! NSTableView
+                let idx = table.selectedRow
+                if idx < 0 || idx >= MicroPayChannelManager.SubMinerPools.count{
+                        return
+                }
+                
+                self.selectedMinerPool = MicroPayChannelManager.SubMinerPools[idx]
+                
+                self.updatePoolDetails()
+        }
+        
+        func updatePoolDetails(){
+                
+                guard let channel = self.selectedMinerPool else {
+                        return
+                }
+                
+                self.DataUsedField.stringValue = "0.0"
+                self.DataAvgPriceField.stringValue = "0.0"
+                self.DataBalanceField.stringValue = String(format: "%dByte", channel.RemindPackets)
         }
 }
 
