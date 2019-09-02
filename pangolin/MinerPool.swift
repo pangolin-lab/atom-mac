@@ -93,20 +93,15 @@ class MinerPoolManager: NSObject {
                         return
                 }
                 
-                MinerPoolManager.PoolDataCache.removeAll()
+                self.PoolDataCache.removeAll()
                 for (_, value) in array.enumerated() {
                         guard let dict = value as? NSDictionary else{
                                 continue
                         }
-                        
-//                        guard let dict = try? JSONSerialization.jsonObject(with: detailData, options: .mutableContainers) as! NSDictionary else{
-//                                continue
-//                        }
-                        
                         let pool = MinerPool.init(dict:dict)
                         MinerPoolManager.PoolDataCache[pool.MainAddr] = pool
                 }
                 
-                MinerPoolManager.PoolAddressArr = Array(MinerPoolManager.PoolDataCache.keys)
+                self.PoolAddressArr = Array(self.PoolDataCache.keys)
         }
 }

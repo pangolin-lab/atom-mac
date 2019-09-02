@@ -21,6 +21,7 @@ typedef struct { const char *p; ptrdiff_t n; } _GoString_;
 
 
 
+
 /* End of preamble from import "C" comments.  */
 
 
@@ -88,6 +89,10 @@ extern char* MinerPoolAddresses();
 extern char* MinerDetails(GoString p0);
 
 extern char* MinerPoolList();
+
+extern char* MySubPools(GoString p0);
+
+extern char* MySubPoolsWithDetails(GoString p0);
 
 extern GoUint8 LibIsInit();
 

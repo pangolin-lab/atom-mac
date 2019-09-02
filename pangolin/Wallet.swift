@@ -11,21 +11,15 @@ import DecentralizedShadowSocks
 
 class Wallet:NSObject{
         
-        let KEY_FOR_WALLET_DIRECTORY = ".pangolin/wallet"
-        let KEY_FOR_WALLET_FILE = "wallet.json"
         var defaults = UserDefaults.standard
-        
         var MainAddress:String = ""
         var SubAddress:String = ""
         var EthBalance:String = "0.00000000"
-        var TokenBalance:String = "0.00000000"
-        var SMP:[MinerPool] = []
+        var TokenBalance:String = "0.00000000"         
         
         override init() {
                 super.init()
                 loadWallet()
-                let t = MinerPool()
-                self.SMP.append(t)
         }
         
         class var sharedInstance: Wallet {
@@ -128,5 +122,5 @@ class Wallet:NSObject{
                         throw ServiceError.InvalidWalletErr
                 }
                 try syncWalletData(data: json.data(using: .utf8)!)
-        }
+        }        
 }

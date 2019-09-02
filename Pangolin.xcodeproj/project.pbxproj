@@ -11,6 +11,7 @@
 		7C3365F92201351D005CA693 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C3365F82201351D005CA693 /* Assets.xcassets */; };
 		7C3365FC2201351D005CA693 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C3365FA2201351D005CA693 /* MainMenu.xib */; };
 		7C3366052201368B005CA693 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3366042201368B005CA693 /* MenuController.swift */; };
+		7C59613F231D497800EB45BB /* MicroPayChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C59613E231D497800EB45BB /* MicroPayChannel.swift */; };
 		7C86AF4922C528B000823643 /* proton_debug.js in Resources */ = {isa = PBXBuildFile; fileRef = 7C86AF4722C528B000823643 /* proton_debug.js */; };
 		7C86AF4A22C528B000823643 /* Pangolin.js in Resources */ = {isa = PBXBuildFile; fileRef = 7C86AF4822C528B000823643 /* Pangolin.js */; };
 		7CD2F0AD2259B1CE0068CF7A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7CD2F0AF2259B1CE0068CF7A /* Localizable.strings */; };
@@ -69,6 +70,7 @@
 		7C3365FD2201351D005CA693 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C3365FE2201351D005CA693 /* Pangolin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pangolin.entitlements; sourceTree = "<group>"; };
 		7C3366042201368B005CA693 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+		7C59613E231D497800EB45BB /* MicroPayChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicroPayChannel.swift; sourceTree = "<group>"; };
 		7C86AF4722C528B000823643 /* proton_debug.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = proton_debug.js; sourceTree = "<group>"; };
 		7C86AF4822C528B000823643 /* Pangolin.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Pangolin.js; sourceTree = "<group>"; };
 		7CD2F0AE2259B1CE0068CF7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				8AF30406225EDB9B00DF6439 /* Service.swift */,
 				8AF30433225F636800DF6439 /* ServiceError.swift */,
 				8AF3040E225EFC7200DF6439 /* Wallet.swift */,
+				7C59613E231D497800EB45BB /* MicroPayChannel.swift */,
 				BB759E0D2317B82C00E6FE42 /* MinerPool.swift */,
 				8AF30412225F058300DF6439 /* PacServerBean.swift */,
 			);
@@ -407,6 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C59613F231D497800EB45BB /* MicroPayChannel.swift in Sources */,
 				8A6F6F2D221FE30400606638 /* SysProxyHelper.swift in Sources */,
 				BB759E0E2317B82C00E6FE42 /* MinerPool.swift in Sources */,
 				7C3366052201368B005CA693 /* MenuController.swift in Sources */,

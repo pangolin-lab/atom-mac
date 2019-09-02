@@ -17,6 +17,10 @@ let KEY_FOR_BOOTSTRAP_PATH = ".Pangolin/PangolinBootNodes.dat"
 let KEY_FOR_ETHEREUM_DIRECTORY = ".Pangolin/ethereumWallet"
 let KEY_FOR_DATA_DIRECTORY = ".Pangolin/data"
 let CACHED_POOL_DATA_FILE = "cachedPool.data"
+let CACHED_SUB_POOL_DATA_FILE = "subPool.data"
+let KEY_FOR_WALLET_DIRECTORY = ".pangolin/wallet"
+let KEY_FOR_WALLET_FILE = "wallet.json"
+
 //let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/pangolin-lab/quantum/master/seed_debug.quantum"
 let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/pangolin-lab/quantum/master/seed.quantum"
 

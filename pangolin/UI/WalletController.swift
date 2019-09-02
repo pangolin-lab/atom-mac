@@ -108,7 +108,7 @@ class WalletController: NSWindowController {
                 FS.allowedFileTypes = ["text", "txt", "json"]
                 FS.canCreateDirectories = true
                 FS.isExtensionHidden = false
-                FS.nameFieldStringValue = Wallet.sharedInstance.KEY_FOR_WALLET_FILE
+                FS.nameFieldStringValue = KEY_FOR_WALLET_FILE
                 NSApp.activate(ignoringOtherApps: true)
                 FS.begin { result in
                         if result.rawValue != NSFileHandlingPanelOKButton {
@@ -146,14 +146,14 @@ class WalletController: NSWindowController {
 
 extension WalletController:NSTableViewDelegate{
         func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-                let mp = Wallet.sharedInstance.SMP[row]
+                let mp = MicroPayChannelManager.SubMinerPools[row]
                 return mp.MainAddr
         }
 }
 
 extension WalletController:NSTableViewDataSource{
         func numberOfRows(in tableView: NSTableView) -> Int {
-                return Wallet.sharedInstance.SMP.count
+                return MicroPayChannelManager.SubMinerPools.count
         }
 }
 
