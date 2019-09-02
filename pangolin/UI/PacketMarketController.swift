@@ -13,12 +13,19 @@ class PacketMarketController: NSWindowController {
         
         @IBOutlet weak var WaitingTip: NSProgressIndicator!
         @IBOutlet weak var poolTableView: NSTableView!
-        
+        @IBOutlet weak var avgPriceField: NSTextField!
+        @IBOutlet weak var userNoField: NSTextField!
+        @IBOutlet weak var myStatusField: NSTextField!
+        @IBOutlet weak var myBalanceField: NSTextField!
+        @IBOutlet weak var pollIDField: NSTextField! 
+        @IBOutlet weak var myStatus: NSTextField!
+        @IBOutlet weak var poolTypeField: NSTextField!
+        @IBOutlet weak var poolDescField: NSTextField!
         
         var currentPool:MinerPool? = nil
         
         override func windowDidLoad() {
-                super.windowDidLoad()                
+                super.windowDidLoad()
                 self.loadMinerPools()
         } 
         
@@ -41,7 +48,15 @@ class PacketMarketController: NSWindowController {
                 poolTableView.reloadData()
         }
         
-        
+        func updatePoolDetails(){
+                guard let details = self.currentPool else {
+                        return
+                }
+                
+                self.poolTypeField.stringValue = String.init(format: "%d", details.PoolType)
+                self.poolDescField.stringValue = details.DetailInfos
+                self.pollIDField.stringValue = String.init(format: "%d", details.ID)
+        }
         @IBAction func SycFromEthereumAction(_ sender: NSButton) {
                 WaitingTip.isHidden = false
                 Service.sharedInstance.queue.async {
@@ -91,6 +106,21 @@ extension PacketMarketController:NSTableViewDelegate {
                 
                 cell.textField?.stringValue = cellValue
                 return cell
+        }
+        
+        func tableViewSelectionDidChange(_ notification: Notification){
+                let table = notification.object as! NSTableView
+                let idx = table.selectedRow
+                if idx < 0 || idx >= MinerPoolManager.PoolAddressArr.count{
+                        return
+                }
+                
+                let addrKey = MinerPoolManager.PoolAddressArr[idx]
+                guard let poolInfo = MinerPoolManager.PoolDataCache[addrKey] else{
+                        return
+                }
+                self.currentPool = poolInfo
+                updatePoolDetails()
         }
 }
 
