@@ -25,7 +25,15 @@ class WalletController: NSWindowController {
         
         override func windowDidLoad() {
                 super.windowDidLoad()
+                
+                NotificationCenter.default.addObserver(self, selector:#selector(updateBalance(notification:)),
+                                                       name: Wallet.WalletBalanceChangedNoti, object: nil)
+                
                 updateWallet()
+        }
+        
+        deinit {
+                NotificationCenter.default.removeObserver(self)
         }
         
         func updateWallet(){
@@ -128,7 +136,7 @@ class WalletController: NSWindowController {
         }
         
         @IBAction func SyncEthereumAction(_ sender: Any) {
-                loadBalance()
+               loadBalance()
         }
         
         @IBAction func ReloadMinerPoolActin(_ sender: Any) {
@@ -136,13 +144,14 @@ class WalletController: NSWindowController {
         
         func loadBalance(){
                 WaitingTip.isHidden = false
-                Service.sharedInstance.queue.async {
-                        Wallet.sharedInstance.syncBlockChainBalance()
-                        DispatchQueue.main.async {
-                                self.WaitingTip.isHidden = true
-                                self.EthBalanceField.stringValue = Wallet.sharedInstance.EthBalance
-                                self.TokenBalanceField.stringValue = Wallet.sharedInstance.TokenBalance
-                        }
+                Wallet.sharedInstance.syncTokenBalance()
+        }
+        
+        @objc func updateBalance(notification: Notification){
+                DispatchQueue.main.async {
+                        self.WaitingTip.isHidden = true
+                        self.EthBalanceField.stringValue = Wallet.sharedInstance.EthBalance
+                        self.TokenBalanceField.stringValue = Wallet.sharedInstance.TokenBalance
                 }
         }
 }

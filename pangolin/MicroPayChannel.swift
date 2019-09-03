@@ -55,7 +55,7 @@ class MicroPayChannelManager:NSObject{
                         let data = try Data(contentsOf: filePath)
                         self.parseSubPools(data:data)
                         
-                        DispatchQueue.global().async() {
+                        Service.sharedInstance.queue.async() {
                                 self.loadMyPoolsFromBlockChain(userAddress:userAddress)
                         }
                         

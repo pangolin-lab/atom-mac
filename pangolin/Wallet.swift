@@ -10,10 +10,14 @@ import Foundation
 import DecentralizedShadowSocks
 
 class Wallet:NSObject{
+        let BALANCE_TOKEN_KEY = "BALANCE_TOKEN_KEY"
+        let BALANCE_ETH_KEY = "BALANCE_ETH_KEY"
+        public static let WalletBalanceChangedNoti = Notification.Name(rawValue: "WalletBalanceChangedNotification")
         
         var defaults = UserDefaults.standard
         var MainAddress:String = ""
         var SubAddress:String = ""
+        private var ciphereTxt = ""
         var EthBalance:String = "0.00000000"
         var TokenBalance:String = "0.00000000"         
         
@@ -53,6 +57,7 @@ class Wallet:NSObject{
                         
                         self.MainAddress = main
                         self.SubAddress = sub
+                        self.ciphereTxt = String.init(bytes: data, encoding: .utf8)! 
                         
                 } catch let err{
                         print(err)
@@ -94,16 +99,38 @@ class Wallet:NSObject{
                 try data.write(to: filePath, options: .atomicWrite)
         }
         
-        public func syncBlockChainBalance(){
+        
+        public func syncTokenBalance(){
                 if self.MainAddress.elementsEqual(""){
                         self.EthBalance = "0.00"
                         self.TokenBalance = "0.00"
                         return
                 }
-                let addr = self.MainAddress.toGoString()
-                let balance = WalletBalance(addr)
-                self.TokenBalance = String(cString: balance.r0)
-                self.EthBalance = String(cString: balance.r1)
+                
+                guard let cachedTokenVale = UserDefaults.standard.string(forKey: BALANCE_TOKEN_KEY) else{
+                        loadBalanceFromBlockChain()
+                        return
+                }
+                
+                self.TokenBalance = cachedTokenVale
+                self.EthBalance = UserDefaults.standard.string(forKey: BALANCE_ETH_KEY)!
+                
+                self.loadBalanceFromBlockChain()
+        }
+        
+        func loadBalanceFromBlockChain(){
+                
+                Service.sharedInstance.queue.async() {
+                        let addr = self.MainAddress.toGoString()
+                        let balance = WalletBalance(addr)
+                        self.TokenBalance = String(cString: balance.r0)
+                        self.EthBalance = String(cString: balance.r1)
+                        UserDefaults.standard.set(self.TokenBalance, forKey: self.BALANCE_TOKEN_KEY)
+                        UserDefaults.standard.set(self.EthBalance, forKey: self.BALANCE_ETH_KEY)
+                        
+                        NotificationCenter.default.post(name: Wallet.WalletBalanceChangedNoti, object:
+                                self, userInfo:nil)
+                }
         }
         
         func ExportWallet(dst:URL?) throws{

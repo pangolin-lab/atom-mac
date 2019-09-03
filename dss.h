@@ -22,6 +22,7 @@ typedef struct { const char *p; ptrdiff_t n; } _GoString_;
 
 
 
+
 /* End of preamble from import "C" comments.  */
 
 
@@ -70,6 +71,38 @@ extern "C" {
 #endif
 
 
+extern char* MinerPoolAddresses();
+
+extern char* MinerDetails(GoString p0);
+
+extern char* MinerPoolList();
+
+extern char* MySubPools(GoString p0);
+
+extern char* MySubPoolsWithDetails(GoString p0);
+
+/* Return type for BuyPacket */
+struct BuyPacket_return {
+	char* r0;
+	char* r1;
+};
+
+extern struct BuyPacket_return BuyPacket(GoString p0, GoString p1, GoString p2, GoString p3, GoFloat64 p4);
+
+extern GoFloat64 QueryApproved(GoString p0);
+
+extern GoUint8 LibIsInit();
+
+extern GoUint8 LibInitProxy(GoString p0, GoString p1, GoString p2, GoString p3, GoString p4);
+
+extern GoUint8 LibCreateProxy(GoString p0, GoString p1);
+
+//TODO:: inner error call back
+
+extern void LibProxyRun();
+
+extern void LibStopClient();
+
 extern void InitBlockChain(GoString p0, GoString p1, GoString p2);
 
 extern char* NewWallet(GoString p0);
@@ -83,28 +116,6 @@ struct WalletBalance_return {
 extern struct WalletBalance_return WalletBalance(GoString p0);
 
 extern GoUint8 WalletVerify(GoString p0, GoString p1);
-
-extern char* MinerPoolAddresses();
-
-extern char* MinerDetails(GoString p0);
-
-extern char* MinerPoolList();
-
-extern char* MySubPools(GoString p0);
-
-extern char* MySubPoolsWithDetails(GoString p0);
-
-extern GoUint8 LibIsInit();
-
-extern GoUint8 LibInitProxy(GoString p0, GoString p1, GoString p2, GoString p3, GoString p4);
-
-extern GoUint8 LibCreateProxy(GoString p0, GoString p1);
-
-//TODO:: inner error call back
-
-extern void LibProxyRun();
-
-extern void LibStopClient();
 
 #ifdef __cplusplus
 }

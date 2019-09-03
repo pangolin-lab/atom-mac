@@ -56,7 +56,7 @@ class MinerPoolManager: NSObject {
                         let jsonData = try Data(contentsOf: filePath)
                         self.parseData(data: jsonData)
                         
-                        DispatchQueue.global().async() {
+                        Service.sharedInstance.queue.async() {
                                 self.loadFromBlockChain()
                         }
                         
