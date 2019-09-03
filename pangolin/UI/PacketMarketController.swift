@@ -23,6 +23,7 @@ class PacketMarketController: NSWindowController {
         @IBOutlet weak var TokenSpendField: NSTextField!
         @IBOutlet weak var PacketGetField: NSTextField!
         @IBOutlet weak var BuyForAddrField: NSTextField!
+        @IBOutlet weak var PoolAddressField: NSTextField!
         
         var currentPool:MinerPool? = nil
         
@@ -93,6 +94,7 @@ class PacketMarketController: NSWindowController {
                 self.poolTypeField.stringValue = String.init(format: "%d", details.PoolType)
                 self.poolDescField.stringValue = details.DetailInfos
                 self.pollIDField.stringValue = String.init(format: "%d", details.ID)
+                self.PoolAddressField.stringValue = details.MainAddr
         }
         
         @IBAction func SycFromEthereumAction(_ sender: NSButton) {

@@ -21,13 +21,14 @@ let KEY_FOR_WALLET_DIRECTORY    = ".pangolin/wallet"
 let KEY_FOR_WALLET_FILE         = "wallet.json"
 
 //let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/pangolin-lab/quantum/master/seed_debug.quantum"
-let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/pangolin-lab/quantum/master/seed.quantum"
+public let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/pangolin-lab/quantum/master/seed.quantum"
 
-let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c"
-let MICROPAY_SYSTEM_ADDRESS = "0x4ac2ba30175118d20cd17a27bbbfdcfd604cbb1c"
-let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/8b8db3cca50a4fcf97173b7619b1c4c3"
+public let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c"
+public let MICROPAY_SYSTEM_ADDRESS = "0x4ac2ba30175118d20cd17a27bbbfdcfd604cbb1c"
+public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/8b8db3cca50a4fcf97173b7619b1c4c3"
 //public let BaseEtherScanUrl = "https://ropsten.etherscan.io"//"https://etherscan.io"
-let BaseEtherScanUrl = "https://ropsten.etherscan.io/tx/"
+public let BaseEtherScanUrl = "https://ropsten.etherscan.io"
+
 class Service: NSObject {
         
         var defaults = UserDefaults.standard
