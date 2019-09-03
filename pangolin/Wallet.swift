@@ -13,13 +13,14 @@ class Wallet:NSObject{
         let BALANCE_TOKEN_KEY = "BALANCE_TOKEN_KEY"
         let BALANCE_ETH_KEY = "BALANCE_ETH_KEY"
         public static let WalletBalanceChangedNoti = Notification.Name(rawValue: "WalletBalanceChangedNotification")
+        public static let WalletBuyPacketResultNoti = Notification.Name(rawValue: "WalletBuyPacketResultNoti")
         
         var defaults = UserDefaults.standard
         var MainAddress:String = ""
         var SubAddress:String = ""
         private var ciphereTxt = ""
-        var EthBalance:String = "0.00000000"
-        var TokenBalance:String = "0.00000000"         
+        var EthBalance:Double = 0.0
+        var TokenBalance:Double = 0.0
         
         override init() {
                 super.init()
@@ -102,18 +103,14 @@ class Wallet:NSObject{
         
         public func syncTokenBalance(){
                 if self.MainAddress.elementsEqual(""){
-                        self.EthBalance = "0.00"
-                        self.TokenBalance = "0.00"
+                        self.EthBalance = 0.0
+                        self.TokenBalance = 0.0
                         return
                 }
                 
-                guard let cachedTokenVale = UserDefaults.standard.string(forKey: BALANCE_TOKEN_KEY) else{
-                        loadBalanceFromBlockChain()
-                        return
-                }
                 
-                self.TokenBalance = cachedTokenVale
-                self.EthBalance = UserDefaults.standard.string(forKey: BALANCE_ETH_KEY)!
+                self.TokenBalance = UserDefaults.standard.double(forKey: BALANCE_TOKEN_KEY)
+                self.EthBalance = UserDefaults.standard.double(forKey: BALANCE_ETH_KEY)
                 
                 self.loadBalanceFromBlockChain()
         }
@@ -123,8 +120,8 @@ class Wallet:NSObject{
                 Service.sharedInstance.queue.async() {
                         let addr = self.MainAddress.toGoString()
                         let balance = WalletBalance(addr)
-                        self.TokenBalance = String(cString: balance.r0)
-                        self.EthBalance = String(cString: balance.r1)
+                        self.TokenBalance = balance.r0
+                        self.EthBalance = balance.r1
                         UserDefaults.standard.set(self.TokenBalance, forKey: self.BALANCE_TOKEN_KEY)
                         UserDefaults.standard.set(self.EthBalance, forKey: self.BALANCE_ETH_KEY)
                         
@@ -149,5 +146,27 @@ class Wallet:NSObject{
                         throw ServiceError.InvalidWalletErr
                 }
                 try syncWalletData(data: json.data(using: .utf8)!)
-        }        
+        }
+        
+        func BuyPacketFrom(pool:String, for user:String, by coin:Double, with password:String){
+                
+                Service.sharedInstance.queue.async {
+                        
+                        let ret = BuyPacket(user.toGoString(),
+                                  pool.toGoString(),
+                                  password.toGoString(),
+                                  self.ciphereTxt.toGoString(),
+                                  coin)
+                        let tx = String(cString: ret.r0)
+                        let err = String(cString: ret.r0)
+                        
+                        if err != ""{
+                                NotificationCenter.default.post(name: Wallet.WalletBalanceChangedNoti, object:
+                                        self, userInfo:["success":false, "msg": err])
+                        }else{
+                                NotificationCenter.default.post(name: Wallet.WalletBalanceChangedNoti, object:
+                                        self, userInfo:["success":true, "msg": tx])
+                        }
+                }
+        }
 }

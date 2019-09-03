@@ -150,8 +150,8 @@ class WalletController: NSWindowController {
         @objc func updateBalance(notification: Notification){
                 DispatchQueue.main.async {
                         self.WaitingTip.isHidden = true
-                        self.EthBalanceField.stringValue = Wallet.sharedInstance.EthBalance
-                        self.TokenBalanceField.stringValue = Wallet.sharedInstance.TokenBalance
+                        self.EthBalanceField.doubleValue = Wallet.sharedInstance.EthBalance
+                        self.TokenBalanceField.doubleValue = Wallet.sharedInstance.TokenBalance
                 }
         }
 }

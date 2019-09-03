@@ -110,9 +110,4 @@ class MinerPoolManager: NSObject {
                 
                 self.PoolAddressArr = Array(self.PoolDataCache.keys)
         }
-        
-        public static func BuyPacket(){
-                Service.sharedInstance.queue.async {
-                }
-        }
 }

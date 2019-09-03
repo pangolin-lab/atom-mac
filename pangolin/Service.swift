@@ -27,13 +27,13 @@ let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c"
 let MICROPAY_SYSTEM_ADDRESS = "0x4ac2ba30175118d20cd17a27bbbfdcfd604cbb1c"
 let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/8b8db3cca50a4fcf97173b7619b1c4c3"
 //public let BaseEtherScanUrl = "https://ropsten.etherscan.io"//"https://etherscan.io"
-
+let BaseEtherScanUrl = "https://ropsten.etherscan.io/tx/"
 class Service: NSObject {
         
         var defaults = UserDefaults.standard
         var IsTurnOn:Bool = false
         var IsGlobal:Bool = false 
-       
+        var SystemPacketPrice:Int64 = -1
         var pacServ:PacServer = PacServer()
         var uiDelegate:StateChangedDelegate? = nil
         public var queue = DispatchQueue(label: "smart contract queue")
@@ -57,6 +57,7 @@ class Service: NSObject {
                 super.init()
                 self.IsGlobal = defaults.bool(forKey: KEY_FOR_Pangolin_MODEL)
                 InitBlockChain(TOKEN_ADDRESS.toGoString(), MICROPAY_SYSTEM_ADDRESS.toGoString(), BLOCKCHAIN_API_URL.toGoString())
+                self.SystemPacketPrice = QueryMicroPayPrice()
         }
         
         class var sharedInstance: Service {

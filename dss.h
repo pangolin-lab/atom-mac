@@ -91,6 +91,8 @@ extern struct BuyPacket_return BuyPacket(GoString p0, GoString p1, GoString p2, 
 
 extern GoFloat64 QueryApproved(GoString p0);
 
+extern GoInt64 QueryMicroPayPrice();
+
 extern GoUint8 LibIsInit();
 
 extern GoUint8 LibInitProxy(GoString p0, GoString p1, GoString p2, GoString p3, GoString p4);
@@ -109,8 +111,8 @@ extern char* NewWallet(GoString p0);
 
 /* Return type for WalletBalance */
 struct WalletBalance_return {
-	char* r0;
-	char* r1;
+	GoFloat64 r0;
+	GoFloat64 r1;
 };
 
 extern struct WalletBalance_return WalletBalance(GoString p0);

@@ -17,10 +17,12 @@ class PacketMarketController: NSWindowController {
         @IBOutlet weak var userNoField: NSTextField!
         @IBOutlet weak var myStatusField: NSTextField!
         @IBOutlet weak var myBalanceField: NSTextField!
-        @IBOutlet weak var pollIDField: NSTextField! 
-        @IBOutlet weak var myStatus: NSTextField!
+        @IBOutlet weak var pollIDField: NSTextField!
         @IBOutlet weak var poolTypeField: NSTextField!
         @IBOutlet weak var poolDescField: NSTextField!
+        @IBOutlet weak var TokenSpendField: NSTextField!
+        @IBOutlet weak var PacketGetField: NSTextField!
+        @IBOutlet weak var BuyForAddrField: NSTextField!
         
         var currentPool:MinerPool? = nil
         
@@ -29,8 +31,15 @@ class PacketMarketController: NSWindowController {
                 NotificationCenter.default.addObserver(self, selector:#selector(updatePoolList(notification:)),
                                                        name: MinerPool.MinerPoolChangedNoti, object: nil)
                 
+                
+                NotificationCenter.default.addObserver(self, selector:#selector(buyPacketResult(notification:)),
+                                                       name: Wallet.WalletBuyPacketResultNoti, object: nil)
+                
                 self.loadMinerPools()
+                self.BuyForAddrField.stringValue = "0x" + Wallet.sharedInstance.MainAddress
+                self.avgPriceField.floatValue = Float(Service.sharedInstance.SystemPacketPrice)
         }
+        
         deinit {
                 NotificationCenter.default.removeObserver(self)
         }
@@ -48,6 +57,22 @@ class PacketMarketController: NSWindowController {
                 DispatchQueue.main.async {
                         self.WaitingTip.isHidden = true
                         self.poolTableView.reloadData()
+                }
+        }
+        
+        @objc func buyPacketResult(notification: Notification){
+                
+                let userInfo = notification.userInfo as! [String: AnyObject]
+                let ret = userInfo["success"] as! Bool
+                let msg = userInfo["msg"] as! String
+                if ret == false{
+                        dialogOK(question: "Tips", text: msg)
+                        return
+                }
+                
+                dialogOK(question: "Tips", text: "Buy request is pending on transaction:[\(msg)]")
+                if let url = URL(string: "\(BaseEtherScanUrl)/tx/\(msg)") {
+                        NSWorkspace.shared.open(url)
                 }
         }
         
@@ -82,7 +107,35 @@ class PacketMarketController: NSWindowController {
                         return
                 }
                 
+                let tokenToSpend = self.TokenSpendField.doubleValue
+                if tokenToSpend <= 0.01{
+                        dialogOK(question: "Tips", text: "Too less token to spend!")
+                        return
+                }
                 
+                if Wallet.sharedInstance.TokenBalance < tokenToSpend{
+                        dialogOK(question: "Tips", text: "No enough token in your wallet!")
+                        return
+                }
+                
+                if Wallet.sharedInstance.EthBalance <= 0.001{
+                        dialogOK(question: "Tips", text: "No enough ETH for operation gas!")
+                        return
+                }
+                
+                let target = self.BuyForAddrField.stringValue
+                if target.lengthOfBytes(using: .utf8) != 42{
+                        dialogOK(question: "Tips", text: "Invalid target user address")
+                        return
+                }
+                
+                let password = showPasswordDialog()
+                if password == ""{
+                        return
+                }
+                
+                self.WaitingTip.isHidden = false
+                Wallet.sharedInstance.BuyPacketFrom(pool:details.MainAddr, for:target, by: tokenToSpend, with: password)
         }
         
 }
