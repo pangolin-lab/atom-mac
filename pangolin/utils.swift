@@ -97,13 +97,14 @@ func ensureLaunchAgentsDirOwner () throws{
         }
 }
 
-func dialogOK(question: String, text: String) -> Void {
+func dialogOK(question: String, text: String) -> Void {DispatchQueue.main.async {
         let alert = NSAlert()
         alert.messageText = question.localized
         alert.informativeText = text.localized
         alert.alertStyle = .warning
         alert.addButton(withTitle: "OK".localized)
         alert.runModal()
+        }
 }
 
 func dialogOKCancel(question: String, text: String) -> Bool {

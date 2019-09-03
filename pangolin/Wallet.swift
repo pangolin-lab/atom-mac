@@ -25,6 +25,7 @@ class Wallet:NSObject{
         override init() {
                 super.init()
                 loadWallet()
+                syncTokenBalance()
         }
         
         class var sharedInstance: Wallet {
@@ -158,13 +159,13 @@ class Wallet:NSObject{
                                   self.ciphereTxt.toGoString(),
                                   coin)
                         let tx = String(cString: ret.r0)
-                        let err = String(cString: ret.r0)
+                        let err = String(cString: ret.r1)
                         
                         if err != ""{
-                                NotificationCenter.default.post(name: Wallet.WalletBalanceChangedNoti, object:
+                                NotificationCenter.default.post(name: Wallet.WalletBuyPacketResultNoti, object:
                                         self, userInfo:["success":false, "msg": err])
                         }else{
-                                NotificationCenter.default.post(name: Wallet.WalletBalanceChangedNoti, object:
+                                NotificationCenter.default.post(name: Wallet.WalletBuyPacketResultNoti, object:
                                         self, userInfo:["success":true, "msg": tx])
                         }
                 }
