@@ -19,6 +19,8 @@ class MinerPool: NSObject {
         var ShortName:String = ""
         var DetailInfos:String = ""
         
+        public static let MinerPoolChangedNoti = Notification.Name(rawValue: "MinerPoolChangedNoti")
+        
         override init(){
                 super.init()
         }
@@ -55,11 +57,7 @@ class MinerPoolManager: NSObject {
                         
                         let jsonData = try Data(contentsOf: filePath)
                         self.parseData(data: jsonData)
-                        
-                        Service.sharedInstance.queue.async() {
-                                self.loadFromBlockChain()
-                        }
-                        
+                        self.loadFromBlockChain()
                         
                 } catch let err{
                         print(err)
@@ -68,22 +66,30 @@ class MinerPoolManager: NSObject {
         }
         
         static func loadFromBlockChain(){
-                do{
-                        guard let poolJson = MinerPoolList() else { return  }
-                        let str = String(cString:poolJson)
-                        let jsonData:Data = str.data(using: .utf8)!
-                        if jsonData.count == 0{
-                                return
+                
+                Service.sharedInstance.queue.async {
+                        do{
+                                guard let poolJson = MinerPoolList() else { return  }
+                                let str = String(cString:poolJson)
+                                let jsonData:Data = str.data(using: .utf8)!
+                                if jsonData.count == 0{
+                                        return
+                                }
+                                self.parseData(data: jsonData)
+                                
+                                let url = try touchDirectory(directory: KEY_FOR_DATA_DIRECTORY)
+                                let filePath = url.appendingPathComponent(CACHED_POOL_DATA_FILE, isDirectory: false)
+                                try jsonData.write(to: filePath)
+                                
+                                NotificationCenter.default.post(name: MinerPool.MinerPoolChangedNoti, object:
+                                        self, userInfo:["success":true])
+                                
+                        } catch let err{
+                                print(err)
+                                NotificationCenter.default.post(name: MinerPool.MinerPoolChangedNoti, object:
+                                        self, userInfo:["success":true, "msg":err.localizedDescription])
                         }
-                        self.parseData(data: jsonData)
                         
-                        let url = try touchDirectory(directory: KEY_FOR_DATA_DIRECTORY)
-                        let filePath = url.appendingPathComponent(CACHED_POOL_DATA_FILE, isDirectory: false)
-                        try jsonData.write(to: filePath)
-                        
-                } catch let err{
-                        print(err)
-                        ShowNotification(tips: err.localizedDescription)
                 }
         }
         
@@ -103,5 +109,10 @@ class MinerPoolManager: NSObject {
                 }
                 
                 self.PoolAddressArr = Array(self.PoolDataCache.keys)
+        }
+        
+        public static func BuyPacket(){
+                Service.sharedInstance.queue.async {
+                }
         }
 }

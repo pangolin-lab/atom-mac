@@ -26,8 +26,30 @@ class PacketMarketController: NSWindowController {
         
         override func windowDidLoad() {
                 super.windowDidLoad()
+                NotificationCenter.default.addObserver(self, selector:#selector(updatePoolList(notification:)),
+                                                       name: MinerPool.MinerPoolChangedNoti, object: nil)
+                
                 self.loadMinerPools()
-        } 
+        }
+        deinit {
+                NotificationCenter.default.removeObserver(self)
+        }
+        
+        @objc func updatePoolList(notification: Notification){
+                
+                let userInfo = notification.userInfo as! [String: AnyObject]
+                let ret = userInfo["success"] as! Bool
+                if ret == false{
+                        let msg = userInfo["msg"] as! String
+                        dialogOK(question: "Tips", text: msg)
+                        return
+                }
+                
+                DispatchQueue.main.async {
+                        self.WaitingTip.isHidden = true
+                        self.poolTableView.reloadData()
+                }
+        }
         
         @IBAction func Exit(_ sender: Any) {
                 self.close()
@@ -35,17 +57,7 @@ class PacketMarketController: NSWindowController {
         
         func loadMinerPools(){
                 WaitingTip.isHidden = false
-                Service.sharedInstance.queue.async {
-                        MinerPoolManager.loadMinerPool()
-                        DispatchQueue.main.async {
-                                self.WaitingTip.isHidden = true
-                                self.updateUI()
-                        }
-                }
-        }
-        
-        func updateUI() {
-                poolTableView.reloadData()
+                MinerPoolManager.loadMinerPool()
         }
         
         func updatePoolDetails(){
@@ -57,16 +69,22 @@ class PacketMarketController: NSWindowController {
                 self.poolDescField.stringValue = details.DetailInfos
                 self.pollIDField.stringValue = String.init(format: "%d", details.ID)
         }
+        
         @IBAction func SycFromEthereumAction(_ sender: NSButton) {
                 WaitingTip.isHidden = false
-                Service.sharedInstance.queue.async {
-                        MinerPoolManager.loadFromBlockChain()
-                        DispatchQueue.main.async {
-                                self.WaitingTip.isHidden = true
-                                self.updateUI()
-                        }
-                }
+                 MinerPoolManager.loadFromBlockChain()
         }
+        
+        @IBAction func BuyPacketAction(_ sender: NSButton) {
+                
+                guard let details = self.currentPool else {
+                        dialogOK(question: "Tips", text: "Please choose a pool item first")
+                        return
+                }
+                
+                
+        }
+        
 }
 
 extension PacketMarketController:NSTableViewDelegate {
