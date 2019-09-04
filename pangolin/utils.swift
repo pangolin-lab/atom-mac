@@ -202,19 +202,23 @@ let GUINT = Double(1000000000)
 let MUINT = Double(1000000)
 let KUINT = Double(1000)
 
-func ConvertBandWith(val:Double) -> (Double, String){
+func ConvertBandWith(val:Double) -> String{
+        var ret:Double = val
+        var unit:String = "B"
         if val > TUINT {
-                return ((val / TUINT), "T")
+                (ret, unit) = ((val / TUINT), "T")
         }else if val > GUINT {
-                return ((val / GUINT), "G")
+                (ret, unit) = ((val / GUINT), "G")
                 
         }else if val > MUINT {
-                return ((val / MUINT), "M")
+                (ret, unit) =  ((val / MUINT), "M")
                 
         }else if val > KUINT {
-                return ((val / KUINT), "K")
+                (ret, unit) =  ((val / KUINT), "K")
                 
         }else{
-               return (val, "B")
+               (ret, unit) =  (val, "B")
         }
+        
+        return "\(ret)(\(unit))"
 }

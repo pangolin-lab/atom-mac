@@ -19,6 +19,7 @@ class WalletController: NSWindowController {
         @IBOutlet weak var DataUsedField: NSTextField!
         @IBOutlet weak var DataAvgPriceField: NSTextField!
         @IBOutlet weak var MinerDescField: NSScrollView!
+        @IBOutlet weak var PoolTableView: NSTableView!
         
         
         var selectedMinerPool:MicroPayChannel? = nil
@@ -30,6 +31,8 @@ class WalletController: NSWindowController {
                                                        name: Wallet.WalletBalanceChangedNoti, object: nil)
                 NotificationCenter.default.addObserver(self, selector:#selector(processTransaction(notification:)),
                                                        name: Wallet.WalletTokenTransferResultNoti, object: nil)
+                NotificationCenter.default.addObserver(self, selector:#selector(freshPoolList(notification:)),
+                                                       name: MicroPayChannel.SubMinerPoolLoadedNoti, object: nil)
                 
                 updateWallet()
         }
@@ -41,7 +44,7 @@ class WalletController: NSWindowController {
         func updateWallet(){
                 MainAddressField.stringValue = "0x" + Wallet.sharedInstance.MainAddress
                 SubAddressField.stringValue = Wallet.sharedInstance.SubAddress
-                loadBalance()
+                loadData()
         }
         
         @IBAction func Exit(_ sender: Any) {
@@ -138,15 +141,16 @@ class WalletController: NSWindowController {
         }
         
         @IBAction func SyncEthereumAction(_ sender: Any) {
-               loadBalance()
+               loadData()
         }
         
         @IBAction func ReloadMinerPoolActin(_ sender: Any) {
         }
         
-        func loadBalance(){
+        func loadData(){
                 WaitingTip.isHidden = false
                 Wallet.sharedInstance.syncTokenBalance()
+                MicroPayChannelManager.loadMyPools()
         }
         
         @objc func updateBalance(notification: Notification){
@@ -161,6 +165,12 @@ class WalletController: NSWindowController {
                         self.WaitingTip.isHidden = true
                 }
                 ShowTransResult(notification:notification)
+        }
+        @objc func freshPoolList(notification: Notification){
+                DispatchQueue.main.async {
+                        self.WaitingTip.isHidden = true
+                        self.PoolTableView.reloadData()
+                }
         }
         
         @IBAction func TransferAction(_ sender: Any) {
@@ -182,8 +192,8 @@ extension WalletController:NSTableViewDelegate{
         
                 let mp = MicroPayChannelManager.SubMinerPools[row]
                 
-                
-                guard let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SubMinerPoolAddr"), owner: nil) as? NSTableCellView else{
+                guard let cell = tableView.makeView(withIdentifier:
+                        NSUserInterfaceItemIdentifier(rawValue: "SubMinerPoolAddrID"), owner: nil) as? NSTableCellView else{
                         return nil
                 }
                 
@@ -204,14 +214,14 @@ extension WalletController:NSTableViewDelegate{
         }
         
         func updatePoolDetails(){
-                
                 guard let channel = self.selectedMinerPool else {
                         return
                 }
                 
-                self.DataUsedField.stringValue = "0.0"
-                self.DataAvgPriceField.stringValue = "0.0"
-                self.DataBalanceField.stringValue = String(format: "%dByte", channel.RemindPackets)
+                self.DataUsedField.stringValue = ConvertBandWith(val: Double(channel.RemindPackets))
+                self.DataAvgPriceField.doubleValue = channel.RemindTokens
+                let date = Date.init(timeIntervalSince1970: TimeInterval(channel.Expiration))
+                self.DataBalanceField.stringValue = "\(date)"
         }
 }
 

@@ -96,7 +96,7 @@ class Wallet:NSObject{
                 let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
                 self.MainAddress = json["mainAddress"] as! String
                 self.SubAddress = json["subAddress"] as! String
-                self.ciphereTxt = String.init(bytes: data, encoding: .utf8)! 
+                self.ciphereTxt = String.init(bytes: data, encoding: .utf8)!
                 
                 let url = try touchDirectory(directory: KEY_FOR_WALLET_DIRECTORY)
                 let filePath = url.appendingPathComponent(KEY_FOR_WALLET_FILE, isDirectory: false)

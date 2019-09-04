@@ -61,7 +61,7 @@ class MinerPoolManager: NSObject {
                         
                 } catch let err{
                         print(err)
-                        ShowNotification(tips: err.localizedDescription)
+                        dialogOK(question: "Error", text: err.localizedDescription)
                 }
         }
         
@@ -87,7 +87,7 @@ class MinerPoolManager: NSObject {
                         } catch let err{
                                 print(err)
                                 NotificationCenter.default.post(name: MinerPool.MinerPoolChangedNoti, object:
-                                        self, userInfo:["success":true, "msg":err.localizedDescription])
+                                        self, userInfo:["success":false, "msg":err.localizedDescription])
                         }
                         
                 }

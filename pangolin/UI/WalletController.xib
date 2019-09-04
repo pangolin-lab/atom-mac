@@ -14,6 +14,7 @@
                 <outlet property="EthBalanceField" destination="Shy-QV-e5e" id="mYv-4R-hTe"/>
                 <outlet property="MainAddressField" destination="SNG-10-WPo" id="R3A-nz-zIh"/>
                 <outlet property="MinerDescField" destination="wBG-yz-S80" id="Mx1-0w-qZu"/>
+                <outlet property="PoolTableView" destination="uzn-L2-PCw" id="nu8-ak-AoI"/>
                 <outlet property="SubAddressField" destination="roM-Av-0L9" id="ePy-AY-gcU"/>
                 <outlet property="TokenBalanceField" destination="X0i-2N-0jT" id="IZi-GT-Gsy"/>
                 <outlet property="WaitingTip" destination="TQ5-Cc-vTy" id="IGz-Qk-OIN"/>
@@ -209,37 +210,36 @@
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn width="250" minWidth="40" maxWidth="1000" id="bW8-HO-57q">
-                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Miner Pool Name">
+                                        <tableColumn identifier="SubMinerPoolAddrID" width="240" minWidth="10" maxWidth="3.4028234663852886e+38" id="xrV-kd-jga">
+                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </tableHeaderCell>
-                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="GzC-Ev-xl2">
+                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="ZHr-Gv-Btl">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
-                                                <tableCellView identifier="SubMinerPoolAddr" id="Qoc-V1-BsU">
-                                                    <rect key="frame" x="1" y="1" width="250" height="17"/>
+                                                <tableCellView id="hTT-Cc-ODV">
+                                                    <rect key="frame" x="1" y="1" width="240" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>
-                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="nFb-6o-NyB">
-                                                            <rect key="frame" x="0.0" y="0.0" width="250" height="17"/>
-                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Title" id="jPT-Cf-SP3">
+                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g5X-vM-CIT">
+                                                            <rect key="frame" x="0.0" y="0.0" width="240" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="B1N-fm-AIO">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                             </textFieldCell>
                                                         </textField>
                                                     </subviews>
-                                                    <constraints>
-                                                        <constraint firstItem="nFb-6o-NyB" firstAttribute="centerX" secondItem="Qoc-V1-BsU" secondAttribute="centerX" id="0oW-FZ-aDS"/>
-                                                        <constraint firstItem="nFb-6o-NyB" firstAttribute="leading" secondItem="Qoc-V1-BsU" secondAttribute="leading" constant="2" id="QWn-v7-MXr"/>
-                                                        <constraint firstItem="nFb-6o-NyB" firstAttribute="centerY" secondItem="Qoc-V1-BsU" secondAttribute="centerY" id="gI5-4q-dza"/>
-                                                    </constraints>
+                                                    <connections>
+                                                        <outlet property="textField" destination="g5X-vM-CIT" id="a28-6K-px5"/>
+                                                    </connections>
                                                 </tableCellView>
                                             </prototypeCellViews>
                                         </tableColumn>
@@ -251,8 +251,8 @@
                                 </tableView>
                             </subviews>
                         </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="0.067164179104477612" horizontal="YES" id="asn-fK-oau">
-                            <rect key="frame" x="1" y="198" width="540" height="15"/>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="asn-fK-oau">
+                            <rect key="frame" x="1" y="290" width="253" height="15"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="26o-U3-sCY">

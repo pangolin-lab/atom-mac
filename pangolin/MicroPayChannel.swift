@@ -18,6 +18,8 @@ class MicroPayChannel: NSObject {
         var RemindPackets:Int64 = 0
         var Expiration:Int64 = 0
         
+        public static let SubMinerPoolLoadedNoti = Notification.Name(rawValue: "MinerPoolChangedNoti")
+        
         override init(){
                 super.init()
         }
@@ -37,8 +39,8 @@ class MicroPayChannelManager:NSObject{
         
         static public var SubMinerPools:[MicroPayChannel] = []
         
-        static func loadMyPools(userAddress:String){
-                
+        static func loadMyPools(){
+                let userAddress = Wallet.sharedInstance.MainAddress
                 if userAddress.elementsEqual(""){
                         self.SubMinerPools.removeAll()
                         return
@@ -48,20 +50,17 @@ class MicroPayChannelManager:NSObject{
                         let url = try touchDirectory(directory: KEY_FOR_WALLET_DIRECTORY)
                         let filePath = url.appendingPathComponent(CACHED_SUB_POOL_DATA_FILE, isDirectory: false)
                         if !FileManager.default.fileExists(atPath: filePath.path){
-                                loadMyPoolsFromBlockChain(userAddress:userAddress)
+                                loadMyPoolsFromBlockChain()
                                 return
                         }
                         
                         let data = try Data(contentsOf: filePath)
                         self.parseSubPools(data:data)
-                        
-                        Service.sharedInstance.queue.async() {
-                                self.loadMyPoolsFromBlockChain(userAddress:userAddress)
-                        }
+                        self.loadMyPoolsFromBlockChain()
                         
                 } catch let err{
                         print(err)
-                        ShowNotification(tips: err.localizedDescription)
+                        dialogOK(question: "Error", text: err.localizedDescription)
                 }
         }
         
@@ -84,7 +83,14 @@ class MicroPayChannelManager:NSObject{
                 
         }
         
-       static  func loadMyPoolsFromBlockChain(userAddress:String){
+        static  func loadMyPoolsFromBlockChain(){
+                let userAddress = Wallet.sharedInstance.MainAddress
+                if userAddress.elementsEqual(""){
+                        return
+                }
+        
+         Service.sharedInstance.queue.async {
+                
                 do{
                         guard let subPools = MySubPoolsWithDetails(userAddress.toGoString()) else{
                                 return
@@ -94,16 +100,21 @@ class MicroPayChannelManager:NSObject{
                         if jsonData.count == 0{
                                 return
                         }
-                        
+
                         self.parseSubPools(data: jsonData)
-                        
+
                         let url = try touchDirectory(directory: KEY_FOR_DATA_DIRECTORY)
                         let filePath = url.appendingPathComponent(CACHED_SUB_POOL_DATA_FILE, isDirectory: false)
                         try jsonData.write(to: filePath)
                         
+                        NotificationCenter.default.post(name: MicroPayChannel.SubMinerPoolLoadedNoti, object:
+                                self, userInfo:["success":true])
+
                 } catch let err{
                         print(err)
-                        ShowNotification(tips: err.localizedDescription)
+                        NotificationCenter.default.post(name: MicroPayChannel.SubMinerPoolLoadedNoti, object:
+                                self, userInfo:["success":false, "msg":err.localizedDescription])
                 }
+        }
         }
 }
