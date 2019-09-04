@@ -352,6 +352,9 @@ QnV5IFBhY2tldCADRnJvbSBUaGlzIFBvb2w
                                 <string>NSAllRomanInputSourcesLocaleIdentifier</string>
                             </allowedInputSourceLocales>
                         </textFieldCell>
+                        <connections>
+                            <outlet property="delegate" destination="-2" id="H7c-ar-Kw7"/>
+                        </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6lp-if-J9b">
                         <rect key="frame" x="449" y="88" width="221" height="17"/>

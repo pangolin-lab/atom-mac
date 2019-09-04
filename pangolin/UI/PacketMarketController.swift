@@ -38,7 +38,7 @@ class PacketMarketController: NSWindowController {
                 
                 self.loadMinerPools()
                 self.BuyForAddrField.stringValue = "0x" + Wallet.sharedInstance.MainAddress
-                self.avgPriceField.floatValue = Float(Service.sharedInstance.SystemPacketPrice)
+                self.avgPriceField.doubleValue = Double(Service.sharedInstance.SystemPacketPrice)
         }
         
         deinit {
@@ -193,5 +193,20 @@ extension PacketMarketController:NSTableViewDataSource {
         func numberOfRows(in tableView: NSTableView) -> Int {
                 let num = MinerPoolManager.PoolAddressArr.count
                 return num
+        }
+}
+
+extension PacketMarketController:NSTextFieldDelegate{
+        
+        func controlTextDidChange(_ notification: Notification){
+                guard let field = notification.object as? NSTextField else {
+                        Swift.print(notification.object as Any)
+                        return
+                }
+                Swift.print(field.doubleValue)
+                let tokenNo = field.doubleValue
+                let bytesSum = tokenNo * Double(Service.sharedInstance.SystemPacketPrice)
+                let (val, unit) = ConvertBandWith(val: bytesSum)
+                self.PacketGetField.stringValue = "\(val)(\(unit))"
         }
 }

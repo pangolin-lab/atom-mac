@@ -197,3 +197,24 @@ func ShowTransResult(notification: Notification){
                 NSWorkspace.shared.open(url)
         }
 }
+let TUINT = Double(1000000000000)
+let GUINT = Double(1000000000)
+let MUINT = Double(1000000)
+let KUINT = Double(1000)
+
+func ConvertBandWith(val:Double) -> (Double, String){
+        if val > TUINT {
+                return ((val / TUINT), "T")
+        }else if val > GUINT {
+                return ((val / GUINT), "G")
+                
+        }else if val > MUINT {
+                return ((val / MUINT), "M")
+                
+        }else if val > KUINT {
+                return ((val / KUINT), "K")
+                
+        }else{
+               return (val, "B")
+        }
+}
