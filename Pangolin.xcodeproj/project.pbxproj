@@ -29,6 +29,8 @@
 		8AF30413225F058300DF6439 /* PacServerBean.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF30412225F058300DF6439 /* PacServerBean.swift */; };
 		8AF30434225F636800DF6439 /* ServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AF30433225F636800DF6439 /* ServiceError.swift */; };
 		B3A611A5CA3ACB48840EC95A /* Pods_sysproxyconfig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EF2A4C50710DD2BE5240A57 /* Pods_sysproxyconfig.framework */; };
+		BB3D1D53231F3DB900A71E95 /* TransferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB3D1D51231F3DB900A71E95 /* TransferViewController.swift */; };
+		BB3D1D54231F3DB900A71E95 /* TransferViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB3D1D52231F3DB900A71E95 /* TransferViewController.xib */; };
 		BB759E0B23179C4E00E6FE42 /* PacketMarketController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB759E0923179C4E00E6FE42 /* PacketMarketController.swift */; };
 		BB759E0C23179C4E00E6FE42 /* PacketMarketController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB759E0A23179C4E00E6FE42 /* PacketMarketController.xib */; };
 		BB759E0E2317B82C00E6FE42 /* MinerPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB759E0D2317B82C00E6FE42 /* MinerPool.swift */; };
@@ -93,6 +95,8 @@
 		8AF3040E225EFC7200DF6439 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		8AF30412225F058300DF6439 /* PacServerBean.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacServerBean.swift; sourceTree = "<group>"; };
 		8AF30433225F636800DF6439 /* ServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceError.swift; sourceTree = "<group>"; };
+		BB3D1D51231F3DB900A71E95 /* TransferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferViewController.swift; sourceTree = "<group>"; };
+		BB3D1D52231F3DB900A71E95 /* TransferViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransferViewController.xib; sourceTree = "<group>"; };
 		BB759E0923179C4E00E6FE42 /* PacketMarketController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PacketMarketController.swift; sourceTree = "<group>"; };
 		BB759E0A23179C4E00E6FE42 /* PacketMarketController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PacketMarketController.xib; sourceTree = "<group>"; };
 		BB759E0D2317B82C00E6FE42 /* MinerPool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MinerPool.swift; path = pangolin/MinerPool.swift; sourceTree = SOURCE_ROOT; };
@@ -187,6 +191,8 @@
 				BB9BB6B923152BA600F883B8 /* WalletController.xib */,
 				BB759E0923179C4E00E6FE42 /* PacketMarketController.swift */,
 				BB759E0A23179C4E00E6FE42 /* PacketMarketController.xib */,
+				BB3D1D51231F3DB900A71E95 /* TransferViewController.swift */,
+				BB3D1D52231F3DB900A71E95 /* TransferViewController.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -336,6 +342,7 @@
 				BB759E0C23179C4E00E6FE42 /* PacketMarketController.xib in Resources */,
 				7CD2F0AD2259B1CE0068CF7A /* Localizable.strings in Resources */,
 				7C3365FC2201351D005CA693 /* MainMenu.xib in Resources */,
+				BB3D1D54231F3DB900A71E95 /* TransferViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +418,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7C59613F231D497800EB45BB /* MicroPayChannel.swift in Sources */,
+				BB3D1D53231F3DB900A71E95 /* TransferViewController.swift in Sources */,
 				8A6F6F2D221FE30400606638 /* SysProxyHelper.swift in Sources */,
 				BB759E0E2317B82C00E6FE42 /* MinerPool.swift in Sources */,
 				7C3366052201368B005CA693 /* MenuController.swift in Sources */,

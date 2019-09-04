@@ -119,6 +119,22 @@ extern struct WalletBalance_return WalletBalance(GoString p0);
 
 extern GoUint8 WalletVerify(GoString p0, GoString p1);
 
+/* Return type for TransferEth */
+struct TransferEth_return {
+	char* r0;
+	char* r1;
+};
+
+extern struct TransferEth_return TransferEth(GoString p0, GoString p1, GoString p2, GoFloat64 p3);
+
+/* Return type for TransferLinToken */
+struct TransferLinToken_return {
+	char* r0;
+	char* r1;
+};
+
+extern struct TransferLinToken_return TransferLinToken(GoString p0, GoString p1, GoString p2, GoFloat64 p3);
+
 #ifdef __cplusplus
 }
 #endif

@@ -28,6 +28,8 @@ class WalletController: NSWindowController {
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(updateBalance(notification:)),
                                                        name: Wallet.WalletBalanceChangedNoti, object: nil)
+                NotificationCenter.default.addObserver(self, selector:#selector(processTransaction(notification:)),
+                                                       name: Wallet.WalletTokenTransferResultNoti, object: nil)
                 
                 updateWallet()
         }
@@ -152,6 +154,25 @@ class WalletController: NSWindowController {
                         self.WaitingTip.isHidden = true
                         self.EthBalanceField.doubleValue = Wallet.sharedInstance.EthBalance
                         self.TokenBalanceField.doubleValue = Wallet.sharedInstance.TokenBalance
+                }
+        }
+        @objc func processTransaction(notification: Notification){
+                DispatchQueue.main.async {
+                        self.WaitingTip.isHidden = true
+                }
+                ShowTransResult(notification:notification)
+        }
+        
+        @IBAction func TransferAction(_ sender: Any) {
+                let (password, target, no, typ) = ShowTransferDialog()
+                if typ < 0{
+                        return
+                }
+                WaitingTip.isHidden = false
+                if typ == 0{
+                        Wallet.sharedInstance.EthTransfer(password: password, target: target, no: no)
+                }else{
+                        Wallet.sharedInstance.LinTokenTransfer(password: password, target: target, no: no)
                 }
         }
 }

@@ -62,19 +62,10 @@ class PacketMarketController: NSWindowController {
         }
         
         @objc func buyPacketResult(notification: Notification){
-                
-                let userInfo = notification.userInfo as! [String: AnyObject]
-                let ret = userInfo["success"] as! Bool
-                let msg = userInfo["msg"] as! String
-                if ret == false{
-                        dialogOK(question: "Tips", text: msg)
-                        return
+                DispatchQueue.main.async {
+                        self.WaitingTip.isHidden = true
                 }
-                
-                dialogOK(question: "Tips", text: "Buy request is pending on transaction:[\(msg)]")
-                if let url = URL(string: "\(BaseEtherScanUrl)/tx/\(msg)") {
-                        NSWorkspace.shared.open(url)
-                }
+                ShowTransResult(notification:notification)
         }
         
         @IBAction func Exit(_ sender: Any) {
