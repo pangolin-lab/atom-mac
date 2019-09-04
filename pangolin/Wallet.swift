@@ -96,6 +96,7 @@ class Wallet:NSObject{
                 let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
                 self.MainAddress = json["mainAddress"] as! String
                 self.SubAddress = json["subAddress"] as! String
+                self.ciphereTxt = String.init(bytes: data, encoding: .utf8)! 
                 
                 let url = try touchDirectory(directory: KEY_FOR_WALLET_DIRECTORY)
                 let filePath = url.appendingPathComponent(KEY_FOR_WALLET_FILE, isDirectory: false)
@@ -167,6 +168,7 @@ class Wallet:NSObject{
         
         func EthTransfer(password:String, target:String, no:Double){
                 Service.sharedInstance.queue.async {
+                         Swift.print(self.ciphereTxt)
                         let ret = TransferEth(self.ciphereTxt.toGoString(), password.toGoString(), target.toGoString(), no)
                         ProcessTransRet(tx: String(cString: ret.r0),
                                              err: String(cString: ret.r1),
@@ -176,7 +178,8 @@ class Wallet:NSObject{
         
         func LinTokenTransfer(password:String, target:String, no:Double){
                 Service.sharedInstance.queue.async {
-                        let ret = TransferLinToken(self.ciphereTxt.toGoString(), password.toGoString(), target.toGoString(), no) 
+                        Swift.print(self.ciphereTxt)
+                        let ret = TransferLinToken(self.ciphereTxt.toGoString(), password.toGoString(), target.toGoString(), no)
                         ProcessTransRet(tx: String(cString: ret.r0),
                                              err: String(cString: ret.r1),
                                              noti: Wallet.WalletTokenTransferResultNoti)
