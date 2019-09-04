@@ -24,7 +24,7 @@ let KEY_FOR_WALLET_FILE         = "wallet.json"
 public let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/pangolin-lab/quantum/master/seed.quantum"
 
 public let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c"
-public let MICROPAY_SYSTEM_ADDRESS = "0x4b91921c701c6450660dde4f3b42ba68f5f903a8"
+public let MICROPAY_SYSTEM_ADDRESS = "0xa438e6a961f57b5a49a2f36013f1f05e28861bb1"
 public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/8b8db3cca50a4fcf97173b7619b1c4c3"
 //public let BaseEtherScanUrl = "https://ropsten.etherscan.io"//"https://etherscan.io"
 public let BaseEtherScanUrl = "https://ropsten.etherscan.io"

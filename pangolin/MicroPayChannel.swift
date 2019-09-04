@@ -13,7 +13,6 @@ import DecentralizedShadowSocks
 class MicroPayChannel: NSObject {
         
         var MainAddr:String = ""
-        var PayerAddr:String = ""
         var RemindTokens:Float64 = 0.0
         var RemindPackets:Int64 = 0
         var Expiration:Int64 = 0
@@ -28,7 +27,6 @@ class MicroPayChannel: NSObject {
                 super.init()
                 
                 self.MainAddr = dict["MainAddr"] as! String
-                self.PayerAddr = dict["PayerAddr"] as! String
                 self.RemindTokens = dict["RemindTokens"] as! Float64
                 self.RemindPackets = dict["RemindPackets"] as! Int64
                 self.Expiration = dict["Expiration"] as! Int64

@@ -82,9 +82,9 @@ class PacketMarketController: NSWindowController {
                         return
                 }
                 
-                self.poolTypeField.stringValue = String.init(format: "%d", details.PoolType)
+                self.poolTypeField.stringValue = "-"
                 self.poolDescField.stringValue = details.DetailInfos
-                self.pollIDField.stringValue = String.init(format: "%d", details.ID)
+                self.pollIDField.stringValue = "-"
                 self.PoolAddressField.stringValue = details.MainAddr
         }
         
