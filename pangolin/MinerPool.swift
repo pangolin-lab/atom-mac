@@ -12,7 +12,6 @@ import DecentralizedShadowSocks
 class MinerPool: NSObject {
         var MainAddr:String = ""
         var Payer:String = ""
-        var SubAddr:String = ""
         var GuaranteedNo:Float64 = 0.0
         var ID:Int = 0
         var PoolType:Int = 0
@@ -28,7 +27,6 @@ class MinerPool: NSObject {
         init(dict:NSDictionary){
                 self.MainAddr = dict["MainAddr"] as! String
                 self.Payer = dict["Payer"] as! String
-                self.SubAddr = dict["SubAddr"] as! String
                 self.GuaranteedNo = dict["GuaranteedNo"] as! Float64
                 self.ID = dict["ID"] as! Int
                 self.PoolType = dict["PoolType"] as! Int
