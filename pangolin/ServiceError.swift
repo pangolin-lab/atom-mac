@@ -19,6 +19,8 @@ enum ServiceError:Error {
         case EmptyWalletErr
         case InvalidWalletErr
         case OpenWalletErr
+        
+        case NoPaymentChanErr
 }
 
 extension ServiceError: LocalizedError {
@@ -35,13 +37,15 @@ extension ServiceError: LocalizedError {
                 case .InvalidPathErr:
                         return NSLocalizedString("File path invalid".localized, comment: "System Error")
                 case .NewWalletErr:
-                        return NSLocalizedString("Create new walllet error".localized, comment: "Wallet Error")
+                        return NSLocalizedString("Create walllet error".localized, comment: "Wallet Error")
                 case .EmptyWalletErr:
-                        return NSLocalizedString("Empty new walllet error".localized, comment: "Wallet Error")
+                        return NSLocalizedString("Empty walllet error".localized, comment: "Wallet Error")
                 case .InvalidWalletErr:
-                        return NSLocalizedString("Invalid new walllet error".localized, comment: "Wallet Error")
+                        return NSLocalizedString("Invalid walllet error".localized, comment: "Wallet Error")
                 case .OpenWalletErr:
-                        return NSLocalizedString("Open new walllet error".localized, comment: "Wallet Error")
+                        return NSLocalizedString("Open walllet error".localized, comment: "Wallet Error")
+                case .NoPaymentChanErr:
+                        return NSLocalizedString("No selected miner pool error".localized, comment: "Channel Error")
                 }
         }
 }

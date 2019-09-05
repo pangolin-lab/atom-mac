@@ -37,9 +37,11 @@ class Service: NSObject {
         var IsGlobal:Bool = false 
         var SystemPacketPrice:Int64 = -1
         var pacServ:PacServer = PacServer()
-        var uiDelegate:StateChangedDelegate? = nil
-        public var queue = DispatchQueue(label: "smart contract queue")
-    
+        
+        public static let VPNStatusChanged = Notification.Name(rawValue: "VPNStatusChanged")
+        
+        public let queue = DispatchQueue(label: "smart contract queue")
+        private let serviceQueue = DispatchQueue(label: "vpn service queue")
     
         public static func getDocumentsDirectory() -> URL {
                 let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -69,10 +71,6 @@ class Service: NSObject {
                 return Static.instance
         }
         
-        public func SetDelegate(d:StateChangedDelegate){
-                self.uiDelegate = d
-        }
-        
         
         public func amountService() throws{ 
                 
@@ -86,16 +84,6 @@ class Service: NSObject {
                 }
                 
                 try pacServ.startPACServer()
-                
-                if !IsTurnOn{
-                        return
-                }
-                
-                if !SysProxyHelper.SetupProxy(isGlocal: IsGlobal){
-                        throw ServiceError.SysProxySetupErr
-                }
-                
-                try StartServer()
         }
         
         public func StopServer() throws{
@@ -114,18 +102,39 @@ class Service: NSObject {
                 print("---client is closed---")
                 self.IsTurnOn = false
                 let _ = SysProxyHelper.RemoveSetting()
-                self.uiDelegate?.updateMenu(data: nil, tagId: 4)
         }
         
-        public func StartServer() throws{
+        public func StartServer(password:String) throws{
+                
+                if Wallet.sharedInstance.IsEmpty(){
+                        throw ServiceError.EmptyWalletErr
+                }
+                
+                guard let poolAddr = MPCManager.PoolNameInUse() else {
+                        throw ServiceError.NoPaymentChanErr
+                }
     
                 if !SysProxyHelper.SetupProxy(isGlocal: IsGlobal){
                         throw ServiceError.SysProxySetupErr
                 }
-                let  runer  = Thread.init(target: self, selector: #selector(clinetRunning), object: nil)
-                runer.start()
                 
-                IsTurnOn = true
+                serviceQueue.async {
+                        
+                        let cipher = Wallet.sharedInstance.ciphereTxt.toGoString()
+                        
+                        let ret = RunVpnService(password.toGoString(),
+                                         cipher,
+                                         poolAddr.toGoString(),
+                                         "127.0.0.1:\(ProxyLocalPort)".toGoString())
+                        
+                        self.IsTurnOn = false
+                        NotificationCenter.default.post(name: Service.VPNStatusChanged, object:
+                                self, userInfo:["msg":String(cString: ret!)])
+                }
+                
+                NotificationCenter.default.post(name: Service.VPNStatusChanged, object:
+                        self, userInfo:nil)
+                self.IsTurnOn = true
         }
         
         
@@ -139,12 +148,6 @@ class Service: NSObject {
                 
                 if !SysProxyHelper.SetupProxy(isGlocal: global){
                        throw ServiceError.SysProxySetupErr
-                }
-        }
-        
-        public func RemoveAccount()throws{
-                if IsTurnOn{
-                        try StopServer()
                 }
         }
         

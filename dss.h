@@ -101,6 +101,8 @@ extern void LibProxyRun();
 
 extern void LibStopClient();
 
+extern char* RunVpnService(GoString p0, GoString p1, GoString p2, GoString p3);
+
 extern void InitBlockChain(GoString p0, GoString p1, GoString p2);
 
 extern char* NewWallet(GoString p0);

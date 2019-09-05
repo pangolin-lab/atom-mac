@@ -19,7 +19,7 @@ class Wallet:NSObject{
         var defaults = UserDefaults.standard
         var MainAddress:String = ""
         var SubAddress:String = ""
-        private var ciphereTxt = ""
+        var ciphereTxt = ""
         var EthBalance:Double = 0.0
         var TokenBalance:Double = 0.0
         

@@ -8,11 +8,7 @@
 
 import Cocoa
 
-@objc protocol StateChangedDelegate {
-        func updateMenu(data: Any?, tagId:Int)
-}
-
-class MenuController: NSObject, StateChangedDelegate {
+class MenuController: NSObject {
       
         @IBOutlet weak var statusMenu: NSMenu!
         @IBOutlet weak var channelName: NSMenuItem!
@@ -37,15 +33,21 @@ class MenuController: NSObject, StateChangedDelegate {
                 icon?.isTemplate = true // best for dark mode
                 statusItem.button?.image = icon
                 statusItem.menu = statusMenu
-                server.SetDelegate(d: self)
                 updateUI()
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(loadChannelMenu(notification:)),
                                                        name: MicroPayChannel.SubMinerPoolLoadedNoti, object: nil)
+                
+                NotificationCenter.default.addObserver(self, selector:#selector(UpdateVpnStatus(notification:)),
+                                                       name: Service.VPNStatusChanged, object: nil)
         }
         
         func updateMenu(data: Any?, tagId: Int) {
                 DispatchQueue.main.async{ self.updateUI()}
+        }
+        
+        @objc func UpdateVpnStatus(notification:Notification){
+                
         }
         
         @objc func loadChannelMenu(notification:Notification){
@@ -102,7 +104,11 @@ class MenuController: NSObject, StateChangedDelegate {
                         if server.IsTurnOn{
                                 try server.StopServer()
                         }else{
-                                try server.StartServer()
+                                let pwd = showPasswordDialog()
+                                if ""==pwd{
+                                        return
+                                }
+                                try server.StartServer(password: pwd)
                         }
                         
                         updateUI()
