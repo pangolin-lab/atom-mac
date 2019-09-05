@@ -23,20 +23,20 @@
         <window title="Channels List" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="F0z-JX-Cv5">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="725" height="382"/>
+            <rect key="contentRect" x="196" y="240" width="725" height="357"/>
             <rect key="screenRect" x="0.0" y="0.0" width="2048" height="1057"/>
             <view key="contentView" wantsLayer="YES" id="se5-gp-TjO">
-                <rect key="frame" x="0.0" y="0.0" width="725" height="382"/>
+                <rect key="frame" x="0.0" y="0.0" width="725" height="357"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2T-en-WLy">
-                        <rect key="frame" x="20" y="20" width="280" height="342"/>
+                        <rect key="frame" x="20" y="20" width="280" height="317"/>
                         <clipView key="contentView" id="zng-Co-twc">
-                            <rect key="frame" x="1" y="0.0" width="278" height="341"/>
+                            <rect key="frame" x="1" y="0.0" width="278" height="316"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="QGg-Bf-2aJ" viewBased="YES" id="LGo-ge-RmQ">
-                                    <rect key="frame" x="0.0" y="0.0" width="278" height="318"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="278" height="293"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -133,7 +133,7 @@
                         </tableHeaderView>
                     </scrollView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Aqu-On-qOW">
-                        <rect key="frame" x="306" y="345" width="96" height="17"/>
+                        <rect key="frame" x="306" y="320" width="96" height="17"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Token Balance:" id="xi5-FM-M5R">
                             <font key="font" usesAppearanceFont="YES"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -141,7 +141,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cv3-kl-0he">
-                        <rect key="frame" x="306" y="243" width="72" height="17"/>
+                        <rect key="frame" x="306" y="218" width="72" height="17"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Data Used:" id="aks-9v-45g">
                             <font key="font" usesAppearanceFont="YES"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -149,7 +149,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v5E-aW-uvL">
-                        <rect key="frame" x="408" y="340" width="297" height="22"/>
+                        <rect key="frame" x="408" y="315" width="297" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="l9n-Uf-FgE">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -157,7 +157,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MJJ-36-quR">
-                        <rect key="frame" x="408" y="238" width="297" height="22"/>
+                        <rect key="frame" x="408" y="213" width="297" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="WiX-on-jRC">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -165,7 +165,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CO6-rj-Uhp">
-                        <rect key="frame" x="306" y="311" width="74" height="17"/>
+                        <rect key="frame" x="306" y="286" width="74" height="17"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Pool Name:" id="234-jb-ShN">
                             <font key="font" usesAppearanceFont="YES"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -173,7 +173,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="itM-Qf-f2j">
-                        <rect key="frame" x="306" y="277" width="88" height="17"/>
+                        <rect key="frame" x="306" y="252" width="88" height="17"/>
                         <textFieldCell key="cell" lineBreakMode="clipping" title="Data Balance:" id="YHM-OO-rqf">
                             <font key="font" usesAppearanceFont="YES"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -181,7 +181,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="0sD-dX-DPP">
-                        <rect key="frame" x="408" y="306" width="297" height="22"/>
+                        <rect key="frame" x="408" y="281" width="297" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="IPd-oM-P3B">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -189,7 +189,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Mc-xt-1ce">
-                        <rect key="frame" x="408" y="272" width="297" height="22"/>
+                        <rect key="frame" x="408" y="247" width="297" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Y3A-HO-Fd2">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -197,7 +197,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="oOs-Jl-g2a">
-                        <rect key="frame" x="308" y="74" width="397" height="152"/>
+                        <rect key="frame" x="308" y="49" width="397" height="152"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="152" id="1Cg-DV-nTj"/>
                         </constraints>
@@ -208,10 +208,10 @@
                         </textFieldCell>
                     </textField>
                     <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="UmU-jW-Fjb">
-                        <rect key="frame" x="347" y="175" width="32" height="32"/>
+                        <rect key="frame" x="347" y="163" width="32" height="32"/>
                     </progressIndicator>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C8M-X6-ACX">
-                        <rect key="frame" x="469" y="38" width="63" height="32"/>
+                        <rect key="frame" x="469" y="13" width="63" height="32"/>
                         <buttonCell key="cell" type="push" title="Exit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NCG-ot-2Ji">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -258,7 +258,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-AYu"/>
             </connections>
-            <point key="canvasLocation" x="263.5" y="74"/>
+            <point key="canvasLocation" x="263.5" y="61.5"/>
         </window>
     </objects>
 </document>

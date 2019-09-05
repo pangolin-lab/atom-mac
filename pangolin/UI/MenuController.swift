@@ -22,6 +22,7 @@ class MenuController: NSObject, StateChangedDelegate {
         @IBOutlet weak var walletMenu: NSMenuItem!
         @IBOutlet weak var minerPoolMenu: NSMenuItem!
         @IBOutlet weak var allPayChannels: NSMenu!
+        @IBOutlet weak var ConfigMenu: NSMenuItem!
         
         var walletCtrl: WalletController!
         var minerPoolCtrl: PacketMarketController!
@@ -48,6 +49,9 @@ class MenuController: NSObject, StateChangedDelegate {
         }
         
         @objc func loadChannelMenu(notification:Notification){
+                if allPayChannels.numberOfItems > 2 {
+                        return
+                }
                 
                 let channles = MPCManager.PayChannels
                 for (_, c) in channles.enumerated(){

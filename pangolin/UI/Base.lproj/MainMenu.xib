@@ -16,6 +16,7 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="MrV-Ey-DwV" customClass="MenuController" customModule="Pangolin" customModuleProvider="target">
             <connections>
+                <outlet property="ConfigMenu" destination="6Aa-8n-00U" id="uq0-UT-3KO"/>
                 <outlet property="allPayChannels" destination="wBT-o3-yXY" id="b4V-4f-q0p"/>
                 <outlet property="channelName" destination="CPn-B5-6Vi" id="omQ-9T-9GL"/>
                 <outlet property="globalModel" destination="CDL-O9-gLJ" id="O0o-NX-RwJ"/>
@@ -54,7 +55,7 @@
                             <menuItem title="Config" id="6Aa-8n-00U">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="ConfigChannels:" target="MrV-Ey-DwV" id="mqk-s9-J3T"/>
+                                    <action selector="ConfigChannels:" target="MrV-Ey-DwV" id="Dbp-gW-25F"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="71j-XL-pZ9"/>
