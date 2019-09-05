@@ -197,9 +197,9 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="oOs-Jl-g2a">
-                        <rect key="frame" x="308" y="26" width="397" height="200"/>
+                        <rect key="frame" x="308" y="74" width="397" height="152"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="200" id="1Cg-DV-nTj"/>
+                            <constraint firstAttribute="height" constant="152" id="1Cg-DV-nTj"/>
                         </constraints>
                         <textFieldCell key="cell" selectable="YES" borderStyle="bezel" drawsBackground="YES" id="PqM-ve-zwi">
                             <font key="font" metaFont="system"/>
@@ -210,12 +210,23 @@
                     <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="UmU-jW-Fjb">
                         <rect key="frame" x="347" y="175" width="32" height="32"/>
                     </progressIndicator>
+                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C8M-X6-ACX">
+                        <rect key="frame" x="469" y="38" width="63" height="32"/>
+                        <buttonCell key="cell" type="push" title="Exit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NCG-ot-2Ji">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="ExitAction:" target="-2" id="auV-sz-bom"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="C8M-X6-ACX" firstAttribute="top" secondItem="oOs-Jl-g2a" secondAttribute="bottom" constant="8" id="0Cl-wE-3or"/>
                     <constraint firstItem="Cv3-kl-0he" firstAttribute="leading" secondItem="e2T-en-WLy" secondAttribute="trailing" constant="8" id="7VW-0V-GEa"/>
                     <constraint firstItem="MJJ-36-quR" firstAttribute="top" secondItem="6Mc-xt-1ce" secondAttribute="bottom" constant="12" id="8XD-4f-l4w"/>
                     <constraint firstItem="e2T-en-WLy" firstAttribute="centerY" secondItem="se5-gp-TjO" secondAttribute="centerY" id="AZY-gl-eSZ"/>
-                    <constraint firstAttribute="bottom" secondItem="oOs-Jl-g2a" secondAttribute="bottom" priority="10" constant="20" id="CDt-QP-lnS"/>
+                    <constraint firstItem="C8M-X6-ACX" firstAttribute="leading" secondItem="e2T-en-WLy" secondAttribute="trailing" constant="175" id="CV7-yq-ecG"/>
                     <constraint firstAttribute="trailing" secondItem="v5E-aW-uvL" secondAttribute="trailing" constant="20" id="Fae-x1-PFM"/>
                     <constraint firstAttribute="trailing" secondItem="6Mc-xt-1ce" secondAttribute="trailing" constant="20" id="FnQ-GG-NmL"/>
                     <constraint firstItem="UmU-jW-Fjb" firstAttribute="centerY" secondItem="se5-gp-TjO" secondAttribute="centerY" id="GGr-V6-O5m"/>

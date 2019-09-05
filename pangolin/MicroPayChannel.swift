@@ -34,9 +34,14 @@ class MicroPayChannel: NSObject {
 }
 
 class MPCManager:NSObject{
-        static func ChannelInUsed() -> String? {
-                return UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_SEL_POOL)
+        static func PoolNameInUse() -> String? {
+                return UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_POOL_INUSE)
         }
+        
+        static func SetPoolNameInUse(addr:String){
+                UserDefaults.standard.set(addr, forKey: KEY_FOR_CURRENT_POOL_INUSE)
+        }
+        
         static public var PayChannels:[MicroPayChannel] = []
         
         static func loadMyChannels(){

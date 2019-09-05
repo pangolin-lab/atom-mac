@@ -43,6 +43,11 @@ class ChooseChannelController: NSWindowController {
                         self.self.updatePoolDetails()
                 }
         }
+        
+        @IBAction func ExitAction(_ sender: Any) {
+                self.close()
+        }
+        
 }
 
 extension ChooseChannelController:NSTableViewDelegate{
@@ -54,7 +59,7 @@ extension ChooseChannelController:NSTableViewDelegate{
                 
                 if tableColumn == tableView.tableColumns[0] {
                         cellIdentifier = "PoolStatusOfChannel"
-                        if mp.MainAddr == MPCManager.ChannelInUsed(){
+                        if mp.MainAddr == MPCManager.PoolNameInUse(){
                                  cellValue = "In Use"
                         }else{
                                  cellValue = ""

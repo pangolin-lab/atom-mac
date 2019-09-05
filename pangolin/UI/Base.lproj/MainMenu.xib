@@ -16,7 +16,8 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <customObject id="MrV-Ey-DwV" customClass="MenuController" customModule="Pangolin" customModuleProvider="target">
             <connections>
-                <outlet property="ChannelInUsed" destination="CPn-B5-6Vi" id="omQ-9T-9GL"/>
+                <outlet property="allPayChannels" destination="wBT-o3-yXY" id="b4V-4f-q0p"/>
+                <outlet property="channelName" destination="CPn-B5-6Vi" id="omQ-9T-9GL"/>
                 <outlet property="globalModel" destination="CDL-O9-gLJ" id="O0o-NX-RwJ"/>
                 <outlet property="minerPoolMenu" destination="vbi-aX-P3T" id="f84-3c-0Vc"/>
                 <outlet property="smartModel" destination="dun-4t-46q" id="InF-5x-HBA"/>

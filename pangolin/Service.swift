@@ -13,7 +13,7 @@ let KEY_FOR_SWITCH_STATE        = "KEY_FOR_SWITCH_STATE"
 let KEY_FOR_Pangolin_MODEL      = "KEY_FOR_Pangolin_MODEL"
 let KEY_FOR_ACCOUNT_PATH        = "KEY_FOR_ACCOUNT_PATH"
 let KEY_FOR_NETWORK_PATH        = "KEY_FOR_NETWORK_PATH"
-let KEY_FOR_CURRENT_SEL_POOL    = "KEY_FOR_CURRENT_SEL_POOL"
+let KEY_FOR_CURRENT_POOL_INUSE    = "KEY_FOR_CURRENT_SEL_POOL"
 let KEY_FOR_BOOTSTRAP_PATH      = ".Pangolin/PangolinBootNodes.dat"
 let KEY_FOR_DATA_DIRECTORY      = ".Pangolin/data"
 let CACHED_POOL_DATA_FILE       = "cachedPool.data"
@@ -59,8 +59,7 @@ class Service: NSObject {
                 super.init()
                 self.IsGlobal = defaults.bool(forKey: KEY_FOR_Pangolin_MODEL)
                 InitBlockChain(TOKEN_ADDRESS.toGoString(), MICROPAY_SYSTEM_ADDRESS.toGoString(), BLOCKCHAIN_API_URL.toGoString())
-                self.SystemPacketPrice = QueryMicroPayPrice()
-                MPCManager.loadMyChannels()
+                self.SystemPacketPrice = QueryMicroPayPrice() 
         }
         
         class var sharedInstance: Service {
@@ -75,7 +74,11 @@ class Service: NSObject {
         }
         
         
-        public func amountService() throws{
+        public func amountService() throws{ 
+                
+                let _ = Wallet.sharedInstance
+                
+                MPCManager.loadMyChannels()
                 
                 try  ensureLaunchAgentsDirOwner()
                 if !SysProxyHelper.install(){

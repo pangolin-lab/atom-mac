@@ -15,16 +15,19 @@ import Cocoa
 class MenuController: NSObject, StateChangedDelegate {
       
         @IBOutlet weak var statusMenu: NSMenu!
-        @IBOutlet weak var ChannelInUsed: NSMenuItem!
+        @IBOutlet weak var channelName: NSMenuItem!
         @IBOutlet weak var switchBtn: NSMenuItem!
         @IBOutlet weak var smartModel: NSMenuItem!
         @IBOutlet weak var globalModel: NSMenuItem!
         @IBOutlet weak var walletMenu: NSMenuItem!
         @IBOutlet weak var minerPoolMenu: NSMenuItem!
+        @IBOutlet weak var allPayChannels: NSMenu!
         
         var walletCtrl: WalletController!
         var minerPoolCtrl: PacketMarketController!
         var ChannelCtrl:ChooseChannelController!
+        var selMenuItem:NSMenuItem?
+        
         let server = Service.sharedInstance
         let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         
@@ -35,10 +38,40 @@ class MenuController: NSObject, StateChangedDelegate {
                 statusItem.menu = statusMenu
                 server.SetDelegate(d: self)
                 updateUI()
+                
+                NotificationCenter.default.addObserver(self, selector:#selector(loadChannelMenu(notification:)),
+                                                       name: MicroPayChannel.SubMinerPoolLoadedNoti, object: nil)
         }
         
         func updateMenu(data: Any?, tagId: Int) {
                 DispatchQueue.main.async{ self.updateUI()}
+        }
+        
+        @objc func loadChannelMenu(notification:Notification){
+                
+                let channles = MPCManager.PayChannels
+                for (_, c) in channles.enumerated(){
+                        
+                        let menuItem =  NSMenuItem(title: c.MainAddr, action:#selector(MenuController.ChangeChannelInUse(_:)), keyEquivalent: "")
+                        menuItem.representedObject = c
+                        menuItem.target = self
+                        allPayChannels.addItem(menuItem)
+                        if c.MainAddr == MPCManager.PoolNameInUse(){
+                                self.selMenuItem = menuItem
+                                menuItem.state = .on
+                        }
+                }
+        }
+        
+        @IBAction func ChangeChannelInUse(_ sender: NSMenuItem){
+                guard let myItem = sender.representedObject as? MicroPayChannel else{
+                        return
+                }
+                self.selMenuItem?.state = .off
+                sender.state = .on
+                self.channelName.title = myItem.MainAddr
+                self.selMenuItem = sender
+                MPCManager.SetPoolNameInUse(addr:myItem.MainAddr)
         }
         
         func updateUI() -> Void {                
@@ -56,7 +89,7 @@ class MenuController: NSObject, StateChangedDelegate {
                         smartModel.state = .on
                         globalModel.state = .off
                 }
-                self.ChannelInUsed.title = MPCManager.ChannelInUsed() ?? "Config->"
+                self.channelName.title = MPCManager.PoolNameInUse() ?? "Config->"
         }
         
         @IBAction func switchTurnOnOff(_ sender: NSMenuItem) {
