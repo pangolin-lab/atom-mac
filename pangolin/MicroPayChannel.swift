@@ -35,12 +35,12 @@ class MicroPayChannel: NSObject {
 
 class MicroPayChannelManager:NSObject{
         
-        static public var SubMinerPools:[MicroPayChannel] = []
+        static public var ChannelInUsed:[MicroPayChannel] = []
         
         static func loadMyPools(){
                 let userAddress = Wallet.sharedInstance.MainAddress
                 if userAddress.elementsEqual(""){
-                        self.SubMinerPools.removeAll()
+                        self.ChannelInUsed.removeAll()
                         return
                 }
                 
@@ -67,7 +67,7 @@ class MicroPayChannelManager:NSObject{
                         return
                 }
                 
-                self.SubMinerPools.removeAll()
+                self.ChannelInUsed.removeAll()
                 
                 for (_, value) in array.enumerated() {
                         
@@ -76,7 +76,7 @@ class MicroPayChannelManager:NSObject{
                         }
                         
                         let channel = MicroPayChannel.init(dict:dict)
-                        self.SubMinerPools.append(channel)
+                        self.ChannelInUsed.append(channel)
                 }
                 
         }

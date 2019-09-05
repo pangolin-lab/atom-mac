@@ -13,16 +13,16 @@ class WalletController: NSWindowController {
         @IBOutlet weak var MainAddressField: NSTextField!
         @IBOutlet weak var SubAddressField: NSTextField!
         @IBOutlet weak var EthBalanceField: NSTextField!
-        @IBOutlet weak var TokenBalanceField: NSTextField!
+        @IBOutlet weak var RefundTimeField: NSTextField!
         @IBOutlet weak var WaitingTip: NSProgressIndicator!
         @IBOutlet weak var DataBalanceField: NSTextField!
-        @IBOutlet weak var DataUsedField: NSTextField!
+        @IBOutlet weak var TokenBalanceField: NSTextField!
         @IBOutlet weak var DataAvgPriceField: NSTextField!
-        @IBOutlet weak var MinerDescField: NSScrollView!
+        @IBOutlet weak var MinerDescField: NSTextField!
         @IBOutlet weak var PoolTableView: NSTableView!
         
         
-        var selectedMinerPool:MicroPayChannel? = nil
+        var channelInUsed:MicroPayChannel? = nil
         
         override func windowDidLoad() {
                 super.windowDidLoad()
@@ -157,7 +157,7 @@ class WalletController: NSWindowController {
                 DispatchQueue.main.async {
                         self.WaitingTip.isHidden = true
                         self.EthBalanceField.doubleValue = Wallet.sharedInstance.EthBalance
-                        self.TokenBalanceField.doubleValue = Wallet.sharedInstance.TokenBalance
+                        self.RefundTimeField.doubleValue = Wallet.sharedInstance.TokenBalance
                 }
         }
         @objc func processTransaction(notification: Notification){
@@ -190,7 +190,7 @@ class WalletController: NSWindowController {
 extension WalletController:NSTableViewDelegate{
         func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-                let mp = MicroPayChannelManager.SubMinerPools[row]
+                let mp = MicroPayChannelManager.ChannelInUsed[row]
                 
                 guard let cell = tableView.makeView(withIdentifier:
                         NSUserInterfaceItemIdentifier(rawValue: "SubMinerPoolAddrID"), owner: nil) as? NSTableCellView else{
@@ -204,30 +204,32 @@ extension WalletController:NSTableViewDelegate{
         func tableViewSelectionDidChange(_ notification: Notification){
                 let table = notification.object as! NSTableView
                 let idx = table.selectedRow
-                if idx < 0 || idx >= MicroPayChannelManager.SubMinerPools.count{
+                if idx < 0 || idx >= MicroPayChannelManager.ChannelInUsed.count{
                         return
                 }
                 
-                self.selectedMinerPool = MicroPayChannelManager.SubMinerPools[idx]
-                
+                self.channelInUsed = MicroPayChannelManager.ChannelInUsed[idx]
                 self.updatePoolDetails()
         }
         
         func updatePoolDetails(){
-                guard let channel = self.selectedMinerPool else {
+                guard let channel = self.channelInUsed else {
                         return
                 }
                 
-                self.DataUsedField.stringValue = ConvertBandWith(val: Double(channel.RemindPackets))
+                self.TokenBalanceField.stringValue = ConvertBandWith(val: Double(channel.RemindPackets))
                 self.DataAvgPriceField.doubleValue = channel.RemindTokens
                 let date = Date.init(timeIntervalSince1970: TimeInterval(channel.Expiration))
                 self.DataBalanceField.stringValue = "\(date)"
+                
+                let pool = MinerPoolManager.PoolDataCache[channel.MainAddr]
+                self.MinerDescField.stringValue = pool?.DetailInfos ?? "---"
         }
 }
 
 extension WalletController:NSTableViewDataSource{
         func numberOfRows(in tableView: NSTableView) -> Int {
-                return MicroPayChannelManager.SubMinerPools.count
+                return MicroPayChannelManager.ChannelInUsed.count
         }
 }
 
