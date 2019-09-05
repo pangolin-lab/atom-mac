@@ -71,15 +71,11 @@ extern "C" {
 #endif
 
 
-extern char* MinerPoolAddresses();
+extern char* PoolDetails(GoString p0);
 
-extern char* MinerDetails(GoString p0);
+extern char* PoolListWithDetails();
 
-extern char* MinerPoolList();
-
-extern char* MySubPools(GoString p0);
-
-extern char* MySubPoolsWithDetails(GoString p0);
+extern char* MyChannelWithDetails(GoString p0);
 
 /* Return type for BuyPacket */
 struct BuyPacket_return {

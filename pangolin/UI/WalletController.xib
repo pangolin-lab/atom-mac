@@ -210,7 +210,7 @@
                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                     <tableColumns>
-                                        <tableColumn identifier="SubMinerPoolAddrID" width="250" minWidth="10" maxWidth="3.4028234663852886e+38" id="xrV-kd-jga">
+                                        <tableColumn width="250" minWidth="10" maxWidth="3.4028234663852886e+38" id="xrV-kd-jga">
                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -223,7 +223,7 @@
                                             </textFieldCell>
                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                             <prototypeCellViews>
-                                                <tableCellView id="hTT-Cc-ODV">
+                                                <tableCellView identifier="SubMinerPoolAddrID" id="hTT-Cc-ODV">
                                                     <rect key="frame" x="1" y="1" width="250" height="17"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <subviews>

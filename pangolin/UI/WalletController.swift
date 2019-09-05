@@ -33,7 +33,6 @@ class WalletController: NSWindowController {
                                                        name: Wallet.WalletTokenTransferResultNoti, object: nil)
                 NotificationCenter.default.addObserver(self, selector:#selector(freshPoolList(notification:)),
                                                        name: MicroPayChannel.SubMinerPoolLoadedNoti, object: nil)
-                
                 updateWallet()
         }
         
@@ -150,7 +149,7 @@ class WalletController: NSWindowController {
         func loadData(){
                 WaitingTip.isHidden = false
                 Wallet.sharedInstance.syncTokenBalance()
-                MicroPayChannelManager.loadMyPools()
+                MPCManager.loadMyChannels()
         }
         
         @objc func updateBalance(notification: Notification){
@@ -190,7 +189,7 @@ class WalletController: NSWindowController {
 extension WalletController:NSTableViewDelegate{
         func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-                let mp = MicroPayChannelManager.ChannelInUsed[row]
+                let mp = MPCManager.SubChannels[row]
                 
                 guard let cell = tableView.makeView(withIdentifier:
                         NSUserInterfaceItemIdentifier(rawValue: "SubMinerPoolAddrID"), owner: nil) as? NSTableCellView else{
@@ -204,11 +203,11 @@ extension WalletController:NSTableViewDelegate{
         func tableViewSelectionDidChange(_ notification: Notification){
                 let table = notification.object as! NSTableView
                 let idx = table.selectedRow
-                if idx < 0 || idx >= MicroPayChannelManager.ChannelInUsed.count{
+                if idx < 0 || idx >= MPCManager.SubChannels.count{
                         return
                 }
                 
-                self.channelInUsed = MicroPayChannelManager.ChannelInUsed[idx]
+                self.channelInUsed = MPCManager.SubChannels[idx]
                 self.updatePoolDetails()
         }
         
@@ -229,7 +228,7 @@ extension WalletController:NSTableViewDelegate{
 
 extension WalletController:NSTableViewDataSource{
         func numberOfRows(in tableView: NSTableView) -> Int {
-                return MicroPayChannelManager.ChannelInUsed.count
+                return MPCManager.SubChannels.count
         }
 }
 

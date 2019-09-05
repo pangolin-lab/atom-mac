@@ -63,7 +63,7 @@ class MinerPoolManager: NSObject {
                 
                 Service.sharedInstance.queue.async {
                         do{
-                                guard let poolJson = MinerPoolList() else { return  }
+                                guard let poolJson = PoolListWithDetails() else { return  }
                                 let str = String(cString:poolJson)
                                 let jsonData:Data = str.data(using: .utf8)!
                                 if jsonData.count == 0{

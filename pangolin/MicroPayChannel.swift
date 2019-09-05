@@ -33,14 +33,14 @@ class MicroPayChannel: NSObject {
         }
 }
 
-class MicroPayChannelManager:NSObject{
+class MPCManager:NSObject{
+        static public var ChannelInUsed:String?
+        static public var SubChannels:[MicroPayChannel] = []
         
-        static public var ChannelInUsed:[MicroPayChannel] = []
-        
-        static func loadMyPools(){
+        static func loadMyChannels(){
                 let userAddress = Wallet.sharedInstance.MainAddress
                 if userAddress.elementsEqual(""){
-                        self.ChannelInUsed.removeAll()
+                        self.SubChannels.removeAll()
                         return
                 }
                 
@@ -67,7 +67,7 @@ class MicroPayChannelManager:NSObject{
                         return
                 }
                 
-                self.ChannelInUsed.removeAll()
+                self.SubChannels.removeAll()
                 
                 for (_, value) in array.enumerated() {
                         
@@ -76,7 +76,7 @@ class MicroPayChannelManager:NSObject{
                         }
                         
                         let channel = MicroPayChannel.init(dict:dict)
-                        self.ChannelInUsed.append(channel)
+                        self.SubChannels.append(channel)
                 }
                 
         }
@@ -90,7 +90,7 @@ class MicroPayChannelManager:NSObject{
          Service.sharedInstance.queue.async {
                 
                 do{
-                        guard let subPools = MySubPoolsWithDetails(userAddress.toGoString()) else{
+                        guard let subPools = MyChannelWithDetails(userAddress.toGoString()) else{
                                 return
                         }
                         let jsonStr = String(cString: subPools)

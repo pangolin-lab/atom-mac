@@ -15,7 +15,7 @@ import Cocoa
 class MenuController: NSObject, StateChangedDelegate {
       
         @IBOutlet weak var statusMenu: NSMenu!
-        
+        @IBOutlet weak var ChannelInUsed: NSMenuItem!
         @IBOutlet weak var switchBtn: NSMenuItem!
         @IBOutlet weak var smartModel: NSMenuItem!
         @IBOutlet weak var globalModel: NSMenuItem!
@@ -24,6 +24,7 @@ class MenuController: NSObject, StateChangedDelegate {
         
         var walletCtrl: WalletController!
         var minerPoolCtrl: PacketMarketController!
+        var ChannelCtrl:ChooseChannelController!
         let server = Service.sharedInstance
         let statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         
@@ -55,12 +56,7 @@ class MenuController: NSObject, StateChangedDelegate {
                         smartModel.state = .on
                         globalModel.state = .off
                 }
-//
-//                if server.account.IsEmpty(){
-//                        accountMenu.title = "Account(Empty)".localized
-//                }else{
-//                         accountMenu.title = "Account".localized
-//                }
+                self.ChannelInUsed.title = MPCManager.ChannelInUsed ?? "Config->"
         }
         
         @IBAction func switchTurnOnOff(_ sender: NSMenuItem) {
@@ -111,5 +107,15 @@ class MenuController: NSObject, StateChangedDelegate {
         @IBAction func finish(_ sender: NSMenuItem) { 
                 server.Exit()
                 NSApplication.shared.terminate(self)
+        }
+        
+        @IBAction func ConfigChannels(_ sender: Any) {
+                if ChannelCtrl != nil {
+                        ChannelCtrl.close()
+                }
+                ChannelCtrl = ChooseChannelController(windowNibName: "ChooseChannelController")
+                ChannelCtrl.showWindow(self)
+                NSApp.activate(ignoringOtherApps: true)
+                ChannelCtrl.window?.makeKeyAndOrderFront(nil)
         }
 }
