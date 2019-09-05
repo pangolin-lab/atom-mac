@@ -48,13 +48,13 @@ class ChooseChannelController: NSWindowController {
 extension ChooseChannelController:NSTableViewDelegate{
         func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
                 
-                let mp = MPCManager.SubChannels[row]
+                let mp = MPCManager.PayChannels[row]
                 var cellIdentifier: String = ""
                 var cellValue: String = ""
                 
                 if tableColumn == tableView.tableColumns[0] {
                         cellIdentifier = "PoolStatusOfChannel"
-                        if mp.MainAddr == MPCManager.ChannelInUsed{
+                        if mp.MainAddr == MPCManager.ChannelInUsed(){
                                  cellValue = "In Use"
                         }else{
                                  cellValue = ""
@@ -76,11 +76,11 @@ extension ChooseChannelController:NSTableViewDelegate{
         func tableViewSelectionDidChange(_ notification: Notification){
                 let table = notification.object as! NSTableView
                 let idx = table.selectedRow
-                if idx < 0 || idx >= MPCManager.SubChannels.count{
+                if idx < 0 || idx >= MPCManager.PayChannels.count{
                         return
                 }
                 
-                self.selectedRow = MPCManager.SubChannels[idx]
+                self.selectedRow = MPCManager.PayChannels[idx]
                 self.updatePoolDetails()
         }
         
@@ -108,6 +108,6 @@ extension ChooseChannelController:NSTableViewDelegate{
 
 extension ChooseChannelController:NSTableViewDataSource{
         func numberOfRows(in tableView: NSTableView) -> Int {
-                return MPCManager.SubChannels.count
+                return MPCManager.PayChannels.count
         }
 }

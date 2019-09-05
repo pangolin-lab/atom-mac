@@ -56,7 +56,7 @@ class MenuController: NSObject, StateChangedDelegate {
                         smartModel.state = .on
                         globalModel.state = .off
                 }
-                self.ChannelInUsed.title = MPCManager.ChannelInUsed ?? "Config->"
+                self.ChannelInUsed.title = MPCManager.ChannelInUsed() ?? "Config->"
         }
         
         @IBAction func switchTurnOnOff(_ sender: NSMenuItem) {

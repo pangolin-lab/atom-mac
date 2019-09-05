@@ -189,7 +189,7 @@ class WalletController: NSWindowController {
 extension WalletController:NSTableViewDelegate{
         func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-                let mp = MPCManager.SubChannels[row]
+                let mp = MPCManager.PayChannels[row]
                 
                 guard let cell = tableView.makeView(withIdentifier:
                         NSUserInterfaceItemIdentifier(rawValue: "SubMinerPoolAddrID"), owner: nil) as? NSTableCellView else{
@@ -203,11 +203,11 @@ extension WalletController:NSTableViewDelegate{
         func tableViewSelectionDidChange(_ notification: Notification){
                 let table = notification.object as! NSTableView
                 let idx = table.selectedRow
-                if idx < 0 || idx >= MPCManager.SubChannels.count{
+                if idx < 0 || idx >= MPCManager.PayChannels.count{
                         return
                 }
                 
-                self.channelInUsed = MPCManager.SubChannels[idx]
+                self.channelInUsed = MPCManager.PayChannels[idx]
                 self.updatePoolDetails()
         }
         
@@ -228,7 +228,7 @@ extension WalletController:NSTableViewDelegate{
 
 extension WalletController:NSTableViewDataSource{
         func numberOfRows(in tableView: NSTableView) -> Int {
-                return MPCManager.SubChannels.count
+                return MPCManager.PayChannels.count
         }
 }
 

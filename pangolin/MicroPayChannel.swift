@@ -34,13 +34,15 @@ class MicroPayChannel: NSObject {
 }
 
 class MPCManager:NSObject{
-        static public var ChannelInUsed:String?
-        static public var SubChannels:[MicroPayChannel] = []
+        static func ChannelInUsed() -> String? {
+                return UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_SEL_POOL)
+        }
+        static public var PayChannels:[MicroPayChannel] = []
         
         static func loadMyChannels(){
                 let userAddress = Wallet.sharedInstance.MainAddress
                 if userAddress.elementsEqual(""){
-                        self.SubChannels.removeAll()
+                        self.PayChannels.removeAll()
                         return
                 }
                 
@@ -67,7 +69,7 @@ class MPCManager:NSObject{
                         return
                 }
                 
-                self.SubChannels.removeAll()
+                self.PayChannels.removeAll()
                 
                 for (_, value) in array.enumerated() {
                         
@@ -76,7 +78,7 @@ class MPCManager:NSObject{
                         }
                         
                         let channel = MicroPayChannel.init(dict:dict)
-                        self.SubChannels.append(channel)
+                        self.PayChannels.append(channel)
                 }
                 
         }
