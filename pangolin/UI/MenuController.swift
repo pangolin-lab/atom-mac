@@ -51,8 +51,13 @@ class MenuController: NSObject {
         }
         
         @objc func loadChannelMenu(notification:Notification){
-                if allPayChannels.numberOfItems > 2 {
+                
+                if allPayChannels.numberOfItems == MPCManager.PayChannels.count + 2{
                         return
+                }
+                
+                while allPayChannels.numberOfItems > 2 {
+                        allPayChannels.removeItem(at: 2)
                 }
                 
                 let channles = MPCManager.PayChannels

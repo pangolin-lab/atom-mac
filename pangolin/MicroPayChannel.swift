@@ -17,7 +17,7 @@ class MicroPayChannel: NSObject {
         var RemindPackets:Int64 = 0
         var Expiration:Int64 = 0
         
-        public static let SubMinerPoolLoadedNoti = Notification.Name(rawValue: "MinerPoolChangedNoti")
+        public static let SubMinerPoolLoadedNoti = Notification.Name(rawValue: "SubMinerPoolLoadedNoti")
         
         override init(){
                 super.init()
