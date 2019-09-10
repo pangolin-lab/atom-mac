@@ -63,13 +63,13 @@
                     </menu>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="a8M-0p-ROJ"/>
-                <menuItem title="Packet Wallet" id="6XY-as-n9m">
+                <menuItem title="Wallet" id="6XY-as-n9m">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="ShowWalletView:" target="MrV-Ey-DwV" id="Dsn-A4-DRH"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Packet Market" id="vbi-aX-P3T">
+                <menuItem title="Market" id="vbi-aX-P3T">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="ShowMinerPoolView:" target="MrV-Ey-DwV" id="bIY-rj-8sQ"/>
