@@ -15,6 +15,7 @@ class MinerPool: NSObject {
         var GuaranteedNo:Float64 = 0.0
         var ShortName:String = ""
         var DetailInfos:String = ""
+        var Seeds:String = ""
         
         public static let MinerPoolChangedNoti = Notification.Name(rawValue: "MinerPoolChangedNoti")
         
@@ -23,11 +24,12 @@ class MinerPool: NSObject {
         }
         
         init(dict:NSDictionary){
-                self.MainAddr = dict["MainAddr"] as! String
-                self.Payer = dict["Payer"] as! String
-                self.GuaranteedNo = dict["GuaranteedNo"] as! Float64
-                self.ShortName = dict["ShortName"] as! String
-                self.DetailInfos = dict["DetailInfos"] as! String
+                self.MainAddr = dict["MainAddr"] as? String ?? ""
+                self.Payer = dict["Payer"] as? String ?? ""
+                self.GuaranteedNo = dict["GuaranteedNo"] as? Float64 ?? 0.00
+                self.ShortName = dict["ShortName"] as? String ?? ""
+                self.DetailInfos = dict["DetailInfos"] as? String ?? ""
+                self.Seeds = dict["Seeds"] as? String ?? ""
         }
 }
 

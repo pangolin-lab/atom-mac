@@ -34,6 +34,7 @@ class MicroPayChannel: NSObject {
 }
 
 class MPCManager:NSObject{
+        //TODO::
         static func PoolNameInUse() -> String? {
                 return UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_POOL_INUSE)
         }
