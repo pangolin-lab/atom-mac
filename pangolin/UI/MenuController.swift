@@ -100,7 +100,7 @@ class MenuController: NSObject {
                         smartModel.state = .on
                         globalModel.state = .off
                 }
-                self.channelName.title = MPCManager.PoolNameInUse() ?? "Config->"
+                self.channelName.title = server.srvConf.lastUsedPool() ?? "Config->"
         }
         
         @IBAction func switchTurnOnOff(_ sender: NSMenuItem) {

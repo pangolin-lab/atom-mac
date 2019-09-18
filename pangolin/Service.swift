@@ -11,9 +11,11 @@ import DecentralizedShadowSocks
 
 let KEY_FOR_SWITCH_STATE        = "KEY_FOR_SWITCH_STATE"
 let KEY_FOR_Pangolin_MODEL      = "KEY_FOR_Pangolin_MODEL"
+let KEY_FOR_CURRENT_POOL_INUSE    = "KEY_FOR_CURRENT_SEL_POOL"
+
+
 let KEY_FOR_ACCOUNT_PATH        = "KEY_FOR_ACCOUNT_PATH"
 let KEY_FOR_NETWORK_PATH        = "KEY_FOR_NETWORK_PATH"
-let KEY_FOR_CURRENT_POOL_INUSE    = "KEY_FOR_CURRENT_SEL_POOL"
 let KEY_FOR_DATA_DIRECTORY      = ".Pangolin/data"
 let CACHED_POOL_DATA_FILE       = "cachedPool.data"
 let CACHED_SUB_POOL_DATA_FILE   = "subPool.data"
@@ -32,10 +34,20 @@ struct BasicConfig{
         var isGlobal:Bool = false
         var packetPrice:Int64 = -1
         var baseDir:String = ".pangolin"
+        var poolInUsed:MinerPool? = nil
+        var poolAddr:String? = nil
         
         mutating func loadConf(){
                 
                 self.isGlobal = UserDefaults.standard.bool(forKey: KEY_FOR_Pangolin_MODEL)
+                self.poolAddr = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_POOL_INUSE)
+                if self.poolAddr != nil{
+                        let ret = PoolDetails(self.poolAddr!.toGoString())
+                        if ret != nil{
+                                self.poolInUsed = MinerPool.init(json:String(cString: ret!))
+                        }
+                }
+                
                 self.packetPrice = QueryMicroPayPrice()
                 
                 do {
@@ -49,6 +61,10 @@ struct BasicConfig{
         func save(){
                 UserDefaults.standard.set(isTurnon, forKey: KEY_FOR_SWITCH_STATE)
                 UserDefaults.standard.set(isGlobal, forKey: KEY_FOR_Pangolin_MODEL)
+        }
+        
+        func lastUsedPool() ->String?{
+                return self.poolInUsed?.ShortName
         }
 }
 

@@ -34,9 +34,32 @@ class MicroPayChannel: NSObject {
 }
 
 class MPCManager:NSObject{
+        static var lastUsedPoolAddr:String = ""
+        static var lastUsedPool:MinerPool? = nil
         //TODO::
         static func PoolNameInUse() -> String? {
-                return UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_POOL_INUSE)
+                
+                if nil == lastUsedPool{
+                        
+                        guard let addr = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_POOL_INUSE) else{
+                                return nil
+                        }
+                        
+                        guard let ret = PoolDetails(addr.toGoString()) else{
+                                return nil
+                        }
+                        
+                        guard let data = String(cString:ret).data(using: .utf8) else{
+                                return nil
+                        }
+                        
+                        guard let dic = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSDictionary else {
+                                return nil
+                        }
+                        lastUsedPool = MinerPool.init(dict:dic)
+                }
+                
+                return lastUsedPool?.ShortName
         }
         
         static func SetPoolNameInUse(addr:String){
