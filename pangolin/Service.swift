@@ -70,8 +70,8 @@ struct BasicConfig{
 
 class Service: NSObject {
         
-        var defaults = UserDefaults.standard
         var srvConf = BasicConfig()
+        var poolArray:[MinerPool] = []
         
         var pacServ:PacServer = PacServer()
         
@@ -99,7 +99,6 @@ class Service: NSObject {
         
         public func amountService() throws{
                 
-                srvConf.loadConf()
                 let ret = initApp(TOKEN_ADDRESS.toGoString(),
                                   MICROPAY_SYSTEM_ADDRESS.toGoString(),
                                   BLOCKCHAIN_API_URL.toGoString(),
@@ -109,12 +108,42 @@ class Service: NSObject {
                         throw ServiceError.SdkActionErr("init app err: no:[\(ret.r0)] msg:[\(String(cString:ret.r1))]")
                 }
                 
+                srvConf.loadConf()
+               
+                
                 try  ensureLaunchAgentsDirOwner()
                 if !SysProxyHelper.install(){
                         throw ServiceError.SysPorxyMountErr
                 }
                 
                 try pacServ.startPACServer()
+        }
+        
+        public func reloadMarketInfo(){
+                
+                guard let ret = PoolListWithDetails() else {
+                        return
+                }
+                
+                guard let data = String(cString: ret).data(using: .utf8) else{
+                        return
+                }
+                
+                guard let array = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSArray else {
+                        return
+                }
+                
+                self.poolArray.removeAll()
+                for (_, value) in array.enumerated() {
+                        
+                        guard let dict = value as? NSDictionary else{
+                                continue
+                        }
+                        
+                        let channel = MinerPool.init(dict:dict)
+                        self.poolArray.append(channel)
+                }
+                
         }
         
         public func StopServer() throws{

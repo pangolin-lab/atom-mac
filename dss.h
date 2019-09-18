@@ -90,10 +90,6 @@ extern struct startService_return startService(GoString p0, GoString p1, GoStrin
 
 extern void stopService();
 
-extern char* PoolDetails(GoString p0);
-
-extern char* PoolListWithDetails();
-
 extern char* MyChannelWithDetails(GoString p0);
 
 /* Return type for BuyPacket */
@@ -107,6 +103,10 @@ extern struct BuyPacket_return BuyPacket(GoString p0, GoString p1, GoString p2, 
 extern GoFloat64 QueryApproved(GoString p0);
 
 extern GoInt64 QueryMicroPayPrice();
+
+extern char* PoolDetails(GoString p0);
+
+extern char* PoolListWithDetails();
 
 extern char* OpenMicroPayChannel(GoString p0, GoString p1, GoString p2, GoString p3);
 

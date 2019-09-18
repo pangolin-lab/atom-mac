@@ -24,8 +24,7 @@ class ChooseChannelController: NSWindowController {
                 super.windowDidLoad()
                 NotificationCenter.default.addObserver(self, selector:#selector(freshPoolList(notification:)),
                                                        name: MicroPayChannel.SubMinerPoolLoadedNoti, object: nil)
-                NotificationCenter.default.addObserver(self, selector:#selector(UpdatePoolName(notification:)),
-                                                       name: MinerPool.MinerPoolChangedNoti, object: nil)
+                
                 MPCManager.loadMyChannels()
                 
         }
@@ -97,17 +96,6 @@ extension ChooseChannelController:NSTableViewDelegate{
                 self.DataBalanceField.stringValue = ConvertBandWith(val: Double(channel.RemindPackets))
                 self.TokenBalance.doubleValue = channel.RemindTokens
                 self.DataUsedField.stringValue = "---"
-//                let date = Date.init(timeIntervalSince1970: TimeInterval(channel.Expiration))
-//                self.DataBalanceField.stringValue = "\(date)"
-                
-                guard let pool = MinerPoolManager.PoolDataCache[channel.MainAddr] else{
-                        self.WaitingTip.isHidden = false
-                        MinerPoolManager.loadMinerPool()
-                        return
-                }
-                
-                self.PoolDescField.stringValue = pool.DetailInfos
-                self.PoolNameField.stringValue = pool.ShortName
         }
 }
 

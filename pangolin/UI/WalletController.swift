@@ -220,9 +220,6 @@ extension WalletController:NSTableViewDelegate{
                 self.DataAvgPriceField.doubleValue = channel.RemindTokens
                 let date = Date.init(timeIntervalSince1970: TimeInterval(channel.Expiration))
                 self.DataBalanceField.stringValue = "\(date)"
-                
-                let pool = MinerPoolManager.PoolDataCache[channel.MainAddr]
-                self.MinerDescField.stringValue = pool?.DetailInfos ?? "---"
         }
 }
 

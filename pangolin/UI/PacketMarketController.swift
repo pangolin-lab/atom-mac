@@ -26,12 +26,11 @@ class PacketMarketController: NSWindowController {
         @IBOutlet weak var PoolAddressField: NSTextField!
         
         var currentPool:MinerPool? = nil
+        let service = Service.sharedInstance
         
         override func windowDidLoad() {
                 super.windowDidLoad()
-                NotificationCenter.default.addObserver(self, selector:#selector(updatePoolList(notification:)),
-                                                       name: MinerPool.MinerPoolChangedNoti, object: nil)
-                
+               
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(buyPacketResult(notification:)),
                                                        name: Wallet.WalletBuyPacketResultNoti, object: nil)
@@ -73,8 +72,16 @@ class PacketMarketController: NSWindowController {
         }
         
         func loadMinerPools(){
+                
                 WaitingTip.isHidden = false
-                MinerPoolManager.loadMinerPool()
+                
+                service.contractQueue.async {
+                        self.service.reloadMarketInfo()
+                        DispatchQueue.main.async {
+                                self.WaitingTip.isHidden = true
+                        }
+                }
+                
         }
         
         func updatePoolDetails(){
@@ -90,7 +97,6 @@ class PacketMarketController: NSWindowController {
         
         @IBAction func SycFromEthereumAction(_ sender: NSButton) {
                 WaitingTip.isHidden = false
-                 MinerPoolManager.loadFromBlockChain()
         }
         
         @IBAction func BuyPacketAction(_ sender: NSButton) {
@@ -146,14 +152,11 @@ extension PacketMarketController:NSTableViewDelegate {
                 var cellIdentifier: String = ""
                 var cellValue: String = ""
                 
-                let addrKey = MinerPoolManager.PoolAddressArr[row]
-                guard let poolInfo = MinerPoolManager.PoolDataCache[addrKey] else{
-                        return nil
-                }
+                let poolInfo = service.poolArray[row]
                 
                 if tableColumn == tableView.tableColumns[0] {
                         cellIdentifier = CellIdentifiers.AddressCell
-                        cellValue = addrKey
+                        cellValue = poolInfo.MainAddr
                 }else if tableColumn == tableView.tableColumns[1] {
                         cellIdentifier = CellIdentifiers.CoinPledgedCell
                         cellValue = String.init(format: "%.2f", poolInfo.GuaranteedNo)
@@ -175,14 +178,12 @@ extension PacketMarketController:NSTableViewDelegate {
         func tableViewSelectionDidChange(_ notification: Notification){
                 let table = notification.object as! NSTableView
                 let idx = table.selectedRow
-                if idx < 0 || idx >= MinerPoolManager.PoolAddressArr.count{
+                if idx < 0 || idx >= service.poolArray.count{
                         return
                 }
                 
-                let addrKey = MinerPoolManager.PoolAddressArr[idx]
-                guard let poolInfo = MinerPoolManager.PoolDataCache[addrKey] else{
-                        return
-                }
+                let poolInfo = service.poolArray[idx]
+                
                 self.currentPool = poolInfo
                 updatePoolDetails()
         }
@@ -191,8 +192,7 @@ extension PacketMarketController:NSTableViewDelegate {
 extension PacketMarketController:NSTableViewDataSource {
         
         func numberOfRows(in tableView: NSTableView) -> Int {
-                let num = MinerPoolManager.PoolAddressArr.count
-                return num
+                return service.poolArray.count
         }
 }
 
