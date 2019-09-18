@@ -12,7 +12,6 @@
 		7C3365FC2201351D005CA693 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C3365FA2201351D005CA693 /* MainMenu.xib */; };
 		7C3366052201368B005CA693 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C3366042201368B005CA693 /* MenuController.swift */; };
 		7C59613F231D497800EB45BB /* MicroPayChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C59613E231D497800EB45BB /* MicroPayChannel.swift */; };
-		7C86AF4922C528B000823643 /* proton_debug.js in Resources */ = {isa = PBXBuildFile; fileRef = 7C86AF4722C528B000823643 /* proton_debug.js */; };
 		7C86AF4A22C528B000823643 /* Pangolin.js in Resources */ = {isa = PBXBuildFile; fileRef = 7C86AF4822C528B000823643 /* Pangolin.js */; };
 		7CD2F0AD2259B1CE0068CF7A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7CD2F0AF2259B1CE0068CF7A /* Localizable.strings */; };
 		7CD51C8422DEB5E100FCF522 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD51C8222DEB5E100FCF522 /* PasswordViewController.swift */; };
@@ -75,7 +74,6 @@
 		7C3365FE2201351D005CA693 /* Pangolin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Pangolin.entitlements; sourceTree = "<group>"; };
 		7C3366042201368B005CA693 /* MenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 		7C59613E231D497800EB45BB /* MicroPayChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicroPayChannel.swift; sourceTree = "<group>"; };
-		7C86AF4722C528B000823643 /* proton_debug.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = proton_debug.js; sourceTree = "<group>"; };
 		7C86AF4822C528B000823643 /* Pangolin.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Pangolin.js; sourceTree = "<group>"; };
 		7CD2F0AE2259B1CE0068CF7A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7CD2F0B02259B1D60068CF7A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -238,7 +236,6 @@
 		8A6F6F402223D39700606638 /* scripts */ = {
 			isa = PBXGroup;
 			children = (
-				7C86AF4722C528B000823643 /* proton_debug.js */,
 				7C86AF4822C528B000823643 /* Pangolin.js */,
 				8A6F6F3A2223D38E00606638 /* fix_dir_owner.sh */,
 				8A6F6F3B2223D38F00606638 /* install_proxy_helper.sh */,
@@ -342,7 +339,6 @@
 				BB9BB6BB23152BA600F883B8 /* WalletController.xib in Resources */,
 				7C3365F92201351D005CA693 /* Assets.xcassets in Resources */,
 				8A6F6F3D2223D38F00606638 /* fix_dir_owner.sh in Resources */,
-				7C86AF4922C528B000823643 /* proton_debug.js in Resources */,
 				7C86AF4A22C528B000823643 /* Pangolin.js in Resources */,
 				8A6F6F3E2223D38F00606638 /* install_proxy_helper.sh in Resources */,
 				BB759E0C23179C4E00E6FE42 /* PacketMarketController.xib in Resources */,

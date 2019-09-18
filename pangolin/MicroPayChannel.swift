@@ -95,7 +95,7 @@ class MPCManager:NSObject{
                         return
                 }
         
-         Service.sharedInstance.queue.async {
+         Service.sharedInstance.contractQueue.async {
                 
                 do{
                         guard let subPools = MyChannelWithDetails(userAddress.toGoString()) else{

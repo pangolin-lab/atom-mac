@@ -86,14 +86,14 @@ class MenuController: NSObject {
         }
         
         func updateUI() -> Void {                
-                if server.IsTurnOn {
+                if server.srvConf.isTurnon {
                         switchBtn.title = "Turn Off".localized
                         statusItem.button?.image = NSImage(named: "statusOn")
                 }else{
                         switchBtn.title = "Turn On".localized
                         statusItem.button?.image = NSImage(named: "statusOff")
                 }
-                if server.IsGlobal{
+                if server.srvConf.isGlobal{
                         smartModel.state = .off
                         globalModel.state = .on
                 }else{
@@ -106,7 +106,7 @@ class MenuController: NSObject {
         @IBAction func switchTurnOnOff(_ sender: NSMenuItem) {
                 
                 do{
-                        if server.IsTurnOn{
+                        if server.srvConf.isTurnon{
                                 try server.StopServer()
                         }else{
                                 let pwd = showPasswordDialog()

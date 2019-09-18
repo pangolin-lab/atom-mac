@@ -14,33 +14,54 @@ let KEY_FOR_Pangolin_MODEL      = "KEY_FOR_Pangolin_MODEL"
 let KEY_FOR_ACCOUNT_PATH        = "KEY_FOR_ACCOUNT_PATH"
 let KEY_FOR_NETWORK_PATH        = "KEY_FOR_NETWORK_PATH"
 let KEY_FOR_CURRENT_POOL_INUSE    = "KEY_FOR_CURRENT_SEL_POOL"
-let KEY_FOR_BOOTSTRAP_PATH      = ".Pangolin/PangolinBootNodes.dat"
 let KEY_FOR_DATA_DIRECTORY      = ".Pangolin/data"
 let CACHED_POOL_DATA_FILE       = "cachedPool.data"
 let CACHED_SUB_POOL_DATA_FILE   = "subPool.data"
 let KEY_FOR_WALLET_DIRECTORY    = ".pangolin/wallet"
 let KEY_FOR_WALLET_FILE         = "wallet.json"
 
-//let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/pangolin-lab/quantum/master/seed_debug.quantum"
-public let NET_WORK_SETTING_URL="https://raw.githubusercontent.com/pangolin-lab/quantum/master/seed.quantum"
 
 public let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c"
 public let MICROPAY_SYSTEM_ADDRESS = "0x7224DA8C217d9520Ae4b2EEFFD05414B6e00bEe3"
 public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/8b8db3cca50a4fcf97173b7619b1c4c3"
-//public let BaseEtherScanUrl = "https://ropsten.etherscan.io"//"https://etherscan.io"
-public let BaseEtherScanUrl = "https://ropsten.etherscan.io"
+public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten.etherscan.io"//"https://etherscan.io"
+
+struct BasicConfig{
+        
+        var isTurnon: Bool = false
+        var isGlobal:Bool = false
+        var packetPrice:Int64 = -1
+        var baseDir:String = ".pangolin"
+        
+        mutating func loadConf(){
+                
+                self.isGlobal = UserDefaults.standard.bool(forKey: KEY_FOR_Pangolin_MODEL)
+                self.packetPrice = QueryMicroPayPrice()
+                
+                do {
+                        self.baseDir = try touchDirectory(directory: ".pangolin").absoluteString
+                }catch let err{
+                        print(err)
+                        self.baseDir = ".pangolin"
+                }
+        }
+        
+        func save(){
+                UserDefaults.standard.set(isTurnon, forKey: KEY_FOR_SWITCH_STATE)
+                UserDefaults.standard.set(isGlobal, forKey: KEY_FOR_Pangolin_MODEL)
+        }
+}
 
 class Service: NSObject {
         
         var defaults = UserDefaults.standard
-        var IsTurnOn:Bool = false
-        var IsGlobal:Bool = false 
-        var SystemPacketPrice:Int64 = -1
+        var srvConf = BasicConfig()
+        
         var pacServ:PacServer = PacServer()
         
         public static let VPNStatusChanged = Notification.Name(rawValue: "VPNStatusChanged")
         
-        public let queue = DispatchQueue(label: "smart contract queue")
+        public let contractQueue = DispatchQueue(label: "smart contract queue")
         private let serviceQueue = DispatchQueue(label: "vpn service queue")
     
         public static func getDocumentsDirectory() -> URL {
@@ -48,20 +69,8 @@ class Service: NSObject {
                 return paths[0]
         }
         
-        public static func getBootNode() -> URL {
-                let url = getDocumentsDirectory().appendingPathComponent(KEY_FOR_BOOTSTRAP_PATH)
-                if !FileManager.default.fileExists(atPath: url.path){
-                        FileManager.default.createFile(atPath: url.path, contents: nil, attributes: nil)
-                }
-                return url
-        }
-        
-        
         private override init(){
                 super.init()
-                self.IsGlobal = defaults.bool(forKey: KEY_FOR_Pangolin_MODEL)
-                InitBlockChain(TOKEN_ADDRESS.toGoString(), MICROPAY_SYSTEM_ADDRESS.toGoString(), BLOCKCHAIN_API_URL.toGoString())
-                self.SystemPacketPrice = QueryMicroPayPrice() 
         }
         
         class var sharedInstance: Service {
@@ -72,11 +81,17 @@ class Service: NSObject {
         }
         
         
-        public func amountService() throws{ 
+        public func amountService() throws{
                 
-                let _ = Wallet.sharedInstance
+                srvConf.loadConf()
+                let ret = initApp(TOKEN_ADDRESS.toGoString(),
+                                  MICROPAY_SYSTEM_ADDRESS.toGoString(),
+                                  BLOCKCHAIN_API_URL.toGoString(),
+                                  srvConf.baseDir.toGoString())
                 
-                MPCManager.loadMyChannels()
+                if ret.r0 != 0{
+                        throw ServiceError.SdkActionErr(String(cString:ret.r1))
+                }
                 
                 try  ensureLaunchAgentsDirOwner()
                 if !SysProxyHelper.install(){
@@ -92,17 +107,10 @@ class Service: NSObject {
                         throw ServiceError.SysProxyRemoveErr
                 }
                 
-                LibStopClient()
-                IsTurnOn = false
+                stopService()
+                self.srvConf.isTurnon = false
         }
         
-        @objc func clinetRunning(){
-                print("---client is started---")
-                LibProxyRun()
-                print("---client is closed---")
-                self.IsTurnOn = false
-                let _ = SysProxyHelper.RemoveSetting()
-        }
         
         public func StartServer(password:String) throws{
                 
@@ -114,35 +122,33 @@ class Service: NSObject {
                         throw ServiceError.NoPaymentChanErr
                 }
     
-                if !SysProxyHelper.SetupProxy(isGlocal: IsGlobal){
+                if !SysProxyHelper.SetupProxy(isGlocal: self.srvConf.isGlobal){
                         throw ServiceError.SysProxySetupErr
                 }
                 
                 serviceQueue.async {
                         
-                        let cipher = Wallet.sharedInstance.ciphereTxt.toGoString()
+                        let ret = startService("127.0.0.1:\(ProxyLocalPort)".toGoString(),
+                                               password.toGoString(),
+                                               poolAddr.toGoString())
+                       
                         
-                        let ret = RunVpnService(password.toGoString(),
-                                         cipher,
-                                         poolAddr.toGoString(),
-                                         "127.0.0.1:\(ProxyLocalPort)".toGoString())
-                        
-                        self.IsTurnOn = false
+                        self.srvConf.isTurnon = false
                         NotificationCenter.default.post(name: Service.VPNStatusChanged, object:
-                                self, userInfo:["msg":String(cString: ret!)])
+                                self, userInfo:["msg":String(cString: ret.r1), "errNo":ret.r0])
                 }
                 
                 NotificationCenter.default.post(name: Service.VPNStatusChanged, object:
                         self, userInfo:nil)
-                self.IsTurnOn = true
+                self.srvConf.isTurnon = true
         }
         
         
         public func ChangeModel(global:Bool) throws{
                 
-                IsGlobal = global
+                self.srvConf.isGlobal = global
                 
-                if !IsTurnOn{
+                if !self.srvConf.isTurnon{
                         return
                 }
                 
@@ -152,8 +158,7 @@ class Service: NSObject {
         }
         
         public func Exit(){
-                defaults.set(IsTurnOn, forKey: KEY_FOR_SWITCH_STATE)
-                defaults.set(IsGlobal, forKey: KEY_FOR_Pangolin_MODEL)
+                self.srvConf.save()
                 _ = SysProxyHelper.RemoveSetting()
         }
 }

@@ -120,7 +120,7 @@ class Wallet:NSObject{
         
         func loadBalanceFromBlockChain(){
                 
-                Service.sharedInstance.queue.async() {
+                Service.sharedInstance.contractQueue.async() {
                         let addr = self.MainAddress.toGoString()
                         let balance = WalletBalance(addr)
                         self.TokenBalance = balance.r0
@@ -153,7 +153,7 @@ class Wallet:NSObject{
         
         func BuyPacketFrom(pool:String, for user:String, by coin:Double, with password:String){
                 
-                Service.sharedInstance.queue.async {
+                Service.sharedInstance.contractQueue.async {
                         
                         let ret = BuyPacket(user.toGoString(),
                                   pool.toGoString(),
@@ -167,7 +167,7 @@ class Wallet:NSObject{
         }
         
         func EthTransfer(password:String, target:String, no:Double){
-                Service.sharedInstance.queue.async {
+                Service.sharedInstance.contractQueue.async {
                          Swift.print(self.ciphereTxt)
                         let ret = TransferEth(self.ciphereTxt.toGoString(), password.toGoString(), target.toGoString(), no)
                         ProcessTransRet(tx: String(cString: ret.r0),
@@ -177,7 +177,7 @@ class Wallet:NSObject{
         }
         
         func LinTokenTransfer(password:String, target:String, no:Double){
-                Service.sharedInstance.queue.async {
+                Service.sharedInstance.contractQueue.async {
                         Swift.print(self.ciphereTxt)
                         let ret = TransferLinToken(self.ciphereTxt.toGoString(), password.toGoString(), target.toGoString(), no)
                         ProcessTransRet(tx: String(cString: ret.r0),

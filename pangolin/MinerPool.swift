@@ -63,7 +63,7 @@ class MinerPoolManager: NSObject {
         
         static func loadFromBlockChain(){
                 
-                Service.sharedInstance.queue.async {
+                Service.sharedInstance.contractQueue.async {
                         do{
                                 guard let poolJson = PoolListWithDetails() else { return  }
                                 let str = String(cString:poolJson)

@@ -23,6 +23,7 @@ typedef struct { const char *p; ptrdiff_t n; } _GoString_;
 
 
 
+
 /* End of preamble from import "C" comments.  */
 
 
@@ -71,6 +72,24 @@ extern "C" {
 #endif
 
 
+/* Return type for initApp */
+struct initApp_return {
+	GoInt r0;
+	char* r1;
+};
+
+extern struct initApp_return initApp(GoString p0, GoString p1, GoString p2, GoString p3);
+
+/* Return type for startService */
+struct startService_return {
+	GoInt r0;
+	char* r1;
+};
+
+extern struct startService_return startService(GoString p0, GoString p1, GoString p2);
+
+extern void stopService();
+
 extern char* PoolDetails(GoString p0);
 
 extern char* PoolListWithDetails();
@@ -89,19 +108,13 @@ extern GoFloat64 QueryApproved(GoString p0);
 
 extern GoInt64 QueryMicroPayPrice();
 
-extern GoUint8 LibIsInit();
+extern char* OpenMicroPayChannel(GoString p0, GoString p1, GoString p2, GoString p3);
 
-extern GoUint8 LibInitProxy(GoString p0, GoString p1, GoString p2, GoString p3, GoString p4);
+extern void CloseMicroPayChannel();
 
-extern GoUint8 LibCreateProxy(GoString p0, GoString p1);
+extern char* RunVpnService(GoString p0);
 
-//TODO:: inner error call back
-
-extern void LibProxyRun();
-
-extern void LibStopClient();
-
-extern char* RunVpnService(GoString p0, GoString p1, GoString p2, GoString p3);
+extern void StopVpnService();
 
 extern void InitBlockChain(GoString p0, GoString p1, GoString p2);
 

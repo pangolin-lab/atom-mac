@@ -21,9 +21,11 @@ enum ServiceError:Error {
         case OpenWalletErr
         
         case NoPaymentChanErr
+        case SdkActionErr(String)
 }
 
 extension ServiceError: LocalizedError {
+        
         public var errorDescription: String? {
                 switch self {
                 case .SysPorxyMountErr:
@@ -46,6 +48,8 @@ extension ServiceError: LocalizedError {
                         return NSLocalizedString("Open walllet error".localized, comment: "Wallet Error")
                 case .NoPaymentChanErr:
                         return NSLocalizedString("No selected miner pool error".localized, comment: "Channel Error")
+                case .SdkActionErr(let str):
+                        return NSLocalizedString("Init SDK error".localized + "->" + str, comment: "System Error")
                 }
         }
 }
