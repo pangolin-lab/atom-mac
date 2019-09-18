@@ -12,9 +12,11 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
         func applicationDidFinishLaunching(_ aNotification: Notification) {
-                do {try Service.sharedInstance.amountService()}catch{
-                        dialogOK(question: "Error", text: error.localizedDescription)
-                    exit(-1)
+                do {
+                        try Service.sharedInstance.amountService()
+                }catch{
+                        print(error)
+                        exit(-1)
                 }
         }
 

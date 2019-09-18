@@ -22,7 +22,7 @@ let KEY_FOR_WALLET_FILE         = "wallet.json"
 
 
 public let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c"
-public let MICROPAY_SYSTEM_ADDRESS = "0x7224DA8C217d9520Ae4b2EEFFD05414B6e00bEe3"
+public let MICROPAY_SYSTEM_ADDRESS = "0xe735093631354907a5765Cda378B7442991FE6d4"
 public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/8b8db3cca50a4fcf97173b7619b1c4c3"
 public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten.etherscan.io"//"https://etherscan.io"
 
@@ -39,7 +39,7 @@ struct BasicConfig{
                 self.packetPrice = QueryMicroPayPrice()
                 
                 do {
-                        self.baseDir = try touchDirectory(directory: ".pangolin").absoluteString
+                        self.baseDir = try touchDirectory(directory: ".pangolin").path
                 }catch let err{
                         print(err)
                         self.baseDir = ".pangolin"
@@ -89,8 +89,8 @@ class Service: NSObject {
                                   BLOCKCHAIN_API_URL.toGoString(),
                                   srvConf.baseDir.toGoString())
                 
-                if ret.r0 != 0{
-                        throw ServiceError.SdkActionErr(String(cString:ret.r1))
+                if ret.r0 != 0 {
+                        throw ServiceError.SdkActionErr("init app err: no:[\(ret.r0)] msg:[\(String(cString:ret.r1))]")
                 }
                 
                 try  ensureLaunchAgentsDirOwner()

@@ -49,7 +49,7 @@ extension ServiceError: LocalizedError {
                 case .NoPaymentChanErr:
                         return NSLocalizedString("No selected miner pool error".localized, comment: "Channel Error")
                 case .SdkActionErr(let str):
-                        return NSLocalizedString("Init SDK error".localized + "->" + str, comment: "System Error")
+                        return str
                 }
         }
 }
