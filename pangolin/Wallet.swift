@@ -119,10 +119,10 @@ class Wallet:NSObject{
         }
         
         func loadBalanceFromBlockChain(){
-                
+                                
                 Service.sharedInstance.contractQueue.async() {
                         let addr = self.MainAddress.toGoString()
-                        let balance = WalletBalance(addr)
+                        let balance = WalletBalance(addr, Service.sharedInstance.notifier)
                         self.TokenBalance = balance.r0
                         self.EthBalance = balance.r1
                         UserDefaults.standard.set(self.TokenBalance, forKey: self.BALANCE_TOKEN_KEY)

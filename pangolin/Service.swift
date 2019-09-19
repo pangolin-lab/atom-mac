@@ -73,6 +73,11 @@ class Service: NSObject {
         var srvConf = BasicConfig()
         var poolArray:[MinerPool] = []
         
+        var notifier:Notifier = {
+                var typ:Int = Int($0)
+                print(typ)
+        }
+        
         var pacServ:PacServer = PacServer()
         
         public static let VPNStatusChanged = Notification.Name(rawValue: "VPNStatusChanged")
@@ -205,5 +210,9 @@ class Service: NSObject {
         public func Exit(){
                 self.srvConf.save()
                 _ = SysProxyHelper.RemoveSetting()
+        }
+        
+        func loadCallBack(msgTyp:Int)->Void{
+                
         }
 }

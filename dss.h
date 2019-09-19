@@ -22,6 +22,11 @@ typedef struct { const char *p; ptrdiff_t n; } _GoString_;
 
 
 
+#line 2 "walletI.go"
+
+typedef void (*Notifier)(int);
+
+#line 1 "cgo-generated-wrapper"
 
 
 /* End of preamble from import "C" comments.  */
@@ -116,17 +121,7 @@ extern char* RunVpnService(GoString p0);
 
 extern void StopVpnService();
 
-extern void InitBlockChain(GoString p0, GoString p1, GoString p2);
-
 extern char* NewWallet(GoString p0);
-
-/* Return type for WalletBalance */
-struct WalletBalance_return {
-	GoFloat64 r0;
-	GoFloat64 r1;
-};
-
-extern struct WalletBalance_return WalletBalance(GoString p0);
 
 extern GoUint8 WalletVerify(GoString p0, GoString p1);
 
@@ -145,6 +140,14 @@ struct TransferLinToken_return {
 };
 
 extern struct TransferLinToken_return TransferLinToken(GoString p0, GoString p1, GoString p2, GoFloat64 p3);
+
+/* Return type for WalletBalance */
+struct WalletBalance_return {
+	GoFloat64 r0;
+	GoFloat64 r1;
+};
+
+extern struct WalletBalance_return WalletBalance(GoString p0, Notifier p1);
 
 #ifdef __cplusplus
 }
