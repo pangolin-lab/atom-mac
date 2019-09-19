@@ -73,10 +73,21 @@ class Service: NSObject {
         var srvConf = BasicConfig()
         var poolArray:[MinerPool] = []
         
-        var notifier:Notifier = {
+        var systemCallBack:SystemActionCallBack = {
                 var typ:Int = Int($0)
                 print(typ)
+                print($1 ?? "1111-default value")
         }
+        var blockchainSynced:BlockChainDataSyncNotifier = {
+                var typ:Int = Int($0)
+                print(typ)
+                guard let data = $1 else{
+                        return
+                }
+                var val:String = String.init(cString: data)
+                print(val)
+        }
+        
         
         var pacServ:PacServer = PacServer()
         
@@ -107,7 +118,9 @@ class Service: NSObject {
                 let ret = initApp(TOKEN_ADDRESS.toGoString(),
                                   MICROPAY_SYSTEM_ADDRESS.toGoString(),
                                   BLOCKCHAIN_API_URL.toGoString(),
-                                  srvConf.baseDir.toGoString())
+                                  srvConf.baseDir.toGoString(),
+                                  systemCallBack,
+                                  blockchainSynced)
                 
                 if ret.r0 != 0 {
                         throw ServiceError.SdkActionErr("init app err: no:[\(ret.r0)] msg:[\(String(cString:ret.r1))]")

@@ -19,14 +19,14 @@ typedef struct { const char *p; ptrdiff_t n; } _GoString_;
 /* Start of preamble from import "C" comments.  */
 
 
+#line 3 "application.go"
 
-
-
-#line 2 "walletI.go"
-
-typedef void (*Notifier)(int);
+#include "callback.h"
 
 #line 1 "cgo-generated-wrapper"
+
+
+
 
 
 /* End of preamble from import "C" comments.  */
@@ -83,7 +83,7 @@ struct initApp_return {
 	char* r1;
 };
 
-extern struct initApp_return initApp(GoString p0, GoString p1, GoString p2, GoString p3);
+extern struct initApp_return initApp(GoString p0, GoString p1, GoString p2, GoString p3, SystemActionCallBack p4, BlockChainDataSyncNotifier p5);
 
 /* Return type for startService */
 struct startService_return {
@@ -147,7 +147,7 @@ struct WalletBalance_return {
 	GoFloat64 r1;
 };
 
-extern struct WalletBalance_return WalletBalance(GoString p0, Notifier p1);
+extern struct WalletBalance_return WalletBalance(GoString p0);
 
 #ifdef __cplusplus
 }
