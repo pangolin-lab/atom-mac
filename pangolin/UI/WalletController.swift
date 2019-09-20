@@ -13,10 +13,12 @@ class WalletController: NSWindowController {
         @IBOutlet weak var MainAddressField: NSTextField!
         @IBOutlet weak var SubAddressField: NSTextField!
         @IBOutlet weak var EthBalanceField: NSTextField!
-        @IBOutlet weak var RefundTimeField: NSTextField!
-        @IBOutlet weak var WaitingTip: NSProgressIndicator!
-        @IBOutlet weak var DataBalanceField: NSTextField!
         @IBOutlet weak var TokenBalanceField: NSTextField!
+        
+        @IBOutlet weak var WaitingTip: NSProgressIndicator!
+        
+        @IBOutlet weak var RefundTimeField: NSTextField!
+        @IBOutlet weak var DataBalanceField: NSTextField!
         @IBOutlet weak var DataAvgPriceField: NSTextField!
         @IBOutlet weak var MinerDescField: NSTextField!
         @IBOutlet weak var PoolTableView: NSTableView!
@@ -33,7 +35,8 @@ class WalletController: NSWindowController {
                                                        name: TokenTransferResultNoti, object: nil)
                 NotificationCenter.default.addObserver(self, selector:#selector(freshPoolList(notification:)),
                                                        name: MicroPayChannel.SubMinerPoolLoadedNoti, object: nil)
-                updateWallet()
+                updateWallet() 
+                MPCManager.loadMyChannels()
         }
         
         deinit {
@@ -41,9 +44,12 @@ class WalletController: NSWindowController {
         }
         
         func updateWallet(){
-                MainAddressField.stringValue = "0x" + Wallet.sharedInstance.MainAddress
-                SubAddressField.stringValue = Wallet.sharedInstance.SubAddress
-                loadData()
+                let w = Wallet.sharedInstance
+                
+                MainAddressField.stringValue = "0x" + w.MainAddress
+                SubAddressField.stringValue = w.SubAddress
+                EthBalanceField.doubleValue = w.EthBalance
+                TokenBalanceField.doubleValue = w.TokenBalance
         }
         
         @IBAction func Exit(_ sender: Any) {
@@ -140,15 +146,18 @@ class WalletController: NSWindowController {
         }
         
         @IBAction func SyncEthereumAction(_ sender: Any) {
-               loadData()
+                WaitingTip.isHidden = false
+                Service.sharedInstance.contractQueue.async {
+                        Wallet.sharedInstance.syncWalletData()
+                        MPCManager.loadMyChannels()
+                        DispatchQueue.main.async {
+                                self.WaitingTip.isHidden = true
+                                self.PoolTableView.reloadData()
+                        }
+                }
         }
         
         @IBAction func ReloadMinerPoolActin(_ sender: Any) {
-        }
-        
-        func loadData(){
-                WaitingTip.isHidden = false
-                MPCManager.loadMyChannels()
         }
         
         @objc func updateBalance(notification: Notification){
