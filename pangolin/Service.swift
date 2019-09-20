@@ -15,10 +15,8 @@ let KEY_FOR_CURRENT_POOL_INUSE    = "KEY_FOR_CURRENT_SEL_POOL_v2"
 
 
 let KEY_FOR_DATA_DIRECTORY      = ".Pangolin/data"
-let CACHED_POOL_DATA_FILE       = "cachedPool.data"
 let CACHED_SUB_POOL_DATA_FILE   = "subPool.data"
 let KEY_FOR_WALLET_DIRECTORY    = ".pangolin/wallet"
-let KEY_FOR_WALLET_FILE         = "wallet.json"
 
 
 public let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c"
@@ -45,7 +43,16 @@ struct BasicConfig{
                 
                 self.isGlobal = UserDefaults.standard.bool(forKey: KEY_FOR_Pangolin_MODEL)
                 self.poolAddr = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_POOL_INUSE)
-                if self.poolAddr != nil && self.poolAddr != ""{
+                do {
+                        self.baseDir = try touchDirectory(directory: ".pangolin").path
+                }catch let err{
+                        print(err)
+                        self.baseDir = ".pangolin"
+                }
+        }
+        
+        mutating func initBlockChainConf(){
+                if self.poolAddr != nil && self.poolAddr != "" {
                         guard let ret = PoolDetails(self.poolAddr!.toGoString()) else{
                                 return
                         }
@@ -60,13 +67,6 @@ struct BasicConfig{
                 }
                 
                 self.packetPrice = QueryMicroPayPrice()
-                
-                do {
-                        self.baseDir = try touchDirectory(directory: ".pangolin").path
-                }catch let err{
-                        print(err)
-                        self.baseDir = ".pangolin"
-                }
         }
         
         func save(){
@@ -83,15 +83,11 @@ class Service: NSObject {
         
         var srvConf = BasicConfig()
         
-        var systemCallBack:SystemActionCallBack = {
-                var typ:Int = Int($0)
-                print(typ)
-                print($1 ?? "1111-default value")
+        var systemCallBack:SystemActionCallBack = {typ, val in
         }
-        var blockchainSynced:BlockChainDataSyncNotifier = {
-                var typ:Int = Int($0)
+        var blockchainSynced:BlockChainDataSyncNotifier = {typ, v in
                 print(typ)
-                guard let data = $1 else{
+                guard let data = v else{
                         return
                 }
                 var val:String = String.init(cString: data)
@@ -124,7 +120,7 @@ class Service: NSObject {
         
         
         public func amountService() throws{
-                
+                srvConf.loadConf()
                 let ret = initApp(TOKEN_ADDRESS.toGoString(),
                                   MICROPAY_SYSTEM_ADDRESS.toGoString(),
                                   BLOCKCHAIN_API_URL.toGoString(),
@@ -132,12 +128,11 @@ class Service: NSObject {
                                   systemCallBack,
                                   blockchainSynced)
                 
+                
                 if ret.r0 != 0 {
                         throw ServiceError.SdkActionErr("init app err: no:[\(ret.r0)] msg:[\(String(cString:ret.r1))]")
                 }
-                
-                srvConf.loadConf()
-               
+                srvConf.initBlockChainConf()
                 
                 try  ensureLaunchAgentsDirOwner()
                 if !SysProxyHelper.install(){

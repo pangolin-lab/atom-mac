@@ -10,6 +10,7 @@ import Cocoa
 
 class WalletController: NSWindowController {
         
+        let KEY_FOR_WALLET_FILE = "wallet.json"
         @IBOutlet weak var MainAddressField: NSTextField!
         @IBOutlet weak var SubAddressField: NSTextField!
         @IBOutlet weak var EthBalanceField: NSTextField!
