@@ -31,7 +31,7 @@ class WalletController: NSWindowController {
                 super.windowDidLoad()
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(updateBalance(notification:)),
-                                                       name: BalanceChangedNoti, object: nil)
+                                                       name: WallentDataChangedNoti, object: nil)
                 NotificationCenter.default.addObserver(self, selector:#selector(processTransaction(notification:)),
                                                        name: TokenTransferResultNoti, object: nil)
                 NotificationCenter.default.addObserver(self, selector:#selector(freshPoolList(notification:)),
@@ -51,6 +51,13 @@ class WalletController: NSWindowController {
                 SubAddressField.stringValue = w.SubAddress
                 EthBalanceField.doubleValue = w.EthBalance
                 TokenBalanceField.doubleValue = w.TokenBalance
+        }
+        
+        @objc func updateBalance(notification: Notification){
+                DispatchQueue.main.async {
+                        self.WaitingTip.isHidden = true
+                        self.updateWallet()
+                }
         }
         
         @IBAction func Exit(_ sender: Any) {
@@ -159,14 +166,6 @@ class WalletController: NSWindowController {
         }
         
         @IBAction func ReloadMinerPoolActin(_ sender: Any) {
-        }
-        
-        @objc func updateBalance(notification: Notification){
-                DispatchQueue.main.async {
-                        self.WaitingTip.isHidden = true
-                        self.EthBalanceField.doubleValue = Wallet.sharedInstance.EthBalance
-                        self.RefundTimeField.doubleValue = Wallet.sharedInstance.TokenBalance
-                }
         }
         @objc func processTransaction(notification: Notification){
                 DispatchQueue.main.async {

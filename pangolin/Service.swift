@@ -26,7 +26,7 @@ public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten
 
 
 public let PoolsInMarketChanged = Notification.Name(rawValue: "PoolsInMarketChanged")
-public let BalanceChangedNoti = Notification.Name(rawValue: "WalletBalanceChangedNotification")
+public let WallentDataChangedNoti = Notification.Name(rawValue: "WallentDataChangedNotification")
 public let WalletBuyPacketResultNoti = Notification.Name(rawValue: "WalletBuyPacketResultNoti")
 public let TokenTransferResultNoti = Notification.Name(rawValue: "WalletTokenTransferResultNoti")
 
@@ -83,15 +83,33 @@ class Service: NSObject {
         
         var srvConf = BasicConfig()
         
-        var systemCallBack:SystemActionCallBack = {typ, val in
-        }
-        var blockchainSynced:BlockChainDataSyncNotifier = {typ, v in
-                print(typ)
-                guard let data = v else{
+        var systemCallBack:SystemActionCallBack = {typ, v in
+                switch typ {
+                case Int32(BalanceSynced.rawValue):
+                         print("BalanceSynced")
+                        NotificationCenter.default.post(name: WallentDataChangedNoti, object: nil)
+                        return
+                default:
+                        print("unknown system call back typ:", typ)
                         return
                 }
-                var val:String = String.init(cString: data)
-                print(val)
+        }
+        
+        var blockchainSynced:BlockChainDataSyncNotifier = {typ, v in
+                
+                switch typ {
+                case Int32(SubPoolSynced.rawValue):
+//                        NotificationCenter.default.post(name: WallentDataChangedNoti, object: nil)
+                        print("SubPoolSynced")
+                        return
+                case Int32(MarketPoolSynced.rawValue):
+//                        NotificationCenter.default.post(name: WallentDataChangedNoti, object: nil)
+                        print("MarketPoolSynced")
+                        return
+                default:
+                        print("unknown data service call back typ:", typ)
+                        return
+                }
         }
         
         
