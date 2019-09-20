@@ -28,9 +28,9 @@ class WalletController: NSWindowController {
                 super.windowDidLoad()
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(updateBalance(notification:)),
-                                                       name: WalletBalanceChangedNoti, object: nil)
+                                                       name: BalanceChangedNoti, object: nil)
                 NotificationCenter.default.addObserver(self, selector:#selector(processTransaction(notification:)),
-                                                       name: WalletTokenTransferResultNoti, object: nil)
+                                                       name: TokenTransferResultNoti, object: nil)
                 NotificationCenter.default.addObserver(self, selector:#selector(freshPoolList(notification:)),
                                                        name: MicroPayChannel.SubMinerPoolLoadedNoti, object: nil)
                 updateWallet()
@@ -148,7 +148,6 @@ class WalletController: NSWindowController {
         
         func loadData(){
                 WaitingTip.isHidden = false
-                Wallet.sharedInstance.syncTokenBalance()
                 MPCManager.loadMyChannels()
         }
         

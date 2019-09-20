@@ -103,7 +103,7 @@ struct BuyPacket_return {
 	char* r1;
 };
 
-extern struct BuyPacket_return BuyPacket(GoString p0, GoString p1, GoString p2, GoString p3, GoFloat64 p4);
+extern struct BuyPacket_return BuyPacket(GoString p0, GoString p1, GoString p2, GoFloat64 p3);
 
 extern GoFloat64 QueryApproved(GoString p0);
 
@@ -113,8 +113,6 @@ extern char* PoolDetails(GoString p0);
 
 extern char* PoolInfosInMarket();
 
-extern char* SyncPacketMarket();
-
 extern char* OpenMicroPayChannel(GoString p0, GoString p1, GoString p2, GoString p3);
 
 extern void CloseMicroPayChannel();
@@ -122,8 +120,6 @@ extern void CloseMicroPayChannel();
 extern char* RunVpnService(GoString p0);
 
 extern void StopVpnService();
-
-extern char* NewWallet(GoString p0);
 
 extern GoUint8 WalletVerify(GoString p0, GoString p1);
 
@@ -133,7 +129,7 @@ struct TransferEth_return {
 	char* r1;
 };
 
-extern struct TransferEth_return TransferEth(GoString p0, GoString p1, GoString p2, GoFloat64 p3);
+extern struct TransferEth_return TransferEth(GoString p0, GoString p1, GoFloat64 p2);
 
 /* Return type for TransferLinToken */
 struct TransferLinToken_return {
@@ -141,15 +137,17 @@ struct TransferLinToken_return {
 	char* r1;
 };
 
-extern struct TransferLinToken_return TransferLinToken(GoString p0, GoString p1, GoString p2, GoFloat64 p3);
+extern struct TransferLinToken_return TransferLinToken(GoString p0, GoString p1, GoFloat64 p2);
 
-/* Return type for WalletBalance */
-struct WalletBalance_return {
-	GoFloat64 r0;
-	GoFloat64 r1;
+extern char* SyncWalletInfo();
+
+/* Return type for NewWallet */
+struct NewWallet_return {
+	GoUint8 r0;
+	char* r1;
 };
 
-extern struct WalletBalance_return WalletBalance(GoString p0);
+extern struct NewWallet_return NewWallet(GoString p0);
 
 #ifdef __cplusplus
 }

@@ -15,7 +15,7 @@ enum ServiceError:Error {
         case InvalidPathErr
         case ParseJsonErr
         
-        case NewWalletErr
+        case NewWalletErr(String)
         case EmptyWalletErr
         case InvalidWalletErr
         case OpenWalletErr
@@ -38,8 +38,8 @@ extension ServiceError: LocalizedError {
                         return NSLocalizedString("Pasrese json data failed".localized, comment: "System Error")
                 case .InvalidPathErr:
                         return NSLocalizedString("File path invalid".localized, comment: "System Error")
-                case .NewWalletErr:
-                        return NSLocalizedString("Create walllet error".localized, comment: "Wallet Error")
+                case .NewWalletErr(let str):
+                        return str
                 case .EmptyWalletErr:
                         return NSLocalizedString("Empty walllet error".localized, comment: "Wallet Error")
                 case .InvalidWalletErr:

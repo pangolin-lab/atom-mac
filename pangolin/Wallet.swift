@@ -16,13 +16,17 @@ class Wallet:NSObject{
         var defaults = UserDefaults.standard
         var MainAddress:String = ""
         var SubAddress:String = ""
-        var ciphereTxt = ""
         var EthBalance:Double = 0.0
         var TokenBalance:Double = 0.0
+        var ciphereTxt:Data?
+        var Counter:Int = 0
+        var InRecharge: Int = 0
+        var Nonce   :   Int = 0
+        var UnClaimed:  Int64  = 0
         
         override init() {
                 super.init()
-                syncTokenBalance()
+                syncWalletData()
         }
         
         class var sharedInstance: Wallet {
@@ -38,15 +42,12 @@ class Wallet:NSObject{
         
         public func CreateNewWallet(passPhrase:String) -> Bool{
                 do{
-                        guard let walletJson = NewWallet(passPhrase.toGoString()) else{
-                                throw ServiceError.NewWalletErr
+                        let ret = NewWallet(passPhrase.toGoString())
+                        if ret.r0 == 0{
+                                let err = String(cString:ret.r1)
+                                throw ServiceError.NewWalletErr(err)
                         }
-                        
-                        guard let data = String(cString: walletJson).data(using: .utf8) else{
-                                throw ServiceError.ParseJsonErr
-                        }
-                        
-                        try syncWalletData(data: data)
+                        syncWalletData()
                 }catch let err{
                         dialogOK(question: "Error", text: err.localizedDescription)
                         return false
@@ -56,55 +57,36 @@ class Wallet:NSObject{
                 return true
         }
         
-        func syncWalletData(data:Data) throws {
-                let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]
-                self.MainAddress = json["mainAddress"] as! String
-                self.SubAddress = json["subAddress"] as! String
-                self.ciphereTxt = String.init(bytes: data, encoding: .utf8)!
+        func syncWalletData() {
                 
-                let url = try touchDirectory(directory: KEY_FOR_WALLET_DIRECTORY)
-                let filePath = url.appendingPathComponent(KEY_FOR_WALLET_FILE, isDirectory: false)
-                try data.write(to: filePath, options: .atomicWrite)
-        }
-        
-        
-        public func syncTokenBalance(){
-                if self.MainAddress.elementsEqual(""){
-                        self.EthBalance = 0.0
-                        self.TokenBalance = 0.0
+                guard let ret = SyncWalletInfo() else{
+                        return
+                }
+                guard let data = String(cString:ret).data(using: .utf8) else{
                         return
                 }
                 
-                
-                self.TokenBalance = UserDefaults.standard.double(forKey: BALANCE_TOKEN_KEY)
-                self.EthBalance = UserDefaults.standard.double(forKey: BALANCE_ETH_KEY)
-                
-                self.loadBalanceFromBlockChain()
-        }
-        
-        func loadBalanceFromBlockChain(){
-                                
-                Service.sharedInstance.contractQueue.async() {
-                        let addr = self.MainAddress.toGoString()
-                        let balance = WalletBalance(addr)
-                        self.TokenBalance = balance.r0
-                        self.EthBalance = balance.r1
-                        UserDefaults.standard.set(self.TokenBalance, forKey: self.BALANCE_TOKEN_KEY)
-                        UserDefaults.standard.set(self.EthBalance, forKey: self.BALANCE_ETH_KEY)
-                        
-                        NotificationCenter.default.post(name: WalletBalanceChangedNoti, object:
-                                self, userInfo:nil)
+                guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String:Any]else{
+                        return
                 }
+                
+                self.MainAddress = json["mainAddress"] as? String ?? ""
+                self.SubAddress = json["subAddress"] as? String ?? ""
+                self.EthBalance = json["eth"] as? Double ?? 0.0
+                self.TokenBalance = json["token"] as? Double ?? 0.0
+                
+                self.ciphereTxt = json["cipher"] as? Data
+                self.Counter =  json["counter"] as? Int ?? 0
+                self.InRecharge = json["charging"] as? Int ?? 0
+                self.Nonce = json["nonce"] as? Int ?? 0
+                self.UnClaimed  = json["unclaimed"] as? Int64 ?? 0
         }
         
         func ExportWallet(dst:URL?) throws{
-                let source = try touchDirectory(directory: KEY_FOR_WALLET_DIRECTORY)
-                let filePath = source.appendingPathComponent(KEY_FOR_WALLET_FILE, isDirectory: false)
-                if !FileManager.default.fileExists(atPath: filePath.path){
-                        throw ServiceError.NewWalletErr
-                }
                 
-                let data = try Data(contentsOf: filePath)
+                guard let data = self.ciphereTxt  else {
+                        throw ServiceError.InvalidWalletErr
+                }
                 try data.write(to: dst!, options: .atomicWrite)
         }
         
@@ -112,7 +94,7 @@ class Wallet:NSObject{
                 guard WalletVerify(json.toGoString(), password.toGoString()) != 0 else {
                         throw ServiceError.InvalidWalletErr
                 }
-                try syncWalletData(data: json.data(using: .utf8)!)
+                syncWalletData()
         }
         
         func BuyPacketFrom(pool:String, for user:String, by coin:Double, with password:String){
@@ -122,7 +104,6 @@ class Wallet:NSObject{
                         let ret = BuyPacket(user.toGoString(),
                                   pool.toGoString(),
                                   password.toGoString(),
-                                  self.ciphereTxt.toGoString(),
                                   coin)
                         ProcessTransRet(tx: String(cString: ret.r0),
                                              err: String(cString: ret.r1),
@@ -132,21 +113,19 @@ class Wallet:NSObject{
         
         func EthTransfer(password:String, target:String, no:Double){
                 Service.sharedInstance.contractQueue.async {
-                         Swift.print(self.ciphereTxt)
-                        let ret = TransferEth(self.ciphereTxt.toGoString(), password.toGoString(), target.toGoString(), no)
+                        let ret = TransferEth(password.toGoString(), target.toGoString(), no)
                         ProcessTransRet(tx: String(cString: ret.r0),
                                              err: String(cString: ret.r1),
-                                             noti: WalletTokenTransferResultNoti)
+                                             noti: TokenTransferResultNoti)
                 }
         }
         
         func LinTokenTransfer(password:String, target:String, no:Double){
                 Service.sharedInstance.contractQueue.async {
-                        Swift.print(self.ciphereTxt)
-                        let ret = TransferLinToken(self.ciphereTxt.toGoString(), password.toGoString(), target.toGoString(), no)
+                        let ret = TransferLinToken(password.toGoString(), target.toGoString(), no)
                         ProcessTransRet(tx: String(cString: ret.r0),
                                              err: String(cString: ret.r1),
-                                             noti: WalletTokenTransferResultNoti)
+                                             noti: TokenTransferResultNoti)
                 }
         }
 }

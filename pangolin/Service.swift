@@ -28,9 +28,9 @@ public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten
 
 
 public let PoolsInMarketChanged = Notification.Name(rawValue: "PoolsInMarketChanged")
-public let WalletBalanceChangedNoti = Notification.Name(rawValue: "WalletBalanceChangedNotification")
+public let BalanceChangedNoti = Notification.Name(rawValue: "WalletBalanceChangedNotification")
 public let WalletBuyPacketResultNoti = Notification.Name(rawValue: "WalletBuyPacketResultNoti")
-public let WalletTokenTransferResultNoti = Notification.Name(rawValue: "WalletTokenTransferResultNoti")
+public let TokenTransferResultNoti = Notification.Name(rawValue: "WalletTokenTransferResultNoti")
 
 struct BasicConfig{
         

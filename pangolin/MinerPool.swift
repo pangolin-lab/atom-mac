@@ -69,18 +69,7 @@ class MinerPool: NSObject {
                 }
         }
         
-        static func SyncPoolInfoInMarket(){
-                guard let ret = SyncPacketMarket() else {
-                        return
-                }
-                
-                guard let data = String(cString: ret).data(using: .utf8) else{
-                        return
-                }
-                self.parsePoolsData(data: data)
-        }
-        
-        static func GetPoolInfoInMarket(){
+        static func PoolInfoInMarket(){
                 
                 guard let ret = PoolInfosInMarket() else {
                         return

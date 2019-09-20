@@ -7,4 +7,10 @@
         typedef void (*SystemActionCallBack) (int, char*);
         void bridge_sys_func(SystemActionCallBack f, int t, char* v);
 
+        enum CallBackActionType{
+            BalanceSynced,
+            SubPoolSynced,
+            MarketPoolSynced,
+        };
+
 #endif

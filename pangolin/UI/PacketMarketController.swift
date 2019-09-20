@@ -64,7 +64,7 @@ class PacketMarketController: NSWindowController {
         func loadMinerPools(){
                 WaitingTip.isHidden = false
                 service.contractQueue.async {
-                        MinerPool.GetPoolInfoInMarket()
+                        MinerPool.PoolInfoInMarket()
                         DispatchQueue.main.async {
                                 self.WaitingTip.isHidden = true
                                 self.poolTableView.reloadData()
@@ -84,14 +84,7 @@ class PacketMarketController: NSWindowController {
         }
         
         @IBAction func SycFromEthereumAction(_ sender: NSButton) {
-                WaitingTip.isHidden = false
-                service.contractQueue.async {
-                        MinerPool.SyncPoolInfoInMarket()
-                        DispatchQueue.main.async {
-                                self.WaitingTip.isHidden = true
-                                self.poolTableView.reloadData()
-                        }
-                }
+                loadMinerPools()
         }
         
         @IBAction func BuyPacketAction(_ sender: NSButton) {
