@@ -111,7 +111,9 @@ extern GoInt64 QueryMicroPayPrice();
 
 extern char* PoolDetails(GoString p0);
 
-extern char* PoolListWithDetails();
+extern char* PoolInfosInMarket();
+
+extern char* SyncPacketMarket();
 
 extern char* OpenMicroPayChannel(GoString p0, GoString p1, GoString p2, GoString p3);
 

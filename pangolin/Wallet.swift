@@ -12,9 +12,6 @@ import DecentralizedShadowSocks
 class Wallet:NSObject{
         let BALANCE_TOKEN_KEY = "BALANCE_TOKEN_KEY"
         let BALANCE_ETH_KEY = "BALANCE_ETH_KEY"
-        public static let WalletBalanceChangedNoti = Notification.Name(rawValue: "WalletBalanceChangedNotification")
-        public static let WalletBuyPacketResultNoti = Notification.Name(rawValue: "WalletBuyPacketResultNoti")
-        public static let WalletTokenTransferResultNoti = Notification.Name(rawValue: "WalletTokenTransferResultNoti")
         
         var defaults = UserDefaults.standard
         var MainAddress:String = ""
@@ -25,7 +22,6 @@ class Wallet:NSObject{
         
         override init() {
                 super.init()
-                loadWallet()
                 syncTokenBalance()
         }
         
@@ -34,38 +30,6 @@ class Wallet:NSObject{
                         static let instance: Wallet = Wallet()
                 }
                 return Static.instance
-        }
-        
-       func loadWallet(){
-                do {
-                        let url = try touchDirectory(directory: KEY_FOR_WALLET_DIRECTORY)
-                        let filePath = url.appendingPathComponent(KEY_FOR_WALLET_FILE, isDirectory: false)
-                        if !FileManager.default.fileExists(atPath: filePath.path){
-                                return
-                        }
-                        
-                        let data = try Data(contentsOf: filePath)
-                        
-                        guard let json = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as! [String : Any] else{
-                                throw ServiceError.ParseJsonErr
-                        }
-                        
-                        guard let main = json["mainAddress"] as? String else{
-                                throw ServiceError.ParseJsonErr
-                        }
-                        
-                        guard let sub = json["subAddress"] as? String else{
-                                throw ServiceError.ParseJsonErr
-                        }
-                        
-                        self.MainAddress = main
-                        self.SubAddress = sub
-                        self.ciphereTxt = String.init(bytes: data, encoding: .utf8)! 
-                        
-                } catch let err{
-                        print(err)
-                        ShowNotification(tips: err.localizedDescription)
-                }
         }
         
         public func IsEmpty() -> Bool{
@@ -128,7 +92,7 @@ class Wallet:NSObject{
                         UserDefaults.standard.set(self.TokenBalance, forKey: self.BALANCE_TOKEN_KEY)
                         UserDefaults.standard.set(self.EthBalance, forKey: self.BALANCE_ETH_KEY)
                         
-                        NotificationCenter.default.post(name: Wallet.WalletBalanceChangedNoti, object:
+                        NotificationCenter.default.post(name: WalletBalanceChangedNoti, object:
                                 self, userInfo:nil)
                 }
         }
@@ -162,7 +126,7 @@ class Wallet:NSObject{
                                   coin)
                         ProcessTransRet(tx: String(cString: ret.r0),
                                              err: String(cString: ret.r1),
-                                             noti: Wallet.WalletBuyPacketResultNoti)
+                                             noti: WalletBuyPacketResultNoti)
                 }
         }
         
@@ -172,7 +136,7 @@ class Wallet:NSObject{
                         let ret = TransferEth(self.ciphereTxt.toGoString(), password.toGoString(), target.toGoString(), no)
                         ProcessTransRet(tx: String(cString: ret.r0),
                                              err: String(cString: ret.r1),
-                                             noti: Wallet.WalletTokenTransferResultNoti)
+                                             noti: WalletTokenTransferResultNoti)
                 }
         }
         
@@ -182,7 +146,7 @@ class Wallet:NSObject{
                         let ret = TransferLinToken(self.ciphereTxt.toGoString(), password.toGoString(), target.toGoString(), no)
                         ProcessTransRet(tx: String(cString: ret.r0),
                                              err: String(cString: ret.r1),
-                                             noti: Wallet.WalletTokenTransferResultNoti)
+                                             noti: WalletTokenTransferResultNoti)
                 }
         }
 }

@@ -30,10 +30,12 @@ class PacketMarketController: NSWindowController {
         
         override func windowDidLoad() {
                 super.windowDidLoad()
-               
+                
+                NotificationCenter.default.addObserver(self, selector:#selector(updatePoolList(notification:)),
+                                                       name: PoolsInMarketChanged, object: nil)
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(buyPacketResult(notification:)),
-                                                       name: Wallet.WalletBuyPacketResultNoti, object: nil)
+                                                       name: WalletBuyPacketResultNoti, object: nil)
                 
                 self.loadMinerPools()
                 self.BuyForAddrField.stringValue = "0x" + Wallet.sharedInstance.MainAddress
@@ -45,19 +47,7 @@ class PacketMarketController: NSWindowController {
         }
         
         @objc func updatePoolList(notification: Notification){
-                
-                let userInfo = notification.userInfo as! [String: AnyObject]
-                let ret = userInfo["success"] as! Bool
-                if ret == false{
-                        let msg = userInfo["msg"] as! String
-                        dialogOK(question: "Tips", text: msg)
-                        return
-                }
-                
-                DispatchQueue.main.async {
-                        self.WaitingTip.isHidden = true
-                        self.poolTableView.reloadData()
-                }
+                self.loadMinerPools()
         }
         
         @objc func buyPacketResult(notification: Notification){
@@ -72,16 +62,14 @@ class PacketMarketController: NSWindowController {
         }
         
         func loadMinerPools(){
-                
                 WaitingTip.isHidden = false
-                
                 service.contractQueue.async {
-                        self.service.reloadMarketInfo()
+                        MinerPool.GetPoolInfoInMarket()
                         DispatchQueue.main.async {
                                 self.WaitingTip.isHidden = true
+                                self.poolTableView.reloadData()
                         }
                 }
-                
         }
         
         func updatePoolDetails(){
@@ -97,6 +85,13 @@ class PacketMarketController: NSWindowController {
         
         @IBAction func SycFromEthereumAction(_ sender: NSButton) {
                 WaitingTip.isHidden = false
+                service.contractQueue.async {
+                        MinerPool.SyncPoolInfoInMarket()
+                        DispatchQueue.main.async {
+                                self.WaitingTip.isHidden = true
+                                self.poolTableView.reloadData()
+                        }
+                }
         }
         
         @IBAction func BuyPacketAction(_ sender: NSButton) {
@@ -152,8 +147,7 @@ extension PacketMarketController:NSTableViewDelegate {
                 var cellIdentifier: String = ""
                 var cellValue: String = ""
                 
-                let poolInfo = service.poolArray[row]
-                
+                let poolInfo = MinerPool.poolArray[row]
                 if tableColumn == tableView.tableColumns[0] {
                         cellIdentifier = CellIdentifiers.AddressCell
                         cellValue = poolInfo.MainAddr
@@ -178,11 +172,11 @@ extension PacketMarketController:NSTableViewDelegate {
         func tableViewSelectionDidChange(_ notification: Notification){
                 let table = notification.object as! NSTableView
                 let idx = table.selectedRow
-                if idx < 0 || idx >= service.poolArray.count{
+                if idx < 0 || idx >= MinerPool.poolArray.count{
                         return
                 }
                 
-                let poolInfo = service.poolArray[idx]
+                let poolInfo = MinerPool.poolArray[idx]
                 
                 self.currentPool = poolInfo
                 updatePoolDetails()
@@ -192,7 +186,7 @@ extension PacketMarketController:NSTableViewDelegate {
 extension PacketMarketController:NSTableViewDataSource {
         
         func numberOfRows(in tableView: NSTableView) -> Int {
-                return service.poolArray.count
+                return MinerPool.poolArray.count
         }
 }
 
