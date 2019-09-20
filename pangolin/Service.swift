@@ -9,9 +9,9 @@
 import Foundation
 import DecentralizedShadowSocks
 
-let KEY_FOR_SWITCH_STATE        = "KEY_FOR_SWITCH_STATE"
-let KEY_FOR_Pangolin_MODEL      = "KEY_FOR_Pangolin_MODEL"
-let KEY_FOR_CURRENT_POOL_INUSE    = "KEY_FOR_CURRENT_SEL_POOL"
+let KEY_FOR_SWITCH_STATE          = "KEY_FOR_SWITCH_STATE"
+let KEY_FOR_Pangolin_MODEL        = "KEY_FOR_Pangolin_MODEL"
+let KEY_FOR_CURRENT_POOL_INUSE    = "KEY_FOR_CURRENT_SEL_POOL_v2"
 
 
 let KEY_FOR_DATA_DIRECTORY      = ".Pangolin/data"
@@ -45,11 +45,18 @@ struct BasicConfig{
                 
                 self.isGlobal = UserDefaults.standard.bool(forKey: KEY_FOR_Pangolin_MODEL)
                 self.poolAddr = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_POOL_INUSE)
-                if self.poolAddr != nil{
-                        let ret = PoolDetails(self.poolAddr!.toGoString())
-                        if ret != nil{
-                                self.poolInUsed = MinerPool.init(json:String(cString: ret!))
+                if self.poolAddr != nil && self.poolAddr != ""{
+                        guard let ret = PoolDetails(self.poolAddr!.toGoString()) else{
+                                return
                         }
+                        guard let data = String(cString:ret).data(using:.utf8) else{
+                                return
+                        }
+                        
+                        guard let dict = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSDictionary else {
+                                return
+                        }
+                        self.poolInUsed = MinerPool(dict: dict)
                 }
                 
                 self.packetPrice = QueryMicroPayPrice()
