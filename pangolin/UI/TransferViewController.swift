@@ -29,9 +29,9 @@ extension TransferViewController:NSComboBoxDelegate{
                 let box = notification.object as! NSComboBox
                 tokenType = box.indexOfSelectedItem
                 if tokenType == 0{
-                        TokenBalanceField.placeholderString = String(format: "Current Balance(%.4f)", Wallet.sharedInstance.EthBalance)
+                        TokenBalanceField.placeholderString = String(format: "Current Balance(%.4f)", Wallet.sharedInstance.EthBalance.CoinValue())
                 }else{
-                        TokenBalanceField.placeholderString = String(format: "Current Balance(%.4f)", Wallet.sharedInstance.TokenBalance)
+                        TokenBalanceField.placeholderString = String(format: "Current Balance(%.4f)", Wallet.sharedInstance.TokenBalance.CoinValue())
                 }
                 
         }

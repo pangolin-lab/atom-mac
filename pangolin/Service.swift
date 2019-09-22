@@ -20,7 +20,7 @@ let KEY_FOR_WALLET_DIRECTORY    = ".pangolin/wallet"
 
 
 public let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c"
-public let MICROPAY_SYSTEM_ADDRESS = "0xe735093631354907a5765Cda378B7442991FE6d4"
+public let MICROPAY_SYSTEM_ADDRESS = "0x942A43dFc4921B7F705723E011b15FC4b70dbbE2"
 public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/8b8db3cca50a4fcf97173b7619b1c4c3"
 public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten.etherscan.io"//"https://etherscan.io"
 

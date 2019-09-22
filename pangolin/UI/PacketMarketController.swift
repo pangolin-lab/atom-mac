@@ -14,16 +14,13 @@ class PacketMarketController: NSWindowController {
         @IBOutlet weak var WaitingTip: NSProgressIndicator!
         @IBOutlet weak var poolTableView: NSTableView!
         @IBOutlet weak var avgPriceField: NSTextField!
-        @IBOutlet weak var userNoField: NSTextField!
         @IBOutlet weak var myStatusField: NSTextField!
         @IBOutlet weak var myBalanceField: NSTextField!
-        @IBOutlet weak var pollIDField: NSTextField!
-        @IBOutlet weak var poolTypeField: NSTextField!
-        @IBOutlet weak var poolDescField: NSTextField!
-        @IBOutlet weak var TokenSpendField: NSTextField!
-        @IBOutlet weak var PacketGetField: NSTextField!
-        @IBOutlet weak var BuyForAddrField: NSTextField!
         @IBOutlet weak var PoolAddressField: NSTextField!
+        @IBOutlet weak var poolDescField: NSScrollView!
+        @IBOutlet weak var mortagedField: NSTextField!
+        @IBOutlet weak var approvedField: NSTextField!
+        @IBOutlet weak var unclaimed: NSTextField!
         
         var currentPool:MinerPool? = nil
         let service = Service.sharedInstance
@@ -40,8 +37,7 @@ class PacketMarketController: NSWindowController {
                 WaitingTip.isHidden = false
                 self.loadPoolsData()
                 MinerPool.asyncFreshMarketData()
-                self.BuyForAddrField.stringValue = "0x" + Wallet.sharedInstance.MainAddress
-                self.avgPriceField.doubleValue = Double(Service.sharedInstance.srvConf.packetPrice)
+                self.avgPriceField.doubleValue = Double(Service.sharedInstance.srvConf.packetPrice) 
         }
         
         deinit {
@@ -77,10 +73,8 @@ class PacketMarketController: NSWindowController {
                 guard let details = self.currentPool else {
                         return
                 }
-                
-                self.poolTypeField.stringValue = "-"
-                self.poolDescField.stringValue = details.DetailInfos
-                self.pollIDField.stringValue = "-"
+                 
+                self.poolDescField.documentView?.insertText(details.DetailInfos)
                 self.PoolAddressField.stringValue = details.MainAddr
         }
         
@@ -90,42 +84,8 @@ class PacketMarketController: NSWindowController {
         
         @IBAction func BuyPacketAction(_ sender: NSButton) {
                 
-                guard let details = self.currentPool else {
-                        dialogOK(question: "Tips", text: "Please choose a pool item first")
-                        return
-                }
                 
-                let tokenToSpend = self.TokenSpendField.doubleValue
-                if tokenToSpend <= 0.01{
-                        dialogOK(question: "Tips", text: "Too less token to spend!")
-                        return
-                }
-                
-                if Wallet.sharedInstance.TokenBalance < tokenToSpend{
-                        dialogOK(question: "Tips", text: "No enough token in your wallet!")
-                        return
-                }
-                
-                if Wallet.sharedInstance.EthBalance <= 0.001{
-                        dialogOK(question: "Tips", text: "No enough ETH for operation gas!")
-                        return
-                }
-                
-                let target = self.BuyForAddrField.stringValue
-                if target.lengthOfBytes(using: .utf8) != 42{
-                        dialogOK(question: "Tips", text: "Invalid target user address")
-                        return
-                }
-                
-                let password = showPasswordDialog()
-                if password == ""{
-                        return
-                }
-                
-                self.WaitingTip.isHidden = false
-                Wallet.sharedInstance.BuyPacketFrom(pool:details.MainAddr, for:target, by: tokenToSpend, with: password)
         }
-        
 }
 
 extension PacketMarketController:NSTableViewDelegate {
@@ -184,16 +144,3 @@ extension PacketMarketController:NSTableViewDataSource {
         }
 }
 
-extension PacketMarketController:NSTextFieldDelegate{
-        
-        func controlTextDidChange(_ notification: Notification){
-                guard let field = notification.object as? NSTextField else {
-                        Swift.print(notification.object as Any)
-                        return
-                }
-                Swift.print(field.doubleValue)
-                let tokenNo = field.doubleValue
-                let bytesSum = tokenNo * Double(Service.sharedInstance.srvConf.packetPrice)
-                self.PacketGetField.stringValue = ConvertBandWith(val: bytesSum)
-        }
-}

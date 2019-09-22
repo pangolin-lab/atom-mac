@@ -16,6 +16,8 @@
 		7CD2F0AD2259B1CE0068CF7A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7CD2F0AF2259B1CE0068CF7A /* Localizable.strings */; };
 		7CD51C8422DEB5E100FCF522 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CD51C8222DEB5E100FCF522 /* PasswordViewController.swift */; };
 		7CD51C8522DEB5E100FCF522 /* PasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CD51C8322DEB5E100FCF522 /* PasswordViewController.xib */; };
+		7CF9637F23377F4F00F25C4C /* ShopingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF9637D23377F4F00F25C4C /* ShopingViewController.swift */; };
+		7CF9638023377F4F00F25C4C /* ShopingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7CF9637E23377F4F00F25C4C /* ShopingViewController.xib */; };
 		8A08320B2224F9E60045905B /* dss.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A08320A2224F9E60045905B /* dss.a */; };
 		8A2DD7B4221D026200B1B906 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A2DD7B3221D026200B1B906 /* utils.swift */; };
 		8A5C29CB22268A8C00693742 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5C29C62226845300693742 /* main.m */; };
@@ -80,6 +82,8 @@
 		7CD51C7C22DE238F00FCF522 /* CircularProgressMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = CircularProgressMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CD51C8222DEB5E100FCF522 /* PasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordViewController.swift; sourceTree = "<group>"; };
 		7CD51C8322DEB5E100FCF522 /* PasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PasswordViewController.xib; sourceTree = "<group>"; };
+		7CF9637D23377F4F00F25C4C /* ShopingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopingViewController.swift; sourceTree = "<group>"; };
+		7CF9637E23377F4F00F25C4C /* ShopingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShopingViewController.xib; sourceTree = "<group>"; };
 		8897CFD07B8310F9BC69A797 /* Pods_Pangolin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pangolin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A0832062224EF190045905B /* module.modulemap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.modulemap; sourceTree = "<group>"; };
 		8A0832092224F9E50045905B /* dss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dss.h; sourceTree = "<group>"; };
@@ -197,6 +201,8 @@
 				BB3D1D52231F3DB900A71E95 /* TransferViewController.xib */,
 				BB021A85232090C60050DC7D /* ChooseChannelController.swift */,
 				BB021A86232090C60050DC7D /* ChooseChannelController.xib */,
+				7CF9637D23377F4F00F25C4C /* ShopingViewController.swift */,
+				7CF9637E23377F4F00F25C4C /* ShopingViewController.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -336,6 +342,7 @@
 			files = (
 				8A6F6F312223939900606638 /* sysproxyconfig in Resources */,
 				7CD51C8522DEB5E100FCF522 /* PasswordViewController.xib in Resources */,
+				7CF9638023377F4F00F25C4C /* ShopingViewController.xib in Resources */,
 				BB9BB6BB23152BA600F883B8 /* WalletController.xib in Resources */,
 				7C3365F92201351D005CA693 /* Assets.xcassets in Resources */,
 				8A6F6F3D2223D38F00606638 /* fix_dir_owner.sh in Resources */,
@@ -433,6 +440,7 @@
 				8AF30407225EDB9B00DF6439 /* Service.swift in Sources */,
 				8AF30413225F058300DF6439 /* PacServerBean.swift in Sources */,
 				8A2DD7B4221D026200B1B906 /* utils.swift in Sources */,
+				7CF9637F23377F4F00F25C4C /* ShopingViewController.swift in Sources */,
 				BB9BB6BA23152BA600F883B8 /* WalletController.swift in Sources */,
 				8AF30434225F636800DF6439 /* ServiceError.swift in Sources */,
 			);

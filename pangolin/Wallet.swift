@@ -18,6 +18,7 @@ class Wallet:NSObject{
         var SubAddress:String = ""
         var EthBalance:Double = 0.0
         var TokenBalance:Double = 0.0
+        var HasApproved:Double = 0.0
         var ciphereTxt:Data?
         var Counter:Int = 0
         var InRecharge: Int = 0
@@ -74,6 +75,7 @@ class Wallet:NSObject{
                 self.SubAddress = json["subAddress"] as? String ?? ""
                 self.EthBalance = json["eth"] as? Double ?? 0
                 self.TokenBalance = json["token"] as? Double ?? 0
+                self.HasApproved = json["approved"] as? Double ?? 0
                 self.ciphereTxt = json["cipher"] as? Data
                 self.Counter =  json["counter"] as? Int ?? 0
                 self.InRecharge = json["charging"] as? Int ?? 0
