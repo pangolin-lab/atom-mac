@@ -9,7 +9,7 @@
 #ifndef Pangolin_Bridging_Header_h
 #define Pangolin_Bridging_Header_h
 
-#import "../sysproxyconfig/SysProxyConfig.h"
+#import "SysProxyConfig.h"
 #import <GCDWebServer/GCDWebServer.h>
 #import <GCDWebServer/GCDWebServerDataResponse.h>
 

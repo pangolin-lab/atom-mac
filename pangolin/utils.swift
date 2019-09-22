@@ -11,7 +11,13 @@ import DecentralizedShadowSocks
 import CommonCrypto
 
 
+let Decimal = Double(1000000000000000000)
 
+extension Double {
+        func CoinValue() -> Double{
+                return self / Decimal
+        }
+}
 
 extension String {
         var localized: String {

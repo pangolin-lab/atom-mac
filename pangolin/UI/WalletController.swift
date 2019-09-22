@@ -49,8 +49,8 @@ class WalletController: NSWindowController {
                 
                 MainAddressField.stringValue = "0x" + w.MainAddress
                 SubAddressField.stringValue = w.SubAddress
-                EthBalanceField.doubleValue = w.EthBalance
-                TokenBalanceField.doubleValue = w.TokenBalance
+                EthBalanceField.doubleValue = w.EthBalance.CoinValue()
+                TokenBalanceField.doubleValue = w.TokenBalance.CoinValue()
         }
         
         @objc func updateBalance(notification: Notification){

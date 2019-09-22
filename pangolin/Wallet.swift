@@ -72,9 +72,8 @@ class Wallet:NSObject{
                 
                 self.MainAddress = json["mainAddress"] as? String ?? ""
                 self.SubAddress = json["subAddress"] as? String ?? ""
-                self.EthBalance = json["eth"] as? Double ?? 0.0
-                self.TokenBalance = json["token"] as? Double ?? 0.0
-                
+                self.EthBalance = json["eth"] as? Double ?? 0
+                self.TokenBalance = json["token"] as? Double ?? 0
                 self.ciphereTxt = json["cipher"] as? Data
                 self.Counter =  json["counter"] as? Int ?? 0
                 self.InRecharge = json["charging"] as? Int ?? 0
