@@ -103,7 +103,7 @@ class Service: NSObject {
                         print("SubPoolSynced")
                         return
                 case Int32(MarketPoolSynced.rawValue):
-//                        NotificationCenter.default.post(name: WallentDataChangedNoti, object: nil)
+                        NotificationCenter.default.post(name: PoolsInMarketChanged, object: nil)
                         print("MarketPoolSynced")
                         return
                 default:

@@ -37,7 +37,9 @@ class PacketMarketController: NSWindowController {
                 NotificationCenter.default.addObserver(self, selector:#selector(buyPacketResult(notification:)),
                                                        name: WalletBuyPacketResultNoti, object: nil)
                 
-                self.loadMinerPools()
+                WaitingTip.isHidden = false
+                self.loadPoolsData()
+                MinerPool.asyncFreshMarketData()
                 self.BuyForAddrField.stringValue = "0x" + Wallet.sharedInstance.MainAddress
                 self.avgPriceField.doubleValue = Double(Service.sharedInstance.srvConf.packetPrice)
         }
@@ -47,7 +49,7 @@ class PacketMarketController: NSWindowController {
         }
         
         @objc func updatePoolList(notification: Notification){
-                self.loadMinerPools()
+                self.loadPoolsData()
         }
         
         @objc func buyPacketResult(notification: Notification){
@@ -61,8 +63,7 @@ class PacketMarketController: NSWindowController {
                 self.close()
         }
         
-        func loadMinerPools(){
-                WaitingTip.isHidden = false
+        func loadPoolsData(){
                 service.contractQueue.async {
                         MinerPool.PoolInfoInMarket()
                         DispatchQueue.main.async {
@@ -84,7 +85,7 @@ class PacketMarketController: NSWindowController {
         }
         
         @IBAction func SycFromEthereumAction(_ sender: NSButton) {
-                loadMinerPools()
+                MinerPool.asyncFreshMarketData()
         }
         
         @IBAction func BuyPacketAction(_ sender: NSButton) {

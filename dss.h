@@ -113,6 +113,8 @@ extern char* PoolDetails(GoString p0);
 
 extern char* PoolInfosInMarket();
 
+extern void AsyncLoadMarketData();
+
 extern char* OpenMicroPayChannel(GoString p0, GoString p1, GoString p2, GoString p3);
 
 extern void CloseMicroPayChannel();

@@ -62,4 +62,8 @@ class MinerPool: NSObject {
                 }
                 self.parsePoolsData(data: data)
         }
+        
+        static func asyncFreshMarketData(){
+                AsyncLoadMarketData()
+        }
 }
