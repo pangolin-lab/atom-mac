@@ -97,6 +97,16 @@ extern void stopService();
 
 extern char* MyChannelWithDetails(GoString p0);
 
+/* Return type for AuthorizeTokenSpend */
+struct AuthorizeTokenSpend_return {
+	char* r0;
+	char* r1;
+};
+
+extern struct AuthorizeTokenSpend_return AuthorizeTokenSpend(GoString p0, GoFloat64 p1);
+
+extern GoUint8 TxProcessStatus(GoString p0);
+
 /* Return type for BuyPacket */
 struct BuyPacket_return {
 	char* r0;

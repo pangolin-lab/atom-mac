@@ -7,8 +7,10 @@
 //
 
 import Cocoa
+import DecentralizedShadowSocks
 
 class ShopingViewController: NSViewController {
+        
         @IBOutlet weak var buyForAddress: NSTextField!
         @IBOutlet weak var TokenToSpend: NSTextField!
         @IBOutlet weak var PacketPrice: NSTextField!
@@ -20,13 +22,24 @@ class ShopingViewController: NSViewController {
         @IBOutlet weak var RechargeTx: NSTextField!
         @IBOutlet weak var ApproveStatus: NSTextField!
         @IBOutlet weak var RechargeStatus: NSTextField!
+        @IBOutlet weak var PoolName: NSTextField!
+        @IBOutlet weak var PoolAddress: NSTextField!
         
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        var details: MinerPool? = nil
+        
+        override func viewDidLoad() {
+                super.viewDidLoad()
 
-        self.buyForAddress.stringValue = "0x" + Wallet.sharedInstance.MainAddress
-        self.hasApproved.doubleValue = Wallet.sharedInstance.HasApproved.CoinValue()
-    }
+                self.buyForAddress.stringValue = "0x" + Wallet.sharedInstance.MainAddress
+                self.hasApproved.doubleValue = Wallet.sharedInstance.HasApproved.CoinValue()
+                self.PacketPrice.doubleValue = Double(Service.sharedInstance.srvConf.packetPrice)
+                self.hasApproved.doubleValue = QueryApproved(details!.MainAddr.toGoString())
+                self.PoolName.stringValue = details!.ShortName
+                self.PoolAddress.stringValue = details!.MainAddr
+                
+                self.EthBalance.doubleValue = Wallet.sharedInstance.EthBalance.CoinValue()
+                self.LinBalance.doubleValue = Wallet.sharedInstance.TokenBalance.CoinValue()
+        }
     
         @IBAction func rechargeAction(_ sender: Any) {
 //                guard let details = self.currentPool else {
@@ -79,4 +92,24 @@ extension ShopingViewController:NSTextFieldDelegate{
                 let bytesSum = tokenNo * Double(Service.sharedInstance.srvConf.packetPrice)
                 self.PacketCanGet.stringValue = ConvertBandWith(val: bytesSum)
         }
+}
+
+
+func ShowShopingDialog(poolDetals:MinerPool) -> (String, Double, Bool){
+        
+        let alert = NSAlert()
+        alert.messageText = "Packet shop".localized
+        alert.informativeText = "Please full fill your recharge bill".localized
+        alert.alertStyle = .informational
+        let shopVC = ShopingViewController()
+        shopVC.details = poolDetals
+        alert.accessoryView = shopVC.view
+        alert.addButton(withTitle: "OK".localized)
+        alert.addButton(withTitle: "Cancel".localized)
+        let butSel = alert.runModal()
+        if butSel == .alertFirstButtonReturn{
+                return (shopVC.buyForAddress.stringValue, shopVC.TokenToSpend.doubleValue, true)
+        }
+        
+        return("", 0.0, false)
 }

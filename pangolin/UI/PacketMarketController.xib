@@ -38,7 +38,7 @@
                             <rect key="frame" x="1" y="0.0" width="218" height="485"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Anb-Az-JLG" viewBased="YES" id="fr9-IY-TwB">
+                                <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="Anb-Az-JLG" viewBased="YES" id="fr9-IY-TwB">
                                     <rect key="frame" x="0.0" y="0.0" width="218" height="462"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <size key="intercellSpacing" width="3" height="2"/>
@@ -266,6 +266,9 @@
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="BuyPacketAction:" target="-2" id="on3-nH-qGB"/>
+                        </connections>
                     </button>
                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WKG-Sx-WJV">
                         <rect key="frame" x="645" y="13" width="63" height="32"/>

@@ -15,7 +15,7 @@ class MinerPool: NSObject {
         
         var MainAddr:String = ""
         var Payer:String = ""
-        var GuaranteedNo:Float64 = 0.0
+        var GuaranteedNo:Double = 0.0
         var ShortName:String = ""
         var DetailInfos:String = ""
         var Seeds:String = ""
@@ -28,7 +28,7 @@ class MinerPool: NSObject {
                 super.init()
                 self.MainAddr = dict["MainAddr"] as? String ?? ""
                 self.Payer = dict["Payer"] as? String ?? ""
-                self.GuaranteedNo = dict["GuaranteedNo"] as? Float64 ?? 0.00
+                self.GuaranteedNo = dict["GuaranteedNo"] as? Double ?? 0.00
                 self.ShortName = dict["ShortName"] as? String ?? ""
                 self.DetailInfos = dict["DetailInfos"] as? String ?? ""
                 self.Seeds = dict["Seeds"] as? String ?? ""

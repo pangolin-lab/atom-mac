@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import DecentralizedShadowSocks
 
 class PacketMarketController: NSWindowController {
         
@@ -37,7 +38,7 @@ class PacketMarketController: NSWindowController {
                 WaitingTip.isHidden = false
                 self.loadPoolsData()
                 MinerPool.asyncFreshMarketData()
-                self.avgPriceField.doubleValue = Double(Service.sharedInstance.srvConf.packetPrice) 
+                self.avgPriceField.doubleValue = Double(Service.sharedInstance.srvConf.packetPrice)
         }
         
         deinit {
@@ -76,6 +77,8 @@ class PacketMarketController: NSWindowController {
                  
                 self.poolDescField.documentView?.insertText(details.DetailInfos)
                 self.PoolAddressField.stringValue = details.MainAddr
+                self.mortagedField.doubleValue = details.GuaranteedNo.CoinValue()
+                self.approvedField.doubleValue = QueryApproved(details.MainAddr.toGoString())
         }
         
         @IBAction func SycFromEthereumAction(_ sender: NSButton) {
@@ -83,8 +86,11 @@ class PacketMarketController: NSWindowController {
         }
         
         @IBAction func BuyPacketAction(_ sender: NSButton) {
-                
-                
+                guard let details = self.currentPool else {
+                        dialogOK(question: "Tips:",text: "Please select one pool first")
+                        return
+                }
+                let(addr, token, isOk) = ShowShopingDialog(poolDetals: details)
         }
 }
 
@@ -97,29 +103,13 @@ extension PacketMarketController:NSTableViewDelegate {
         }
         
         func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-                
-                var cellIdentifier: String = ""
-                var cellValue: String = ""
-                
                 let poolInfo = MinerPool.poolArray[row]
-                if tableColumn == tableView.tableColumns[0] {
-                        cellIdentifier = CellIdentifiers.AddressCell
-                        cellValue = poolInfo.MainAddr
-                }else if tableColumn == tableView.tableColumns[1] {
-                        cellIdentifier = CellIdentifiers.CoinPledgedCell
-                        cellValue = String.init(format: "%.2f", poolInfo.GuaranteedNo)
-                }else if tableColumn == tableView.tableColumns[2] {
-                        cellIdentifier = CellIdentifiers.NameCell
-                        cellValue = poolInfo.ShortName
-                }else{
+                
+                guard let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ShortNameCellID"), owner: nil) as? NSTableCellView else{
                         return nil
                 }
                 
-                guard let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView else{
-                        return nil
-                }
-                
-                cell.textField?.stringValue = cellValue
+                cell.textField?.stringValue = poolInfo.ShortName
                 return cell
         }
         

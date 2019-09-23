@@ -9,6 +9,7 @@
 
         enum CallBackActionType{
             BalanceSynced,
+            TxProcessTips,
             SubPoolSynced,
             MarketPoolSynced,
         };
