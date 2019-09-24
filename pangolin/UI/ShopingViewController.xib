@@ -21,6 +21,7 @@
                 <outlet property="approveTx" destination="wyG-5f-rXl" id="8Ei-qr-hdb"/>
                 <outlet property="buyForAddress" destination="was-Pp-AD7" id="OF1-2s-xtT"/>
                 <outlet property="hasApproved" destination="cga-qU-ThV" id="8lV-h9-8Vv"/>
+                <outlet property="loggingView" destination="tZM-6y-T7c" id="0bE-fw-53R"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>

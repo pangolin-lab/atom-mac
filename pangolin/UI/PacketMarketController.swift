@@ -11,7 +11,11 @@ import DecentralizedShadowSocks
 
 class PacketMarketController: NSWindowController {
         
-        
+        @IBOutlet weak var PacketCanGet: NSTextField!
+        @IBOutlet weak var TokenToSpend: NSTextField!
+        @IBOutlet weak var BuyForAddrField: NSTextField!
+        @IBOutlet weak var EthBalance: NSTextField!
+        @IBOutlet weak var LinBalance: NSTextField!
         @IBOutlet weak var WaitingTip: NSProgressIndicator!
         @IBOutlet weak var poolTableView: NSTableView!
         @IBOutlet weak var avgPriceField: NSTextField!
@@ -35,10 +39,14 @@ class PacketMarketController: NSWindowController {
                 NotificationCenter.default.addObserver(self, selector:#selector(buyPacketResult(notification:)),
                                                        name: WalletBuyPacketResultNoti, object: nil)
                 
+                
+                self.LinBalance.doubleValue = Wallet.sharedInstance.TokenBalance.CoinValue()
+                self.EthBalance.doubleValue = Wallet.sharedInstance.EthBalance.CoinValue()
+                self.avgPriceField.doubleValue = Double(Service.sharedInstance.srvConf.packetPrice)
+                
                 WaitingTip.isHidden = false
                 self.loadPoolsData()
                 MinerPool.asyncFreshMarketData()
-                self.avgPriceField.doubleValue = Double(Service.sharedInstance.srvConf.packetPrice)
         }
         
         deinit {
@@ -74,11 +82,12 @@ class PacketMarketController: NSWindowController {
                 guard let details = self.currentPool else {
                         return
                 }
-                 
+                
                 self.poolDescField.documentView?.insertText(details.DetailInfos)
                 self.PoolAddressField.stringValue = details.MainAddr
                 self.mortagedField.doubleValue = details.GuaranteedNo.CoinValue()
                 self.approvedField.doubleValue = QueryApproved(details.MainAddr.toGoString())
+                self.BuyForAddrField.stringValue = "0x" + Wallet.sharedInstance.MainAddress
         }
         
         @IBAction func SycFromEthereumAction(_ sender: NSButton) {
@@ -90,7 +99,38 @@ class PacketMarketController: NSWindowController {
                         dialogOK(question: "Tips:",text: "Please select one pool first")
                         return
                 }
-                let(addr, token, isOk) = ShowShopingDialog(poolDetals: details)
+
+                let tokenToSpend = self.TokenToSpend.doubleValue
+                if tokenToSpend <= 0.01{
+                        dialogOK(question: "Tips", text: "Too less token to spend!")
+                        return
+                }
+
+                if Wallet.sharedInstance.TokenBalance < tokenToSpend{
+                        dialogOK(question: "Tips", text: "No enough token in your wallet!")
+                        return
+                }
+
+                if Wallet.sharedInstance.EthBalance <= 0.001{
+                        dialogOK(question: "Tips", text: "No enough ETH for operation gas!")
+                        return
+                }
+
+                let target = self.BuyForAddrField.stringValue
+                if target.lengthOfBytes(using: .utf8) != 42{
+                        dialogOK(question: "Tips", text: "Invalid target user address")
+                        return
+                }
+
+                let password = showPasswordDialog()
+                if password == ""{
+                        return
+                }
+
+                self.WaitingTip.isHidden = false
+                Wallet.sharedInstance.BuyPacketFrom(pool:details.MainAddr, for:target, by: tokenToSpend, with: password)
+                
+                ShowShopingDialog()
         }
 }
 
@@ -134,3 +174,16 @@ extension PacketMarketController:NSTableViewDataSource {
         }
 }
 
+extension PacketMarketController:NSTextFieldDelegate{
+        
+        func controlTextDidChange(_ notification: Notification){
+                guard let field = notification.object as? NSTextField else {
+                        Swift.print(notification.object as Any)
+                        return
+                }
+                Swift.print(field.doubleValue)
+                let tokenNo = field.doubleValue
+                let bytesSum = tokenNo * Double(Service.sharedInstance.srvConf.packetPrice)
+                self.PacketCanGet.stringValue = ConvertBandWith(val: bytesSum)
+        }
+}
