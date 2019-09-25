@@ -34,7 +34,6 @@ class ShopingViewController: NSViewController {
         var auth:String = ""
         var tokenNo:Double = 0.0
         var status:TransactionStatus = .InitApprove
-        var curTimer:Timer?
         
         override func viewDidLoad() {
                 super.viewDidLoad()
@@ -42,7 +41,6 @@ class ShopingViewController: NSViewController {
         
         func setStatusInof(status:TransactionStatus, desc:String){
                 self.status = status
-                ShowNotification(tips: "Transaction status:")
                 DispatchQueue.main.async{
                         switch status{
                         case .InitApprove:
@@ -67,7 +65,7 @@ class ShopingViewController: NSViewController {
                                 self.loggingView.documentView?.insertText("\napprove to spend token......")
                                 break
                         case .BuyStart:
-                                self.RechargeStatus.stringValue = "\nPackaging"
+                                self.RechargeStatus.stringValue = "Packaging"
                                 self.RechargeTx.stringValue = desc
                                 self.loggingView.documentView?.insertText("\napprove to spend token start to buy packet......")
                                 break
@@ -86,67 +84,65 @@ class ShopingViewController: NSViewController {
                 }
         }
         
+        func waitTxToSuccess(tx:String){
+                var packaging = true
+                var times = 0
+                while packaging{
+                        sleep(2)
+                        times += 1
+                        if 0 == TxProcessStatus(tx.toGoString()){
+                                self.setStatusInof(status: .ProcessApprove, desc: "processing approve transaction[\(times * 2)s]......")
+                                continue
+                        }
+                        packaging = false
+                }
+        }
         func startBlockChainAction(buyFrom pool:String, For user:String, auth:String, tokenNo:Double) {
                 
-                Service.sharedInstance.contractQueue.async {
-                        if  Wallet.sharedInstance.HasApproved.doubleValue < tokenNo{
-                                self.setStatusInof(status: .InitApprove, desc: "")
-                                let appRet = AuthorizeTokenSpend(auth.toGoString(), tokenNo)
-                                guard let txData = appRet.r0 else{
-                                        guard let errData = appRet.r1 else{
-                                                return
-                                        }
-                                        self.setStatusInof(status: .ApproveFailed, desc: String(cString: errData))
+                if  Wallet.sharedInstance.HasApproved.doubleValue > tokenNo{
+                        self.setStatusInof(status: .InitApprove, desc: "")
+                        let appRet = AuthorizeTokenSpend(auth.toGoString(), tokenNo)
+                        guard let txData = appRet.r0 else{
+                                guard let errData = appRet.r1 else{
                                         return
                                 }
-                                let tx = String(cString:txData)
-                                self.setStatusInof(status:.ApproveStart, desc:tx)
-                                
-                                self.curTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { (ktimer) in
-                                        if 0 == TxProcessStatus(tx.toGoString()){
-                                                self.setStatusInof(status: .ProcessApprove, desc: "processing approve transaction......")
-                                                return
-                                        }
-                                        self.setStatusInof(status: .ApproveSuccess, desc: "")
-                                        ktimer.invalidate()
-                                        self.curTimer = nil
-                                })
-                        }
-                        
-                        let ret = BuyPacket(user.toGoString(), pool.toGoString(), auth.toGoString(), tokenNo)
-                        guard let txData = ret.r0 else{
-                                guard let errData = ret.r1 else{
-                                        return
-                                }
-                                self.setStatusInof(status: .BuyFailed, desc: String(cString: errData))
+                                self.setStatusInof(status: .ApproveFailed, desc: String(cString: errData))
                                 return
                         }
-                        
-                        let tx = String(cString: txData)
-                        self.setStatusInof(status: .BuyStart, desc: tx)
-                        self.curTimer = Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: { (ktimer) in
-                                if 0 == TxProcessStatus(tx.toGoString()){
-                                        self.setStatusInof(status: .ProcessBuy, desc: "processing buy packet transaction......")
-                                        return
-                                }
-                                self.setStatusInof(status: .BuySuccess, desc: "")
-                                ktimer.invalidate()
-                                self.curTimer = nil
-                        })
-                        
-                        ProcessTransRet(tx: tx, err: "", noti:BuyPacketResultNoti)
+                        let tx = String(cString:txData)
+                        self.setStatusInof(status:.ApproveStart, desc:tx)
+                        waitTxToSuccess(tx:tx)
+                        self.setStatusInof(status: .ApproveSuccess, desc: "")
                 }
+                
+                let ret = BuyPacket(user.toGoString(), pool.toGoString(), auth.toGoString(), tokenNo)
+                guard let txData = ret.r0 else{
+                        guard let errData = ret.r1 else{
+                                return
+                        }
+                        self.setStatusInof(status: .BuyFailed, desc: String(cString: errData))
+                        return
+                }
+                
+                let tx = String(cString: txData)
+                self.setStatusInof(status: .BuyStart, desc: tx)
+                
+                waitTxToSuccess(tx:tx)
+                
+                self.setStatusInof(status: .BuySuccess, desc: "")
+                ProcessTransRet(tx: tx, err: "", noti:BuyPacketResultNoti)
         }
 }
 
 func ShowShopingDialog(buyFrom poolAddr:String, For userAddr:String, auth:String, tokenNo:Double) ->Void{
         
         let alert = NSAlert()
-        alert.messageText = "Packet shop".localized
-        alert.informativeText = "Please full fill your recharge bill".localized
+        alert.messageText = "Blockchain process informations".localized
         alert.alertStyle = .informational
         let shopVC = ShopingViewController()
-        shopVC.startBlockChainAction(buyFrom: poolAddr, For: userAddr, auth: auth, tokenNo: tokenNo)
+        Service.sharedInstance.contractQueue.async {
+                shopVC.startBlockChainAction(buyFrom: poolAddr, For: userAddr, auth: auth, tokenNo: tokenNo)
+        }
         alert.accessoryView = shopVC.view
         alert.addButton(withTitle: "Cancel".localized)
         alert.runModal()
