@@ -95,7 +95,9 @@ extern struct startService_return startService(GoString p0, GoString p1, GoStrin
 
 extern void stopService();
 
-extern char* MyChannelWithDetails(GoString p0);
+extern char* MyChannelWithDetails();
+
+extern void SyncChannelWithDetails(GoString p0);
 
 /* Return type for AuthorizeTokenSpend */
 struct AuthorizeTokenSpend_return {

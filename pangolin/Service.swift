@@ -16,7 +16,6 @@ let KEY_FOR_CURRENT_POOL_INUSE    = "KEY_FOR_CURRENT_SEL_POOL_v2"
 
 let KEY_FOR_DATA_DIRECTORY      = ".Pangolin/data"
 let CACHED_SUB_POOL_DATA_FILE   = "subPool.data"
-let KEY_FOR_WALLET_DIRECTORY    = ".pangolin/wallet"
 
 
 public let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c"

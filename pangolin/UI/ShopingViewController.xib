@@ -68,7 +68,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gag-kd-Cls">
-                    <rect key="frame" x="619" y="292" width="47" height="17"/>
+                    <rect key="frame" x="623" y="292" width="47" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Status:" id="3s6-gx-wZV">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -76,7 +76,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5n4-MN-GJD">
-                    <rect key="frame" x="621" y="250" width="47" height="17"/>
+                    <rect key="frame" x="625" y="250" width="47" height="17"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Status:" id="Ix4-H7-CfR">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -84,9 +84,9 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1nm-By-ctD">
-                    <rect key="frame" x="105" y="287" width="496" height="22"/>
+                    <rect key="frame" x="105" y="287" width="500" height="22"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="496" id="QjU-DB-Was"/>
+                        <constraint firstAttribute="width" constant="500" id="QjU-DB-Was"/>
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="HAA-hQ-6wG">
                         <font key="font" metaFont="system"/>
@@ -95,9 +95,9 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ead-d6-WUW">
-                    <rect key="frame" x="107" y="245" width="496" height="22"/>
+                    <rect key="frame" x="107" y="245" width="500" height="22"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="496" id="gnH-WZ-KEo"/>
+                        <constraint firstAttribute="width" constant="500" id="gnH-WZ-KEo"/>
                     </constraints>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="osE-Et-Uf9">
                         <font key="font" metaFont="system"/>
@@ -106,7 +106,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NiK-jT-K7W">
-                    <rect key="frame" x="672" y="287" width="108" height="22"/>
+                    <rect key="frame" x="676" y="287" width="104" height="22"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="aaZ-i3-zdS">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -114,7 +114,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uui-fi-Kjm">
-                    <rect key="frame" x="674" y="245" width="106" height="22"/>
+                    <rect key="frame" x="678" y="245" width="102" height="22"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="eFQ-1c-5Tr">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

@@ -69,28 +69,11 @@ class MPCManager:NSObject{
         static public var PayChannels:[MicroPayChannel] = []
         
         static func loadMyChannels(){
-                let userAddress = Wallet.sharedInstance.MainAddress
-                if userAddress.elementsEqual(""){
-                        self.PayChannels.removeAll()
+                self.PayChannels.removeAll()
+                guard let data = String(cString: MyChannelWithDetails()).data(using: .utf8) else{
                         return
                 }
-                
-                do{
-                        let url = try touchDirectory(directory: KEY_FOR_WALLET_DIRECTORY)
-                        let filePath = url.appendingPathComponent(CACHED_SUB_POOL_DATA_FILE, isDirectory: false)
-                        if !FileManager.default.fileExists(atPath: filePath.path){
-                                loadMyPoolsFromBlockChain()
-                                return
-                        }
-                        
-                        let data = try Data(contentsOf: filePath)
-                        self.parseSubPools(data:data)
-                        self.loadMyPoolsFromBlockChain()
-                        
-                } catch let err{
-                        print(err)
-                        dialogOK(question: "Error", text: err.localizedDescription)
-                }
+                self.parseSubPools(data:data)
         }
         
         static func parseSubPools(data:Data) -> Void {
@@ -117,33 +100,7 @@ class MPCManager:NSObject{
                 if userAddress.elementsEqual(""){
                         return
                 }
-        
-         Service.sharedInstance.contractQueue.async {
                 
-                do{
-                        guard let subPools = MyChannelWithDetails(userAddress.toGoString()) else{
-                                return
-                        }
-                        let jsonStr = String(cString: subPools)
-                        let jsonData:Data = jsonStr.data(using: .utf8)!
-                        if jsonData.count == 0{
-                                return
-                        }
-
-                        self.parseSubPools(data: jsonData)
-
-                        let url = try touchDirectory(directory: KEY_FOR_DATA_DIRECTORY)
-                        let filePath = url.appendingPathComponent(CACHED_SUB_POOL_DATA_FILE, isDirectory: false)
-                        try jsonData.write(to: filePath)
-                        
-                        NotificationCenter.default.post(name: MicroPayChannel.SubMinerPoolLoadedNoti, object:
-                                self, userInfo:["success":true])
-
-                } catch let err{
-                        print(err)
-                        NotificationCenter.default.post(name: MicroPayChannel.SubMinerPoolLoadedNoti, object:
-                                self, userInfo:["success":false, "msg":err.localizedDescription])
-                }
-        }
+                SyncChannelWithDetails(userAddress.toGoString())
         }
 }
