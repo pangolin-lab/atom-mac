@@ -26,8 +26,8 @@ public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten
 
 
 public let PoolsInMarketChanged = Notification.Name(rawValue: "PoolsInMarketChanged")
-public let WallentDataChangedNoti = Notification.Name(rawValue: "WallentDataChangedNotification")
-public let WalletBuyPacketResultNoti = Notification.Name(rawValue: "WalletBuyPacketResultNoti")
+public let WalletDataChangedNoti = Notification.Name(rawValue: "WallentDataChangedNotification")
+public let BuyPacketResultNoti = Notification.Name(rawValue: "WalletBuyPacketResultNoti")
 public let TokenTransferResultNoti = Notification.Name(rawValue: "WalletTokenTransferResultNoti")
 
 struct BasicConfig{
@@ -87,7 +87,7 @@ class Service: NSObject {
                 switch typ {
                 case Int32(BalanceSynced.rawValue):
                          print("BalanceSynced")
-                        NotificationCenter.default.post(name: WallentDataChangedNoti, object: nil)
+                        NotificationCenter.default.post(name: WalletDataChangedNoti, object: nil)
                         return
                 default:
                         print("unknown system call back typ:", typ)

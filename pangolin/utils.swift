@@ -11,11 +11,18 @@ import DecentralizedShadowSocks
 import CommonCrypto
 
 
-let Decimal = Double(1000000000000000000)
+let coinUnit = (1000000000000000000)
+
+extension NSNumber{
+        
+        func CoinValue()-> Double{
+                return self.doubleValue / Double(coinUnit)
+        }
+}
 
 extension Double {
         func CoinValue() -> Double{
-                return self / Decimal
+                return self / Double(coinUnit)
         }
 }
 

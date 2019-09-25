@@ -37,13 +37,14 @@ class PacketMarketController: NSWindowController {
                                                        name: PoolsInMarketChanged, object: nil)
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(buyPacketResult(notification:)),
-                                                       name: WalletBuyPacketResultNoti, object: nil)
+                                                       name: BuyPacketResultNoti, object: nil)
                 
                 
                 self.LinBalance.doubleValue = Wallet.sharedInstance.TokenBalance.CoinValue()
                 self.EthBalance.doubleValue = Wallet.sharedInstance.EthBalance.CoinValue()
                 self.avgPriceField.doubleValue = Double(Service.sharedInstance.srvConf.packetPrice)
-                
+                self.approvedField.doubleValue = Wallet.sharedInstance.HasApproved.CoinValue()
+                self.BuyForAddrField.stringValue = "0x" + Wallet.sharedInstance.MainAddress
                 WaitingTip.isHidden = false
                 self.loadPoolsData()
                 MinerPool.asyncFreshMarketData()
@@ -86,8 +87,6 @@ class PacketMarketController: NSWindowController {
                 self.poolDescField.documentView?.insertText(details.DetailInfos)
                 self.PoolAddressField.stringValue = details.MainAddr
                 self.mortagedField.doubleValue = details.GuaranteedNo.CoinValue()
-                self.approvedField.doubleValue = QueryApproved(details.MainAddr.toGoString())
-                self.BuyForAddrField.stringValue = "0x" + Wallet.sharedInstance.MainAddress
         }
         
         @IBAction func SycFromEthereumAction(_ sender: NSButton) {
@@ -106,19 +105,13 @@ class PacketMarketController: NSWindowController {
                         return
                 }
 
-                if Wallet.sharedInstance.TokenBalance < tokenToSpend{
+                if Wallet.sharedInstance.TokenBalance.doubleValue < tokenToSpend{
                         dialogOK(question: "Tips", text: "No enough token in your wallet!")
                         return
                 }
 
-                if Wallet.sharedInstance.EthBalance <= 0.001{
+                if Wallet.sharedInstance.EthBalance.doubleValue <= 0.001{
                         dialogOK(question: "Tips", text: "No enough ETH for operation gas!")
-                        return
-                }
-
-                let target = self.BuyForAddrField.stringValue
-                if target.lengthOfBytes(using: .utf8) != 42{
-                        dialogOK(question: "Tips", text: "Invalid target user address")
                         return
                 }
 
@@ -126,11 +119,9 @@ class PacketMarketController: NSWindowController {
                 if password == ""{
                         return
                 }
-
-                self.WaitingTip.isHidden = false
-                Wallet.sharedInstance.BuyPacketFrom(pool:details.MainAddr, for:target, by: tokenToSpend, with: password)
-                
-                ShowShopingDialog()
+                ShowShopingDialog(buyFrom: details.MainAddr,
+                                  For: self.BuyForAddrField.stringValue,
+                                  auth: password, tokenNo: tokenToSpend)
         }
 }
 

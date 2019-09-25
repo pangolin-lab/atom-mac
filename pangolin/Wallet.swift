@@ -16,9 +16,9 @@ class Wallet:NSObject{
         var defaults = UserDefaults.standard
         var MainAddress:String = ""
         var SubAddress:String = ""
-        var EthBalance:Double = 0.0
-        var TokenBalance:Double = 0.0
-        var HasApproved:Double = 0.0
+        var EthBalance:NSNumber = 0
+        var TokenBalance:NSNumber = 0
+        var HasApproved:NSNumber = 0
         var ciphereTxt:Data?
         var Counter:Int = 0
         var InRecharge: Int = 0
@@ -73,9 +73,15 @@ class Wallet:NSObject{
                 
                 self.MainAddress = json["mainAddress"] as? String ?? ""
                 self.SubAddress = json["subAddress"] as? String ?? ""
-                self.EthBalance = json["eth"] as? Double ?? 0
-                self.TokenBalance = json["token"] as? Double ?? 0
-                self.HasApproved = json["approved"] as? Double ?? 0
+                let eth = json["eth"] as? NSNumber ?? 0
+                let lin = json["token"] as? NSNumber ?? 0
+                let app = json["approved"] as? NSNumber ?? 0
+                print("\n\n\teth:\(eth)\tlin:\(lin)\tapp:\(app)\n\n")
+                
+                
+                self.EthBalance = json["eth"] as? NSNumber ?? 0
+                self.TokenBalance = json["token"] as? NSNumber ?? 0
+                self.HasApproved = json["approved"] as? NSNumber ?? 0
                 self.ciphereTxt = json["cipher"] as? Data
                 self.Counter =  json["counter"] as? Int ?? 0
                 self.InRecharge = json["charging"] as? Int ?? 0
@@ -97,21 +103,6 @@ class Wallet:NSObject{
                 }
                 syncWalletData()
         }
-        
-        func BuyPacketFrom(pool:String, for user:String, by coin:Double, with password:String){
-                
-                Service.sharedInstance.contractQueue.async {
-                        
-                        let ret = BuyPacket(user.toGoString(),
-                                  pool.toGoString(),
-                                  password.toGoString(),
-                                  coin)
-                        ProcessTransRet(tx: String(cString: ret.r0),
-                                             err: String(cString: ret.r1),
-                                             noti: WalletBuyPacketResultNoti)
-                }
-        }
-        
         func EthTransfer(password:String, target:String, no:Double){
                 Service.sharedInstance.contractQueue.async {
                         let ret = TransferEth(password.toGoString(), target.toGoString(), no)

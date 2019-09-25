@@ -31,7 +31,7 @@ class WalletController: NSWindowController {
                 super.windowDidLoad()
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(updateBalance(notification:)),
-                                                       name: WallentDataChangedNoti, object: nil)
+                                                       name: WalletDataChangedNoti, object: nil)
                 NotificationCenter.default.addObserver(self, selector:#selector(processTransaction(notification:)),
                                                        name: TokenTransferResultNoti, object: nil)
                 NotificationCenter.default.addObserver(self, selector:#selector(freshPoolList(notification:)),
