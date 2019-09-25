@@ -62,12 +62,12 @@ class ShopingViewController: NSViewController {
                         case .ApproveSuccess:
                                 self.ApproveStatus.stringValue = "Success"
                                 self.RechargeStatus.stringValue = "Init"
-                                self.loggingView.documentView?.insertText("\napprove to spend token......")
+                                self.loggingView.documentView?.insertText("\napprove success......\nstart to buy packet......")
                                 break
                         case .BuyStart:
                                 self.RechargeStatus.stringValue = "Packaging"
                                 self.RechargeTx.stringValue = desc
-                                self.loggingView.documentView?.insertText("\napprove to spend token start to buy packet......")
+                                self.loggingView.documentView?.insertText("\nbuying request success at[\(desc)]......")
                                 break
                         case .BuyFailed:
                                 self.RechargeStatus.stringValue = "Failed"
@@ -91,7 +91,7 @@ class ShopingViewController: NSViewController {
                         sleep(2)
                         times += 1
                         if 0 == TxProcessStatus(tx.toGoString()){
-                                self.setStatusInof(status: .ProcessApprove, desc: "processing approve transaction[\(times * 2)s]......")
+                                self.setStatusInof(status: .ProcessApprove, desc: "processing transaction[\(tx)(\(times * 2)s)]......")
                                 continue
                         }
                         packaging = false
@@ -99,7 +99,7 @@ class ShopingViewController: NSViewController {
         }
         func startBlockChainAction(buyFrom pool:String, For user:String, auth:String, tokenNo:Double) {
                 
-                if  Wallet.sharedInstance.HasApproved.doubleValue > tokenNo{
+                if  Wallet.sharedInstance.HasApproved.doubleValue < tokenNo{
                         self.setStatusInof(status: .InitApprove, desc: "")
                         let appRet = AuthorizeTokenSpend(auth.toGoString(), tokenNo)
                         guard let txData = appRet.r0 else{
