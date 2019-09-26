@@ -70,7 +70,7 @@ class MPCManager:NSObject{
         
         static func loadMyChannels(){
                 self.PayChannels.removeAll()
-                guard let data = String(cString: MyChannelWithDetails()).data(using: .utf8) else{
+                guard let data = String(cString: LoadMyChannels()).data(using: .utf8) else{
                         return
                 }
                 self.parseSubPools(data:data)
@@ -101,6 +101,6 @@ class MPCManager:NSObject{
                         return
                 }
                 
-                SyncChannelWithDetails(userAddress.toGoString())
+                SyncMyChannels(userAddress.toGoString())
         }
 }

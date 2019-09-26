@@ -34,13 +34,14 @@ class MinerPool: NSObject {
                 self.Seeds = dict["Seeds"] as? String ?? ""
         } 
         
-        static func parsePoolsData(data:Data){
-                guard let array = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSArray else {
+        static private func parsePoolsData(data:Data){
+                guard let poolMap = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSDictionary else {
                         return
                 }
                 
                 poolArray.removeAll()
-                for (_, value) in array.enumerated() {
+                
+                for (_, value) in poolMap.allValues.enumerated() {
                         
                         guard let dict = value as? NSDictionary else{
                                 continue
