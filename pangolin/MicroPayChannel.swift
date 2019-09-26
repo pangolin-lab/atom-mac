@@ -70,20 +70,23 @@ class MPCManager:NSObject{
         
         static func loadMyChannels(){
                 self.PayChannels.removeAll()
-                guard let data = String(cString: LoadMyChannels()).data(using: .utf8) else{
+                guard let ret = LoadMyChannels() else {
+                        return
+                }
+                guard let data = String(cString: ret).data(using: .utf8) else{
                         return
                 }
                 self.parseSubPools(data:data)
         }
         
         static func parseSubPools(data:Data) -> Void {
-                guard let array = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSArray else {
+                guard let chanMap = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSDictionary else {
                         return
                 }
                 
                 self.PayChannels.removeAll()
                 
-                for (_, value) in array.enumerated() {
+                for (_, value) in chanMap.allValues.enumerated() {
                         
                         guard let dict = value as? NSDictionary else{
                                 continue

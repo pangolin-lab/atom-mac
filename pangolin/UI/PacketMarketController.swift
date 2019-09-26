@@ -84,7 +84,8 @@ class PacketMarketController: NSWindowController {
                         return
                 }
                 
-                self.poolDescField.documentView?.insertText(details.DetailInfos)
+                let view = self.poolDescField.documentView as! NSTextView
+                view.string = details.DetailInfos
                 self.PoolAddressField.stringValue = details.MainAddr
                 self.mortagedField.doubleValue = details.GuaranteedNo.CoinValue()
         }
