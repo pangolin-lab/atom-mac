@@ -75,6 +75,6 @@ class MPCManager:NSObject{
                         return
                 }
                 
-                SyncMyChannels(userAddress.toGoString())
+                AsyncMyChannels(userAddress.toGoString())
         }
 }

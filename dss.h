@@ -85,7 +85,9 @@ struct initApp_return {
 
 extern struct initApp_return initApp(GoString p0, GoString p1, GoString p2, GoString p3, SystemActionCallBack p4, BlockChainDataSyncNotifier p5);
 
-extern void syncAppDataFromBlockChain();
+extern void asyncAppDataFromBlockChain();
+
+extern GoInt64 SysPacketPrice();
 
 /* Return type for startService */
 struct startService_return {
@@ -99,7 +101,7 @@ extern void stopService();
 
 extern char* LoadMyChannels();
 
-extern void SyncMyChannels(GoString p0);
+extern void AsyncMyChannels(GoString p0);
 
 /* Return type for AuthorizeTokenSpend */
 struct AuthorizeTokenSpend_return {

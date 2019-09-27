@@ -121,8 +121,10 @@ class Service: NSObject {
                                   systemCallBack,
                                   blockchainSynced)
                 
+                self.srvConf.packetPrice = SysPacketPrice()
+                
                 self.contractQueue.async {
-                        syncAppDataFromBlockChain()
+                        asyncAppDataFromBlockChain()
                 }
                 
                 if ret.r0 != 0 {
