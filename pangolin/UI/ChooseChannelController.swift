@@ -58,11 +58,12 @@ extension ChooseChannelController:NSTableViewDelegate{
                 
                 if tableColumn == tableView.tableColumns[0] {
                         cellIdentifier = "PoolStatusOfChannel"
-                        if mp.MainAddr == MPCManager.PoolNameInUse(){
+                        if Service.sharedInstance.srvConf.poolInUsed == mp.MainAddr{
                                  cellValue = "In Use"
                         }else{
                                  cellValue = ""
                         }
+                        
                        
                 }else if tableColumn == tableView.tableColumns[1] {
                         cellIdentifier = "PoolAddreesOfChannel"

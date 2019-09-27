@@ -27,7 +27,7 @@ class Wallet:NSObject{
         
         override init() {
                 super.init()
-                syncWalletData()
+                loadWalletData()
         }
         
         class var sharedInstance: Wallet {
@@ -48,7 +48,7 @@ class Wallet:NSObject{
                                 let err = String(cString:ret.r1)
                                 throw ServiceError.NewWalletErr(err)
                         }
-                        syncWalletData()
+                        loadWalletData()
                 }catch let err{
                         dialogOK(question: "Error", text: err.localizedDescription)
                         return false
@@ -59,7 +59,10 @@ class Wallet:NSObject{
         }
         
         func syncWalletData() {
-                
+                SyncWalletInfo()
+        }
+        
+        func loadWalletData() {
                 guard let ret = LoadWalletInfo() else{
                         return
                 }
@@ -101,7 +104,7 @@ class Wallet:NSObject{
                 guard WalletVerify(json.toGoString(), password.toGoString()) != 0 else {
                         throw ServiceError.InvalidWalletErr
                 }
-                syncWalletData()
+                loadWalletData()
         }
         func EthTransfer(password:String, target:String, no:Double){
                 Service.sharedInstance.contractQueue.async {

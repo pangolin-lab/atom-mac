@@ -85,6 +85,8 @@ struct initApp_return {
 
 extern struct initApp_return initApp(GoString p0, GoString p1, GoString p2, GoString p3, SystemActionCallBack p4, BlockChainDataSyncNotifier p5);
 
+extern void syncAppDataFromBlockChain();
+
 /* Return type for startService */
 struct startService_return {
 	GoInt r0;

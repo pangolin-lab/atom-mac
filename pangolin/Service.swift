@@ -30,13 +30,11 @@ struct BasicConfig{
         var isGlobal:Bool = false
         var packetPrice:Int64 = -1
         var baseDir:String = ".pangolin"
-        var poolInUsed:MinerPool? = nil
-        var poolAddr:String? = nil
+        var poolInUsed:String? = nil
         
         mutating func loadConf(){
-                
                 self.isGlobal = UserDefaults.standard.bool(forKey: KEY_FOR_Pangolin_MODEL)
-                self.poolAddr = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_POOL_INUSE)
+                self.poolInUsed = UserDefaults.standard.string(forKey: KEY_FOR_CURRENT_POOL_INUSE)
                 do {
                         self.baseDir = try touchDirectory(directory: ".pangolin").path
                 }catch let err{
@@ -45,38 +43,20 @@ struct BasicConfig{
                 }
         }
         
-        mutating func initBlockChainConf(){
-                if self.poolAddr != nil && self.poolAddr != "" {
-                        guard let ret = PoolDetails(self.poolAddr!.toGoString()) else{
-                                return
-                        }
-                        guard let data = String(cString:ret).data(using:.utf8) else{
-                                return
-                        }
-                        
-                        guard let dict = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! NSDictionary else {
-                                return
-                        }
-                        self.poolInUsed = MinerPool(dict: dict)
-                }
-                
-                self.packetPrice = QueryMicroPayPrice()
+        mutating func changeUsedPool(addr:String){
+                self.poolInUsed = addr
+                UserDefaults.standard.set(addr, forKey: KEY_FOR_CURRENT_POOL_INUSE)
         }
         
         func save(){
                 UserDefaults.standard.set(isTurnon, forKey: KEY_FOR_SWITCH_STATE)
                 UserDefaults.standard.set(isGlobal, forKey: KEY_FOR_Pangolin_MODEL)
         }
-        
-        func lastUsedPool() ->String?{
-                return self.poolInUsed?.ShortName
-        }
 }
 
 class Service: NSObject {
         
         var srvConf = BasicConfig()
-        
         var systemCallBack:SystemActionCallBack = {typ, v in
                 switch typ {
                 case Int32(BalanceSynced.rawValue):
@@ -108,7 +88,6 @@ class Service: NSObject {
                 }
         }
         
-        
         var pacServ:PacServer = PacServer()
         
         public static let VPNStatusChanged = Notification.Name(rawValue: "VPNStatusChanged")
@@ -123,6 +102,7 @@ class Service: NSObject {
         
         private override init(){
                 super.init()
+                srvConf.loadConf()
         }
         
         class var sharedInstance: Service {
@@ -131,7 +111,6 @@ class Service: NSObject {
                 }
                 return Static.instance
         }
-        
         
         public func amountService() throws{
                 srvConf.loadConf()
@@ -142,11 +121,13 @@ class Service: NSObject {
                                   systemCallBack,
                                   blockchainSynced)
                 
+                self.contractQueue.async {
+                        syncAppDataFromBlockChain()
+                }
                 
                 if ret.r0 != 0 {
                         throw ServiceError.SdkActionErr("init app err: no:[\(ret.r0)] msg:[\(String(cString:ret.r1))]")
                 }
-                srvConf.initBlockChainConf()
                 
                 try  ensureLaunchAgentsDirOwner()
                 if !SysProxyHelper.install(){
@@ -173,7 +154,7 @@ class Service: NSObject {
                         throw ServiceError.EmptyWalletErr
                 }
                 
-                guard let poolAddr = MPCManager.PoolNameInUse() else {
+                guard let pool = self.srvConf.poolInUsed else {
                         throw ServiceError.NoPaymentChanErr
                 }
     
@@ -185,7 +166,7 @@ class Service: NSObject {
                         
                         let ret = startService("127.0.0.1:\(ProxyLocalPort)".toGoString(),
                                                password.toGoString(),
-                                               poolAddr.toGoString())
+                                               pool.toGoString())
                        
                         
                         self.srvConf.isTurnon = false

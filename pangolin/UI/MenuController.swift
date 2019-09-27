@@ -61,17 +61,18 @@ class MenuController: NSObject {
                 }
                 
                 let channles = MPCManager.PayChannels
-                for (_, c) in channles.values.enumerated(){
+                for (_, c) in channles.values.enumerated() {
                         let pool = MinerPool.cachedPools[c.MainAddr]
-                        let menuItem =  NSMenuItem(title: (pool?.ShortName)!,
+                        let menuItem = NSMenuItem(title: (pool?.ShortName)!,
                                                    action:#selector(MenuController.ChangeChannelInUse(_:)),
                                                    keyEquivalent: "")
                         menuItem.representedObject = c
                         menuItem.target = self
                         allPayChannels.addItem(menuItem)
-                        if c.MainAddr == MPCManager.PoolNameInUse(){
+                        if Service.sharedInstance.srvConf.poolInUsed == c.MainAddr {
                                 self.selMenuItem = menuItem
                                 menuItem.state = .on
+                                self.channelName.title = (pool?.ShortName)!
                         }
                 }
         }
@@ -85,7 +86,8 @@ class MenuController: NSObject {
                 let pool = MinerPool.cachedPools[myItem.MainAddr]
                 self.selMenuItem = sender
                 self.channelName.title = (pool?.ShortName)!
-                MPCManager.SetPoolNameInUse(addr:myItem.MainAddr)
+                
+               Service.sharedInstance.srvConf.changeUsedPool(addr: myItem.MainAddr)
         }
         
         func updateUI() -> Void {                
@@ -103,7 +105,6 @@ class MenuController: NSObject {
                         smartModel.state = .on
                         globalModel.state = .off
                 }
-                self.channelName.title = server.srvConf.lastUsedPool() ?? "Config->"
         }
         
         @IBAction func switchTurnOnOff(_ sender: NSMenuItem) {
