@@ -35,7 +35,7 @@ class WalletController: NSWindowController {
                 NotificationCenter.default.addObserver(self, selector:#selector(processTransaction(notification:)),
                                                        name: TokenTransferResultNoti, object: nil)
                 NotificationCenter.default.addObserver(self, selector:#selector(freshPoolList(notification:)),
-                                                       name: MicroPayChannel.SubMinerPoolLoadedNoti, object: nil)
+                                                       name: PayChannelChangedNoti, object: nil)
                 updateWallet() 
                 MPCManager.loadMyChannels()
         }

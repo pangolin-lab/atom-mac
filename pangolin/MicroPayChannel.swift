@@ -17,14 +17,14 @@ class MicroPayChannel: NSObject {
         var RemindPackets:Int64 = 0
         var Expiration:Int64 = 0
         
-        public static let SubMinerPoolLoadedNoti = Notification.Name(rawValue: "SubMinerPoolLoadedNoti")
-        
         override init(){
                 super.init()
         }
         
         init(dict:NSDictionary){
                 super.init()
+                
+                
                 
                 self.MainAddr = dict["MainAddr"] as! String
                 self.RemindTokens = dict["RemindTokens"] as! Float64

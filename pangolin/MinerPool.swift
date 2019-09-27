@@ -11,8 +11,10 @@ import DecentralizedShadowSocks
 
 class MinerPool: NSObject {
         
-        static var poolArray:[MinerPool] = []
-        
+        static var cachedPools:[String:MinerPool] = [:]
+        static func objAt(idx:Int) -> MinerPool{
+                return Array(cachedPools.values)[idx]
+        }
         var MainAddr:String = ""
         var Payer:String = ""
         var GuaranteedNo:Double = 0.0
@@ -39,7 +41,7 @@ class MinerPool: NSObject {
                         return
                 }
                 
-                poolArray.removeAll()
+                cachedPools.removeAll()
                 
                 for (_, value) in poolMap.allValues.enumerated() {
                         
@@ -48,7 +50,7 @@ class MinerPool: NSObject {
                         }
                         
                         let channel = MinerPool.init(dict:dict)
-                        poolArray.append(channel)
+                        cachedPools[channel.MainAddr] = channel
                 }
         }
         

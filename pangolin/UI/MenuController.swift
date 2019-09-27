@@ -36,7 +36,7 @@ class MenuController: NSObject {
                 updateUI()
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(loadChannelMenu(notification:)),
-                                                       name: MicroPayChannel.SubMinerPoolLoadedNoti, object: nil)
+                                                       name: PayChannelChangedNoti, object: nil)
                 
                 NotificationCenter.default.addObserver(self, selector:#selector(UpdateVpnStatus(notification:)),
                                                        name: Service.VPNStatusChanged, object: nil)

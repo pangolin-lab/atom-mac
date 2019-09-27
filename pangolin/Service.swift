@@ -13,21 +13,16 @@ let KEY_FOR_SWITCH_STATE          = "KEY_FOR_SWITCH_STATE"
 let KEY_FOR_Pangolin_MODEL        = "KEY_FOR_Pangolin_MODEL"
 let KEY_FOR_CURRENT_POOL_INUSE    = "KEY_FOR_CURRENT_SEL_POOL_v2"
 
-
-let KEY_FOR_DATA_DIRECTORY      = ".Pangolin/data"
-let CACHED_SUB_POOL_DATA_FILE   = "subPool.data"
-
-
 public let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c"
 public let MICROPAY_SYSTEM_ADDRESS = "0x942A43dFc4921B7F705723E011b15FC4b70dbbE2"
 public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/8b8db3cca50a4fcf97173b7619b1c4c3"
 public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten.etherscan.io"//"https://etherscan.io"
 
-
 public let PoolsInMarketChanged = Notification.Name(rawValue: "PoolsInMarketChanged")
 public let WalletDataChangedNoti = Notification.Name(rawValue: "WallentDataChangedNotification")
 public let BuyPacketResultNoti = Notification.Name(rawValue: "WalletBuyPacketResultNoti")
 public let TokenTransferResultNoti = Notification.Name(rawValue: "WalletTokenTransferResultNoti")
+public let PayChannelChangedNoti = Notification.Name(rawValue: "PayChannelChangedNoti")
 
 struct BasicConfig{
         
@@ -98,7 +93,7 @@ class Service: NSObject {
                 
                 switch typ {
                 case Int32(SubPoolSynced.rawValue):
-//                        NotificationCenter.default.post(name: WallentDataChangedNoti, object: nil)
+                        NotificationCenter.default.post(name: PayChannelChangedNoti, object: nil)
                         print("SubPoolSynced")
                         return
                 case Int32(MarketPoolSynced.rawValue):

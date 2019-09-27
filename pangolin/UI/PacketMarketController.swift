@@ -135,7 +135,7 @@ extension PacketMarketController:NSTableViewDelegate {
         }
         
         func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-                let poolInfo = MinerPool.poolArray[row]
+                let poolInfo = MinerPool.objAt(idx: row)
                 
                 guard let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ShortNameCellID"), owner: nil) as? NSTableCellView else{
                         return nil
@@ -148,12 +148,11 @@ extension PacketMarketController:NSTableViewDelegate {
         func tableViewSelectionDidChange(_ notification: Notification){
                 let table = notification.object as! NSTableView
                 let idx = table.selectedRow
-                if idx < 0 || idx >= MinerPool.poolArray.count{
+                if idx < 0 || idx >= MinerPool.cachedPools.count{
                         return
                 }
                 
-                let poolInfo = MinerPool.poolArray[idx]
-                
+                let poolInfo = MinerPool.objAt(idx: idx)
                 self.currentPool = poolInfo
                 updatePoolDetails()
         }
@@ -162,7 +161,7 @@ extension PacketMarketController:NSTableViewDelegate {
 extension PacketMarketController:NSTableViewDataSource {
         
         func numberOfRows(in tableView: NSTableView) -> Int {
-                return MinerPool.poolArray.count
+                return MinerPool.cachedPools.count
         }
 }
 
