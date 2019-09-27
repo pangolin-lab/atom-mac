@@ -13,9 +13,8 @@ import DecentralizedShadowSocks
 class MicroPayChannel: NSObject {
         
         var MainAddr:String = ""
-        var RemindTokens:Float64 = 0.0
-        var RemindPackets:Int64 = 0
-        var Expiration:Int64 = 0
+        var RemindPackets:Double = 0
+        var Expiration:Double = 0
         
         override init(){
                 super.init()
@@ -23,13 +22,9 @@ class MicroPayChannel: NSObject {
         
         init(dict:NSDictionary){
                 super.init()
-                
-                
-                
                 self.MainAddr = dict["MainAddr"] as! String
-                self.RemindTokens = dict["RemindTokens"] as! Float64
-                self.RemindPackets = dict["RemindPackets"] as! Int64
-                self.Expiration = dict["Expiration"] as! Int64
+                self.RemindPackets = dict["RemindPackets"] as! Double
+                self.Expiration = dict["Expiration"] as! Double
         }
 }
 
@@ -66,7 +61,10 @@ class MPCManager:NSObject{
                 UserDefaults.standard.set(addr, forKey: KEY_FOR_CURRENT_POOL_INUSE)
         }
         
-        static public var PayChannels:[MicroPayChannel] = []
+        static public var PayChannels:[String:MicroPayChannel] = [:]
+        static public func ObjAt(idx:Int) ->MicroPayChannel{
+                return Array(PayChannels.values)[idx]
+        }
         
         static func loadMyChannels(){
                 self.PayChannels.removeAll()
@@ -93,9 +91,8 @@ class MPCManager:NSObject{
                         }
                         
                         let channel = MicroPayChannel.init(dict:dict)
-                        self.PayChannels.append(channel)
+                        self.PayChannels[channel.MainAddr] = channel
                 }
-                
         }
         
         static  func loadMyPoolsFromBlockChain(){

@@ -52,7 +52,7 @@ class ChooseChannelController: NSWindowController {
 extension ChooseChannelController:NSTableViewDelegate{
         func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
                 
-                let mp = MPCManager.PayChannels[row]
+                let mp = MPCManager.ObjAt(idx: row)
                 var cellIdentifier: String = ""
                 var cellValue: String = ""
                 
@@ -84,7 +84,7 @@ extension ChooseChannelController:NSTableViewDelegate{
                         return
                 }
                 
-                self.selectedRow = MPCManager.PayChannels[idx]
+                self.selectedRow = MPCManager.ObjAt(idx: idx)
                 self.updatePoolDetails()
         }
         
@@ -94,7 +94,6 @@ extension ChooseChannelController:NSTableViewDelegate{
                 }
                 
                 self.DataBalanceField.stringValue = ConvertBandWith(val: Double(channel.RemindPackets))
-                self.TokenBalance.doubleValue = channel.RemindTokens
                 self.DataUsedField.stringValue = "---"
         }
 }

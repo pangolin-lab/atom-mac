@@ -55,7 +55,10 @@ class PacketMarketController: NSWindowController {
         }
         
         @objc func updatePoolList(notification: Notification){
-                self.loadPoolsData()
+                DispatchQueue.main.async {
+                        self.WaitingTip.isHidden = true
+                        self.poolTableView.reloadData()
+                }
         }
         
         @objc func buyPacketResult(notification: Notification){
@@ -88,6 +91,12 @@ class PacketMarketController: NSWindowController {
                 view.string = details.DetailInfos
                 self.PoolAddressField.stringValue = details.MainAddr
                 self.mortagedField.doubleValue = details.GuaranteedNo.CoinValue()
+                guard let chan = MPCManager.PayChannels[details.MainAddr] else {
+                        self.myStatusField.stringValue = "Unsubscribed"
+                        return
+                }
+                self.myStatusField.stringValue = "Subscribed"
+                self.myBalanceField.doubleValue = chan.RemindPackets.CoinValue()
         }
         
         @IBAction func SycFromEthereumAction(_ sender: NSButton) {

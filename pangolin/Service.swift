@@ -80,8 +80,8 @@ class Service: NSObject {
         var systemCallBack:SystemActionCallBack = {typ, v in
                 switch typ {
                 case Int32(BalanceSynced.rawValue):
-                         print("BalanceSynced")
                         NotificationCenter.default.post(name: WalletDataChangedNoti, object: nil)
+                        print("BalanceSynced")
                         return
                 default:
                         print("unknown system call back typ:", typ)
@@ -93,10 +93,12 @@ class Service: NSObject {
                 
                 switch typ {
                 case Int32(SubPoolSynced.rawValue):
+                        MPCManager.loadMyChannels()
                         NotificationCenter.default.post(name: PayChannelChangedNoti, object: nil)
                         print("SubPoolSynced")
                         return
                 case Int32(MarketPoolSynced.rawValue):
+                        MinerPool.PoolInfoInMarket()
                         NotificationCenter.default.post(name: PoolsInMarketChanged, object: nil)
                         print("MarketPoolSynced")
                         return

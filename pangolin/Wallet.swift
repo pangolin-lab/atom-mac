@@ -60,7 +60,7 @@ class Wallet:NSObject{
         
         func syncWalletData() {
                 
-                guard let ret = SyncWalletInfo() else{
+                guard let ret = LoadWalletInfo() else{
                         return
                 }
                 guard let data = String(cString:ret).data(using: .utf8) else{

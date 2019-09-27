@@ -197,7 +197,7 @@ class WalletController: NSWindowController {
 extension WalletController:NSTableViewDelegate{
         func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         
-                let mp = MPCManager.PayChannels[row]
+                let mp = MPCManager.ObjAt(idx: row)
                 
                 guard let cell = tableView.makeView(withIdentifier:
                         NSUserInterfaceItemIdentifier(rawValue: "SubMinerPoolAddrID"), owner: nil) as? NSTableCellView else{
@@ -215,7 +215,7 @@ extension WalletController:NSTableViewDelegate{
                         return
                 }
                 
-                self.channelInUsed = MPCManager.PayChannels[idx]
+                self.channelInUsed = MPCManager.ObjAt(idx: idx)
                 self.updatePoolDetails()
         }
         
@@ -225,7 +225,7 @@ extension WalletController:NSTableViewDelegate{
                 }
                 
                 self.TokenBalanceField.stringValue = ConvertBandWith(val: Double(channel.RemindPackets))
-                self.DataAvgPriceField.doubleValue = channel.RemindTokens
+                self.DataAvgPriceField.doubleValue = channel.RemindPackets
                 let date = Date.init(timeIntervalSince1970: TimeInterval(channel.Expiration))
                 self.DataBalanceField.stringValue = "\(date)"
         }

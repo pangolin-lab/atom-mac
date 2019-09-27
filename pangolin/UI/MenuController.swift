@@ -61,7 +61,7 @@ class MenuController: NSObject {
                 }
                 
                 let channles = MPCManager.PayChannels
-                for (_, c) in channles.enumerated(){
+                for (_, c) in channles.values.enumerated(){
                         
                         let menuItem =  NSMenuItem(title: c.MainAddr, action:#selector(MenuController.ChangeChannelInUse(_:)), keyEquivalent: "")
                         menuItem.representedObject = c

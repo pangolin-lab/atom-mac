@@ -153,7 +153,9 @@ struct TransferLinToken_return {
 
 extern struct TransferLinToken_return TransferLinToken(GoString p0, GoString p1, GoFloat64 p2);
 
-extern char* SyncWalletInfo();
+extern void SyncWalletInfo();
+
+extern char* LoadWalletInfo();
 
 /* Return type for NewWallet */
 struct NewWallet_return {
