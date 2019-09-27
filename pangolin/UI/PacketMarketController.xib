@@ -189,7 +189,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dt9-LC-pjF">
-                        <rect key="frame" x="291" y="200" width="186" height="21"/>
+                        <rect key="frame" x="356" y="200" width="121" height="21"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" borderStyle="border" alignment="center" id="KfV-2F-J8f">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -197,8 +197,8 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jpd-eC-SYd">
-                        <rect key="frame" x="246" y="204" width="39" height="17"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Price:" id="axG-Ve-zv8">
+                        <rect key="frame" x="246" y="204" width="104" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Price(bytes/Lin):" id="axG-Ve-zv8">
                             <font key="font" usesAppearanceFont="YES"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

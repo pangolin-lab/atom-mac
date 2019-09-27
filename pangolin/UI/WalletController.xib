@@ -89,8 +89,8 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="vov-dk-glX">
-                        <rect key="frame" x="281" y="311" width="88" height="17"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Data Balance:" id="5j7-ds-wNV">
+                        <rect key="frame" x="281" y="311" width="101" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Packet Balance:" id="5j7-ds-wNV">
                             <font key="font" usesAppearanceFont="YES"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

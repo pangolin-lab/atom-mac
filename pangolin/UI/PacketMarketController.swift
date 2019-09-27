@@ -96,7 +96,7 @@ class PacketMarketController: NSWindowController {
                         return
                 }
                 self.myStatusField.stringValue = "Subscribed"
-                self.myBalanceField.doubleValue = chan.RemindPackets.CoinValue()
+                self.myBalanceField.stringValue = ConvertBandWith(val: chan.RemindPackets)
         }
         
         @IBAction func SycFromEthereumAction(_ sender: NSButton) {

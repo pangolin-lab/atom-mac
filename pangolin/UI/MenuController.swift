@@ -62,8 +62,10 @@ class MenuController: NSObject {
                 
                 let channles = MPCManager.PayChannels
                 for (_, c) in channles.values.enumerated(){
-                        
-                        let menuItem =  NSMenuItem(title: c.MainAddr, action:#selector(MenuController.ChangeChannelInUse(_:)), keyEquivalent: "")
+                        let pool = MinerPool.cachedPools[c.MainAddr]
+                        let menuItem =  NSMenuItem(title: (pool?.ShortName)!,
+                                                   action:#selector(MenuController.ChangeChannelInUse(_:)),
+                                                   keyEquivalent: "")
                         menuItem.representedObject = c
                         menuItem.target = self
                         allPayChannels.addItem(menuItem)
@@ -80,8 +82,9 @@ class MenuController: NSObject {
                 }
                 self.selMenuItem?.state = .off
                 sender.state = .on
-                self.channelName.title = myItem.MainAddr
+                let pool = MinerPool.cachedPools[myItem.MainAddr]
                 self.selMenuItem = sender
+                self.channelName.title = (pool?.ShortName)!
                 MPCManager.SetPoolNameInUse(addr:myItem.MainAddr)
         }
         
