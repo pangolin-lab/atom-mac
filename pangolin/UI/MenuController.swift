@@ -48,6 +48,16 @@ class MenuController: NSObject {
         
         @objc func UpdateVpnStatus(notification:Notification){
                 
+                DispatchQueue.main.async {
+                        self.updateUI()
+                }
+                guard let ui = notification.userInfo as NSDictionary? else{
+                        return
+                }
+                let errMsg = ui["msg"] as! String
+                let errNo = ui["errNo"] as! Int
+                
+                dialogOK(question: "VPN 关闭", text: "错误码:[\(errNo)], 错误提示:[\(errMsg)]")
         }
         
         @objc func loadChannelMenu(notification:Notification){
@@ -119,9 +129,6 @@ class MenuController: NSObject {
                                 }
                                 try server.StartServer(password: pwd)
                         }
-                        
-                        updateUI()
-                        
                 }catch{
                         dialogOK(question: "Error", text: error.localizedDescription)
                 }

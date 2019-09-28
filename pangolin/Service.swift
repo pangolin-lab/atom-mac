@@ -49,7 +49,7 @@ struct BasicConfig{
         }
         
         func save(){
-                UserDefaults.standard.set(isTurnon, forKey: KEY_FOR_SWITCH_STATE)
+//                UserDefaults.standard.set(isTurnon, forKey: KEY_FOR_SWITCH_STATE)
                 UserDefaults.standard.set(isGlobal, forKey: KEY_FOR_Pangolin_MODEL)
         }
 }
