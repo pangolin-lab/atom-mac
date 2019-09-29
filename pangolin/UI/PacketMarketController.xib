@@ -157,7 +157,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="249" verticalHuggingPriority="750" verticalCompressionResistancePriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="OK2-sG-dai">
-                        <rect key="frame" x="301" y="237" width="176" height="21"/>
+                        <rect key="frame" x="353" y="237" width="124" height="21"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" borderStyle="border" alignment="center" id="wSe-Jd-p5V">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -165,8 +165,8 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="afa-sg-bXc">
-                        <rect key="frame" x="246" y="241" width="49" height="17"/>
-                        <textFieldCell key="cell" lineBreakMode="clipping" title="Packet:" id="zwi-oo-G5M">
+                        <rect key="frame" x="246" y="241" width="101" height="17"/>
+                        <textFieldCell key="cell" lineBreakMode="clipping" title="Packet Balance:" id="zwi-oo-G5M">
                             <font key="font" usesAppearanceFont="YES"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

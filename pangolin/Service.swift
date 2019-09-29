@@ -14,7 +14,7 @@ let KEY_FOR_Pangolin_MODEL        = "KEY_FOR_Pangolin_MODEL"
 let KEY_FOR_CURRENT_POOL_INUSE    = "KEY_FOR_CURRENT_SEL_POOL_v2"
 
 public let TOKEN_ADDRESS = "0x7001563e8f2ec996361b72f746468724e1f1276c"
-public let MICROPAY_SYSTEM_ADDRESS = "0x2ff5b4bbafb6fafd4111660cb61dee0be65a2c707007f9a399bbcc6f69ec7430"
+public let MICROPAY_SYSTEM_ADDRESS = "0x572b89B86D37A990E828F45c85e31b8e8Ae222eF"
 public let BLOCKCHAIN_API_URL = "https://ropsten.infura.io/v3/8b8db3cca50a4fcf97173b7619b1c4c3"
 public let BaseEtherScanUrl = "https://ropsten.etherscan.io"  //"https://ropsten.etherscan.io"//"https://etherscan.io"
 
@@ -120,15 +120,13 @@ class Service: NSObject {
                                   srvConf.baseDir.toGoString(),
                                   systemCallBack,
                                   blockchainSynced)
-                
-                self.srvConf.packetPrice = SysPacketPrice()
-                
-                self.contractQueue.async {
-                        asyncAppDataFromBlockChain()
-                }
-                
                 if ret.r0 != 0 {
                         throw ServiceError.SdkActionErr("init app err: no:[\(ret.r0)] msg:[\(String(cString:ret.r1))]")
+                }
+                
+                self.srvConf.packetPrice = SysPacketPrice()
+                self.contractQueue.async {
+                        asyncAppDataFromBlockChain()
                 }
                 
                 try  ensureLaunchAgentsDirOwner()
