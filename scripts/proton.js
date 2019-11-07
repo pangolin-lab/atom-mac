@@ -1200,6 +1200,7 @@ var rules = [
   "||godoc.org",
   "||golang.org",
   "||goo.gl",
+  ".etherscan.io",
   ".google.ae",
   ".google.as",
   ".google.am",
